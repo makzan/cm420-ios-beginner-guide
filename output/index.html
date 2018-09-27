@@ -57,6 +57,13 @@
 </book-section>
 <book-section :showing='showing' title='UIImageView'><div>UIImageView 是用來顯示 UIImage 的界面元素。<br/><br/>預設 UIImageView 只適合顯示本地（Local）的影像數據。UIImageView 顧名思義是顯示 UIImage 的，所以要顯示什麼數據，就主要看 UIImage 的影像數據從哪𥚃獲得。</div>
 
+<ol>
+<li>最直接的方法是使用<em>影像檔案名稱</em>，來載入已經儲存到項目內的本地圖像。</li>
+<li>另外，就是使用 NSData，想辦法動態生成圖像格式，然後以 UIImageView顯示出來。例如畫板 App 或者填色 App，又或者不同特效的影相 App，都是動態生成圖像的。</li>
+<li>從網絡載入圖片，預設的 API 會較為繁複。需要先使用 NSURLConnection 或 NSURLSession 取得網絡數據，再按其返回值（Response）的 header 來說明下載回來的數據所相對應的圖片格式。然後通過 NSData 生成 UIImage。</li>
+<li>另一個從網絡載入圖片的快速方法，是使用第三方程序庫，其內部做法跟以上第 3 點一樣，但通常第三方程序庫會提供了一個易用的 API。例如 AlamoFire 會有個 UIImageView extension： `af_setImage(withURL:)`</li>
+</ol>
+
 </book-section>
 <book-section :showing='showing' title='Extension'><div>Swift 的 Extension 就要所謂的 Monkey Patch。即對一個已 Compile 的類（Class）再擴展。<br/><br/>
 </div>
@@ -88,14 +95,36 @@
 <div>另一種狀態是停用（Disabled），當一個按鈕不想被用戶按下時可以設定為停用。</div>
 
 </book-section>
-<book-section :showing='showing' title='UserDefaults'>
+<book-section :showing='showing' title='UserDefaults'><pre>// set
+UserDefaults.standard.set("anything", forKey: "yourKey")
+
+// get
+UserDefaults.standard.value(forKey: "yourKey")</pre>
+
+
 
 </book-section>
 <book-section :showing='showing' title='Core Data'><div>Keywords：</div>
 
+<ul>
+<li>PersistentContainer</li>
+<li>PersistentStore</li>
+<li>PersistentStoreCoordinator</li>
+<li>Entity</li>
+<li>EntityDescription</li>
+<li>Context</li>
+<li>Managed Object</li>
+</ul>
+
 <div>
   <strong><br/>Managed Object code generation</strong>
 </div>
+
+<ul>
+<li>Class Definition: 全部 Xcode 管理</li>
+<li>Category/Extension: 自己定義 NSManagedObject subclass，Xcode 管理 Extension</li>
+<li>Manual/None: 自己定義 NSManagedObject subclass 及 Extension</li>
+</ul>
 
 <div>
 <br/>自己管理越多，彈性越大，但亦越要自己動手寫。</div>
@@ -104,28 +133,67 @@
   <br/>
 </div>
 
-<div>
-  <br/>
-</div>
+<h1>
+  <strong>新增記錄</strong>
+</h1>
 
 <div>
   <br/>
 </div>
 
-<div>
-  <br/>
-</div>
+<pre>let entity = NSEntityDescription.entity(forEntityName: "Friend", in: persistentContainer.viewContext)
+        
+let friend = Friend(entity: entity!, insertInto: persistentContainer.viewContext)
+friend.name = "Jack Chan"
+friend.tel = "66661234"
+self.saveContext()
+<br/></pre>
 
 <div>
   <br/>
 </div>
 
+<h1>搜尋記錄</h1>
+
 <div>
   <br/>
 </div>
+
+<pre>let fetchRequest:NSFetchRequest&lt;Friend&gt; = Friend.fetchRequest()
+
+do {
+    let results = try persistentContainer.viewContext.fetch(fetchRequest)
+    print(results.count)
+    for friend in results {
+        print(friend.name)
+        print(friend.tel)
+    }
+} catch {
+    print("Fetch error.")
+}
+<br/></pre>
+
+<div>
+  <br/>
+</div>
+
+<h1>刪除</h1>
+
+<div>
+  <br/>
+</div>
+
+<pre>persistentContainer.viewContext.delete(friend)</pre>
 
 </book-section>
 <book-section :showing='showing' title='保護層級'><div>保護層級</div>
+
+<ul>
+<li>NSFileProtectionComplete</li>
+<li>NSFileProtectionCompleteUnlessOpen</li>
+<li>NSFileProtectionCompleteUntilFirstUserAuthentication</li>
+<li>NSFileProtectionNone</li>
+</ul>
 
 <div>
 <br/>More Detail： <a href="https://pspdfkit.com/blog/2017/how-to-use-ios-data-protection/" target="_blank" rel="noreferrer">https://pspdfkit.com/blog/2017/how-to-use-ios-data-protection/<br/></a><br/>
@@ -138,6 +206,21 @@
 <div>
   <br/>
 </div>
+
+<h1>
+  <strong>設定 File Protection Tips:</strong>
+</h1>
+
+<ol>
+<li>Enable File Protection using the Capabilities tab on your app target</li>
+<li>If you do not want the default NSFileProtectionComplete, change this setting in the developer portal under your app id</li>
+<li>Make sure Xcode has the new provisioning profile this creates.</li>
+<li>For protecting files your app creates, that's it.</li>
+<li>To protect Core Data, you need to add the NSPersistentStoreFileProtectionKey: NSFileProtectionComplete option to your persistent store.</li>
+</ol>
+
+<pre>storeDescription.setOption(FileProtectionType.completeUnlessOpen as NSObject, forKey: NSPersistentStoreFileProtectionKey)
+            container.persistentStoreDescriptions = [storeDescription]</pre>
 
 
 
@@ -316,18 +399,43 @@
   <strong><br/>如何開啟 XLIFF 檔案？</strong>
 </div>
 
+<ul>
+<li><a target="_blank" rel="noreferrer" class="autolinked" data-behavior="truncate" href="https://en.wikipedia.org/wiki/XLIFF">https://en.wikipedia.org/wiki/XLIFF</a></li>
+<li><a target="_blank" rel="noreferrer" class="autolinked" data-behavior="truncate" href="http://xliff.brightec.co.uk">http://xliff.brightec.co.uk</a></li>
+</ul>
+
 <div>
   <br/>
 </div>
+
+<h1>
+  <strong>於 App 內轉換語言</strong>
+</h1>
 
 <div>
 <br/>要在 App 內轉換語言，涉及動態地載入不同的 .lproj 檔案。<br/><br/>
 </div>
 
+<ul>
+<li><a href="https://stackoverflow.com/questions/29985614/how-can-i-change-the-localization-programmatically-by-swift" target="_blank" rel="noreferrer">Stackflow</a></li>
+<li><a href="https://www.factorialcomplexity.com/blog/2015/01/28/how-to-change-localization-internally-in-your-ios-application.html" target="_blank" rel="noreferrer">https://www.factorialcomplexity.com/</a></li>
+<li><a href="https://forums.developer.apple.com/message/36704#36704" target="_blank" rel="noreferrer">蘋果職員不建議 App 內轉換：</a></li>
+</ul>
+
+<blockquote>
+<br/>The system does not support changing your app's localisation on the fly. If you look through the App Frameworks / Localization topic area (which is where I moved your question, btw) you'll find that a significant fraction of the threads are from people having problems when they try to do this. You may be able to work around some of the problems but there are others that have no workaround. Probably the most significant relates to system UI components.<br/><br/><br/>If the system puts up a UI component on your behalf (the document picker, or Game Center user interface parts, or whatever) it will do so in the localisation that it thinks that your app is running in. If your app is 'pretending' to run in some other language, you'll end up with a mixed localisation, where some parts of your app (the parts you control) are in one language and other parts of your app (the parts controlled by the OS) are in another. That's a very poor user experience.<br/><br/><br/>In my opinion it is much better to avoid this problem entirely by localising your app in the standard way and relying on the system to choose the language for you based on the user's system-wide preferences.<br/><br/><br/>— Quinn "The Eskimo!"</blockquote>
+
 </book-section>
 <book-section :showing='showing' title='App Store 上架介紹'><div>
 <br/>上架條件：<br/><br/>
 </div>
+
+<ol>
+<li>付費的 Apple Developer Program</li>
+<li>於 Developers.apple.com 或 Xcode ，並設定了唯一的 Bundle ID</li>
+<li>於 AppStoreConnect (原 iTunesConnect) 上設定了上架所須的資料，並處於 <strong>Ready to Submit</strong> 狀態。</li>
+<li>於 Xcode 進行 Project Archive，然後經 Xcode Submit 上 AppStore Connect 並等待審批。</li>
+</ol>
 
 <div>
 <strong><br/>選擇正確的 Apple Developer Program<br/></strong><br/>
@@ -367,6 +475,11 @@
 </book-section>
 <book-section :showing='showing' title='使用 AppStoreConnect'><div>首先要認識兩個 Apple 設定後台網址：</div>
 
+<ol>
+<li>developer.apple.com</li>
+<li>iTunesConnect.apple.com</li>
+</ol>
+
 <div>
 <br/>注：於 2018 年中，iTunesConnect 已更名為 AppStoreConnect。</div>
 
@@ -391,6 +504,16 @@
 <div>
 <br/>AppStore Connect 分為幾大模塊：</div>
 
+<ol>
+<li>Apps</li>
+<li>Analytics</li>
+<li>Sales and Trends</li>
+<li>Payment</li>
+<li>User and roles</li>
+<li>Agreement, Tax</li>
+<li>Resources Help</li>
+</ol>
+
 </book-section>
 <book-section :showing='showing' title='使用 AlamoFire 取得網絡資源'><div>在 iOS 開發中，我們可以使用 <a href="https://developer.apple.com/documentation/foundation/nsurlsession" target="_blank" rel="noreferrer">NSURLSession</a>。這是 iOS 7 以後加上的，在此前，我們須使用 NSURLConnection 做更底層的網絡操作。</div>
 
@@ -399,6 +522,12 @@
 </div>
 
 <div>在 AlamoFire 的文件中，有幾項可以幫助我們快速上手：</div>
+
+<ul>
+<li><a href="https://github.com/Alamofire/Alamofire/blob/master/Documentation/Usage.md#making-a-request" target="_blank" rel="noreferrer">基本存取</a></li>
+<li><a href="https://github.com/Alamofire/Alamofire/blob/master/Documentation/AdvancedUsage.md#network-reachability" target="_blank" rel="noreferrer">確定手機可以連接網絡</a></li>
+<li><a href="https://github.com/Alamofire/Alamofire/blob/master/Documentation/Usage.md#response-validation" target="_blank" rel="noreferrer">於返回成功才處理數據</a></li>
+</ul>
 
 </book-section>
 <book-section :showing='showing' title='範例：載入澳門圖書館列表'><div>
@@ -412,6 +541,9 @@
 <div>
 <br/>在這個範例中，我們將使用以下 JSON 作為圖書館列表資料的來源。資料來源自<a href="https://www.library.gov.mo/" target="_blank" rel="noreferrer">澳門政府圖書館網站</a>。<br/><br/>
 </div>
+
+<pre>https://s3-us-west-2.amazonaws.com/s.cdpn.io/15649/macao-library.json
+<br/></pre>
 
 <div>
 <br/>從 AlamoFire 的 Github 中下載整個項目回來後，將檔案放到項目目錄下，接著把 Alamofire.xcodeproj 拖拉進目標 Xcode project。<br/><br/>
@@ -433,6 +565,9 @@
 <br/>我們會使用自定義的 LibraryListTableViewController 來實現 Table View，在其最頂端，需要匯入 Alamofire 框架，方法是：<br/><br/>
 </div>
 
+<pre>import Alamofire
+<br/></pre>
+
 <div>
 <br/>為了方便稍後載入網絡相片，我們也可以一併匯入 <a href="https://github.com/Alamofire/AlamofireImage" target="_blank" rel="noreferrer">AlamofireImage</a> 擴展。<br/><br/>
 </div>
@@ -441,18 +576,84 @@
 <br/>接著在 LibraryListTableViewController 中，定義兩個變量：<br/><br/>
 </div>
 
+<pre>var libraryData:NSDictionary?
+var regionNames:NSMutableArray = []
+<br/></pre>
+
 <div>
 <br/>然後在 viewDidLoad 中存取目標 JSON:<br/><br/>
 </div>
+
+<pre>Alamofire.request("https://s3-us-west-2.amazonaws.com/s.cdpn.io/15649/macao-library.json").validate().responseJSON { (response) in
+    let json = response.result.value as! NSDictionary
+    
+    for (region, _) in json {
+        self.regionNames.add(region)
+    }
+    self.libraryData = json
+    self.tableView.reloadData()
+}
+<br/></pre>
 
 <div>
 <br/>以下是 TableView 的各主要函數代碼。（也可以整個<a href="http://ios-dev.netlify.com/b5da5dc4a21a4035ce80c63890c5fd5a93b0bf6f/code_examples/AlamoFireDemo.zip" target="_blank" rel="noreferrer">項目範例下載</a>）<br/><br/>
 </div>
 
+<pre>override func numberOfSections(in tableView: UITableView) -&gt; Int {
+    if libraryData != nil {
+        return libraryData!.count
+    }
+    return 0
+}
+
+override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -&gt; Int {
+    if libraryData != nil {
+        
+        let libraries = libraryData![regionNames[section]] as! NSArray
+        return libraries.count
+    }
+    return 0
+}
+
+override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -&gt; String? {
+    if libraryData != nil {
+        
+        return regionNames[section] as? String
+    }
+    return ""
+}
+
+
+override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -&gt; UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: "BasicCell", for: indexPath)
+
+    // Configure the cell...
+    let libraries = libraryData![regionNames[indexPath.section]] as! NSArray
+    let library:NSDictionary = libraries[indexPath.row] as! NSDictionary
+
+    cell.textLabel?.text = library["name"] as? String
+    cell.accessoryType = .disclosureIndicator
+    
+    // 若果有使用 AlamofireImage 擴展
+    let photoURL = URL(string: library["photo"] as! String)        
+    
+    cell.imageView?.af_setImage(withURL: photoURL!, filter:AspectScaledToFillSizeFilter(size: CGSize(width: 50, height: 50)), completion: { (_) in
+        tableView.reloadRows(at: [indexPath], with: .none)
+    })
+
+
+    return cell
+}</pre>
+
 </book-section>
 <book-section :showing='showing' title='錯誤提示'><div>
 <br/>網絡存取時有發生錯誤的時候，例如當用戶進入升降機時，原本正在送出的網絡請求便有機會超時。這時我們可以向用戶顯示提示，這涉及兩個層次：<br/><br/>
 </div>
+
+<ol>
+<li>給出一個用戶能明白的錯誤文字</li>
+<li>決定彈出錯誤的界面方式</li>
+</ol>
 
 <div>
 <br/>其中一個常見的錯誤是存取超時，如果我們直接將錯誤信息跟用戶說，例如 “Error: Request Timeout”，用戶未必會知道發生了什麼事，但如果我們將信息改為：「暫時未能存取網絡，請稍後再試，如問題持續可以聯絡我們」，這樣便會有更好的用戶體驗。<br/><br/>
@@ -462,8 +663,19 @@
 <br/>至於界面，我們有幾個選擇：<br/><br/>
 </div>
 
+<ol>
+<li>使用 UIAlert 彈出錯誤提示信息。這是最常見的方式。</li>
+<li>自定一個由上向下的錯誤信息橫條 Banner，置於屏幕上方。（或由下向上放於下方）。常用於錯誤不影響用戶繼續操作的情況下</li>
+<li>使用覆蓋全畫面的錯誤提示。例如一些錯誤希望用戶提供額外資料</li>
+</ol>
+
 </book-section>
 <book-section :showing='showing' title='載入中提示'><div>在 iOS 系統中，有兩種載入界面可以使用。</div>
+
+<ol>
+<li><a href="https://developer.apple.com/documentation/uikit/uiapplication/1623102-networkactivityindicatorvisible" target="_blank" rel="noreferrer">於 Status Bar 上顯示</a></li>
+<li><a href="https://developer.apple.com/documentation/uikit/uiactivityindicatorview" target="_blank" rel="noreferrer">使用 UIActivityIndicatorView</a></li>
+</ol>
 
 <div>Apple 官網也有使用<a href="https://developer.apple.com/design/human-interface-guidelines/ios/controls/progress-indicators/" target="_blank" rel="noreferrer">詳情說明</a>。</div>
 

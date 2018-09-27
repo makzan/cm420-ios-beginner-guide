@@ -26,13 +26,16 @@ for file_to_read in files_to_read:
     dom_tree = html.fromstring(html_content)
 
     title = dom_tree.xpath('//h1[@class="title"]/text()')[0]
-    content_tree = dom_tree.xpath('//div[@class="formatted_content"]/div')
+    content_tree = dom_tree.xpath('//div[@class="formatted_content"]/*')
 
     section_titles.append(title);
 
     # content = "<section href='#' v-show='showing==\"%s\"'><h1>%s</h1>\n" % (title, title)
     content = "<book-section :showing='showing' title='%s'>" % title
+    # print(content_tree)
     for node in content_tree:
+        # print(node)
+        # print(etree.tostring(node, pretty_print=True, encoding='unicode'))
         content += etree.tostring(node, pretty_print=True, encoding='unicode').replace("bc-attachment", "div").replace("<div/>","")
     content += "</book-section>"
 
