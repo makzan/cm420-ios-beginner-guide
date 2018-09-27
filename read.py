@@ -51,7 +51,8 @@ book_setions.insert(0, "<section v-show='showing==\"Table of Content\"'>%s</sect
 # print( book_setions )
 
 
-output_content = "<!DOCTYPE html>\n<meta charset='utf-8'>\n<title>iOS App 開發入門</title>"
+output_content = "<!DOCTYPE html>\n<meta charset='utf-8'>\n<meta name='viewport' content='width=device-width, initial-scale=1'>"
+output_content += "<title>iOS App 開發入門</title>"
 output_content += "<link rel='stylesheet' href='reader.css'>"
 # output_content += "<style>" + css_content + "</style>\n"
 output_content += "<div id='book'><header><h1>iOS App 開發入門</h1></header><div class='main-area'><main>\n<div class='section-content'>" + '\n'.join(book_setions) + "</div></main>" + toc_content + "</div></div><script src='https://unpkg.com/vue@2.5.17/dist/vue.js'></script><script>" + js_content + "</script>"
