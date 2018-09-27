@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<meta charset='utf-8'>
+<title>iOS App 開發入門</title><link rel='stylesheet' href='reader.css'><div id='book'><header><h1>iOS App 開發入門</h1></header><div class='main-area'><main>
+<div class='section-content'><section v-show='showing=="Table of Content"'><ol class='toc'><li><a href='#' @click="showing='Table of Content'">Table of Content</a></li><li><a href='#' @click="showing='Xcode 介面介紹'">Xcode 介面介紹</a></li><li><a href='#' @click="showing='開發 iOS App，我應該選擇 Objective-C 還是 Swift 語言？'">開發 iOS App，我應該選擇 Objective-C 還是 Swift 語言？</a></li><li><a href='#' @click="showing='iOS Simulator'">iOS Simulator</a></li><li><a href='#' @click="showing='UIImageView'">UIImageView</a></li><li><a href='#' @click="showing='Extension'">Extension</a></li><li><a href='#' @click="showing='IBAction & IBOutlet'">IBAction & IBOutlet</a></li><li><a href='#' @click="showing='Storyboard'">Storyboard</a></li><li><a href='#' @click="showing='UIButton'">UIButton</a></li><li><a href='#' @click="showing='App Store 上架介紹'">App Store 上架介紹</a></li><li><a href='#' @click="showing='使用 AlamoFire 取得網絡資源'">使用 AlamoFire 取得網絡資源</a></li><li><a href='#' @click="showing='範例：載入澳門圖書館列表'">範例：載入澳門圖書館列表</a></li><li><a href='#' @click="showing='錯誤提示'">錯誤提示</a></li><li><a href='#' @click="showing='載入中提示'">載入中提示</a></li></ol></section>
+<book-section :showing='showing' title='Xcode 介面介紹'><div>
+<div content-type="image" url="http://ios-dev.netlify.com/b5da5dc4a21a4035ce80c63890c5fd5a93b0bf6f/images/Screen_Shot_2018-03-12_at_10.41.00_PM.png" width="2160" height="1512"><figure class="attachment attachment--preview">
+  <img width="2160" height="1512" src="http://ios-dev.netlify.com/b5da5dc4a21a4035ce80c63890c5fd5a93b0bf6f/images/Screen_Shot_2018-03-12_at_10.41.00_PM.png"/>
+</figure></div><br/><br/><div content-type="image" url="http://ios-dev.netlify.com/b5da5dc4a21a4035ce80c63890c5fd5a93b0bf6f/images/Screen_Shot_2018-03-13_at_3.51.46_PM.png" width="190" height="58"><figure class="attachment attachment--preview">
+  <img width="190" height="58" src="http://ios-dev.netlify.com/b5da5dc4a21a4035ce80c63890c5fd5a93b0bf6f/images/Screen_Shot_2018-03-13_at_3.51.46_PM.png"/>
+</figure></div><br/><br/><br/><div content-type="image" url="http://ios-dev.netlify.com/b5da5dc4a21a4035ce80c63890c5fd5a93b0bf6f/images/985495DF-31F2-4F38-A23F-9DCD4529B4D4.jpeg" width="2853" height="1963"><figure class="attachment attachment--preview">
+  <img width="2853" height="1963" src="http://ios-dev.netlify.com/b5da5dc4a21a4035ce80c63890c5fd5a93b0bf6f/images/985495DF-31F2-4F38-A23F-9DCD4529B4D4.jpeg"/>
+</figure></div>
+</div>
+
+</book-section>
+<book-section :showing='showing' title='開發 iOS App，我應該選擇 Objective-C 還是 Swift 語言？'><div>
+<br/>Objective-C 歷史悠久，自 80 年代後便已面世，並且一直是 Mac 機軟件開發所使用的編程語言，所以 iOS 推出時，也順理成章使用 Objective-C 語言。但 Objective-C 語言其實寫法較為獨特，和傳統的 C / Java 等語言寫法有一定差距，導致除了 Mac 開發外，使用 Objective-C 的人不多。<br/><br/>
+</div>
+
+<div>
+  <div content-type="image" url="http://ios-dev.netlify.com/b5da5dc4a21a4035ce80c63890c5fd5a93b0bf6f/images/Screen_Shot_2018-03-13_at_4.07.27_PM.png" width="824" height="104">
+    <figure class="attachment attachment--preview">
+  <img width="824" height="104" src="http://ios-dev.netlify.com/b5da5dc4a21a4035ce80c63890c5fd5a93b0bf6f/images/Screen_Shot_2018-03-13_at_4.07.27_PM.png"/>
+</figure>
+  </div>
+</div>
+
+<div>
+<br/>為了更好地推廣編程學習，蘋果便於數年前推出了 <a href="https://swift.org/" target="_blank" rel="noreferrer">Swift 語言</a>。在經歷多年的使用及調整後，現在 Swift 語言已經趨向穩定成熟，而且網上的新教材基本上都使用 Swift 語言了。<br/><br/>
+</div>
+
+<div>
+<br/>所以，如果現在開始學寫 iOS 應用，直接選擇 Swift 是擁抱美來的好選擇。而 Objective-C，就是以往寫下的代碼，沒有出錯不去改而矣。</div>
+
+</book-section>
+<book-section :showing='showing' title='iOS Simulator'><div>在我們落實體機試之前，我們一般會利用 Xcode 跟來的模擬器進行測試。iOS Simulator 模擬器讓我們選擇從 iPhone 5s 至 iPhone X 的不同畫面尺寸，方便測試應用在不同畫面的運行情況。<br/><br/>
+</div>
+
+<div>
+  <div content-type="image" url="http://ios-dev.netlify.com/b5da5dc4a21a4035ce80c63890c5fd5a93b0bf6f/images/Screen_Shot_2018-03-12_at_10.41.07_PM.png" width="784" height="1618">
+    <figure class="attachment attachment--preview">
+  <img width="784" height="1618" src="http://ios-dev.netlify.com/b5da5dc4a21a4035ce80c63890c5fd5a93b0bf6f/images/Screen_Shot_2018-03-12_at_10.41.07_PM.png"/>
+</figure>
+  </div>
+</div>
+
+<div>
+  <div content-type="image" url="http://ios-dev.netlify.com/b5da5dc4a21a4035ce80c63890c5fd5a93b0bf6f/images/Screen_Shot_2018-03-12_at_10.38.11_PM.png" width="570" height="1044">
+    <figure class="attachment attachment--preview">
+  <img width="570" height="1044" src="http://ios-dev.netlify.com/b5da5dc4a21a4035ce80c63890c5fd5a93b0bf6f/images/Screen_Shot_2018-03-12_at_10.38.11_PM.png"/>
+</figure>
+  </div>
+</div>
+
+
+
+</book-section>
+<book-section :showing='showing' title='UIImageView'><div>UIImageView 是用來顯示 UIImage 的界面元素。<br/><br/>預設 UIImageView 只適合顯示本地（Local）的影像數據。UIImageView 顧名思義是顯示 UIImage 的，所以要顯示什麼數據，就主要看 UIImage 的影像數據從哪𥚃獲得。</div>
+
+</book-section>
+<book-section :showing='showing' title='Extension'><div>Swift 的 Extension 就要所謂的 Monkey Patch。即對一個已 Compile 的類（Class）再擴展。<br/><br/>
+</div>
+
+<div>Extension 有點類似 Mixin 的概念。其優點是不用再為特定功能而建立 Subclass，因為不同情況下為使用不同功能，未必是 Subclass 可以解決的。<br/><br/>
+</div>
+
+<div>其缺點是如果擴展的函數和原有的函數名稱相同，就會有 Override 出現，並產生同一個函數而行為不一致的問題。所以 AlamoFire 的解決方法是在所有 Extension 上加上 prefix，例如 `af_setImage(withURL:)` 而不是直接使用 `setImage(withURL:)`。</div>
+
+</book-section>
+<book-section :showing='showing' title='IBAction & IBOutlet'><div>IBAction 和 IBOutlet 是程序和界面的兩種連結。<br/><br/>IBOutlet 是用一程序變量來記錄（reference）一個界面元素，好讓我們在程序中再動態地設定這個界面元素。例如設定一個 UILabel 顯示不同的文字輸出等。<br/><br/>
+</div>
+
+<div>IBAction 是一個函數（function/method），當界面上有互動發生時，例如 UIButton 按下時，需要調用程序的哪一段代碼。</div>
+
+</book-section>
+<book-section :showing='showing' title='Storyboard'><div>Storyboard 可以讓我們在一個檔案管理多個關連的介面。這方便我們統一管理這些界面及他們之間的顯示關連。<br/><br/>
+</div>
+
+<div>在使用 Storyboard 以前，我們使用 xib 檔案獨立設定每個畫面。單獨畫面設定的操作其實和 Storyboard 內的畫面設定差不多，Storyboard 多了的是界面之間的連繫。</div>
+
+</book-section>
+<book-section :showing='showing' title='UIButton'><div>UIButton 可以讓我們接受用戶互動的各項事件，在介面上拉好 UIButton 後，就可以通過滑鼠右鍵拖拉的方式，拖拉到程序上，建立 IBAction。<br/><br/>
+</div>
+
+<div>另外，UIButton 在設定選項中，可以選擇不同的狀態（State），最常用的狀態，除了平常狀態外，就是 當手指按下時的 Highlight 了。如果於按鈕上使用圖片，也可以在這個 Highlight 狀態設定不同的圖片，做到按下去的效果。<br/><br/>
+</div>
+
+<div>另一種狀態是停用（Disabled），當一個按鈕不想被用戶按下時可以設定為停用。</div>
+
+</book-section>
+<book-section :showing='showing' title='App Store 上架介紹'><div>
+<br/>上架條件：<br/><br/>
+</div>
+
+<div>
+<strong><br/>選擇正確的 Apple Developer Program<br/></strong><br/>
+</div>
+
+<div>
+<br/>Apple Developer Program 有幾種，但我們基本上只會在 <em>個人</em> 及 <em>公司</em> 兩者間選擇。<br/><br/>
+</div>
+
+<div>
+<br/>其餘的 <em>Enterprise</em> 及 <em>University</em> 都不是我們常用的選擇。<br/><br/>
+</div>
+
+<div>
+<strong><br/>使用 Test Flight 進行測試<br/></strong><br/>
+</div>
+
+<div>
+<br/><a target="_blank" rel="noreferrer" class="autolinked" data-behavior="truncate" href="https://developer.apple.com/testflight/">https://developer.apple.com/testflight/</a><br/><br/>
+</div>
+
+<div>
+<br/>Test Flight 背後使用了 itms-services 技術。這間公司前身是獨立公司，後來被蘋果收購了。<br/><br/>
+</div>
+
+<div>
+<strong><br/>蘋果上架指引<br/></strong><br/>
+</div>
+
+<div>
+<br/><a target="_blank" rel="noreferrer" class="autolinked" data-behavior="truncate" href="https://developer.apple.com/app-store/review/guidelines/">https://developer.apple.com/app-store/review/guidelines/</a><br/><br/>
+</div>
+
+<div>
+<br/>注意：這個指引會不定時更新，所以建議久不久便要重新閱讀一次。</div>
+
+</book-section>
+<book-section :showing='showing' title='使用 AlamoFire 取得網絡資源'><div>在 iOS 開發中，我們可以使用 <a href="https://developer.apple.com/documentation/foundation/nsurlsession" target="_blank" rel="noreferrer">NSURLSession</a>。這是 iOS 7 以後加上的，在此前，我們須使用 NSURLConnection 做更底層的網絡操作。</div>
+
+<div>
+<br/>然而，為了更集中處理高層次設計，我們可以選擇避開太基層的網絡存取 API 應用，而是使用第三方程序庫。在 iOS Swift 中，其中一個常用到的網絡存取資源庫是 <a href="https://github.com/Alamofire/Alamofire" target="_blank" rel="noreferrer">AlamoFire</a>。<br/><br/>
+</div>
+
+<div>在 AlamoFire 的文件中，有幾項可以幫助我們快速上手：</div>
+
+</book-section>
+<book-section :showing='showing' title='範例：載入澳門圖書館列表'><div>
+  <div content-type="image" url="http://ios-dev.netlify.com/b5da5dc4a21a4035ce80c63890c5fd5a93b0bf6f/images/alamofire-tableview-images.png" width="750" height="1378">
+    <figure class="attachment attachment--preview">
+  <img width="750" height="1378" src="http://ios-dev.netlify.com/b5da5dc4a21a4035ce80c63890c5fd5a93b0bf6f/images/alamofire-tableview-images.png"/>
+</figure>
+  </div>
+</div>
+
+<div>
+<br/>在這個範例中，我們將使用以下 JSON 作為圖書館列表資料的來源。資料來源自<a href="https://www.library.gov.mo/" target="_blank" rel="noreferrer">澳門政府圖書館網站</a>。<br/><br/>
+</div>
+
+<div>
+<br/>從 AlamoFire 的 Github 中下載整個項目回來後，將檔案放到項目目錄下，接著把 Alamofire.xcodeproj 拖拉進目標 Xcode project。<br/><br/>
+</div>
+
+<div>
+<br/>僅記在 Project 的 Framework 中要加入 Alamofire.framework。<br/><br/>
+</div>
+
+<div>
+  <div content-type="image" url="http://ios-dev.netlify.com/b5da5dc4a21a4035ce80c63890c5fd5a93b0bf6f/images/alamofire-embed%20framework.png" width="2800" height="1920">
+    <figure class="attachment attachment--preview">
+  <img width="2800" height="1920" src="http://ios-dev.netlify.com/b5da5dc4a21a4035ce80c63890c5fd5a93b0bf6f/images/alamofire-embed%20framework.png"/>
+</figure>
+  </div>
+</div>
+
+<div>
+<br/>我們會使用自定義的 LibraryListTableViewController 來實現 Table View，在其最頂端，需要匯入 Alamofire 框架，方法是：<br/><br/>
+</div>
+
+<div>
+<br/>為了方便稍後載入網絡相片，我們也可以一併匯入 <a href="https://github.com/Alamofire/AlamofireImage" target="_blank" rel="noreferrer">AlamofireImage</a> 擴展。<br/><br/>
+</div>
+
+<div>
+<br/>接著在 LibraryListTableViewController 中，定義兩個變量：<br/><br/>
+</div>
+
+<div>
+<br/>然後在 viewDidLoad 中存取目標 JSON:<br/><br/>
+</div>
+
+<div>
+<br/>以下是 TableView 的各主要函數代碼。（也可以整個<a href="http://ios-dev.netlify.com/b5da5dc4a21a4035ce80c63890c5fd5a93b0bf6f/code_examples/AlamoFireDemo.zip" target="_blank" rel="noreferrer">項目範例下載</a>）<br/><br/>
+</div>
+
+</book-section>
+<book-section :showing='showing' title='錯誤提示'><div>
+<br/>網絡存取時有發生錯誤的時候，例如當用戶進入升降機時，原本正在送出的網絡請求便有機會超時。這時我們可以向用戶顯示提示，這涉及兩個層次：<br/><br/>
+</div>
+
+<div>
+<br/>其中一個常見的錯誤是存取超時，如果我們直接將錯誤信息跟用戶說，例如 “Error: Request Timeout”，用戶未必會知道發生了什麼事，但如果我們將信息改為：「暫時未能存取網絡，請稍後再試，如問題持續可以聯絡我們」，這樣便會有更好的用戶體驗。<br/><br/>
+</div>
+
+<div>
+<br/>至於界面，我們有幾個選擇：<br/><br/>
+</div>
+
+</book-section>
+<book-section :showing='showing' title='載入中提示'><div>在 iOS 系統中，有兩種載入界面可以使用。</div>
+
+<div>Apple 官網也有使用<a href="https://developer.apple.com/design/human-interface-guidelines/ios/controls/progress-indicators/" target="_blank" rel="noreferrer">詳情說明</a>。</div>
+
+</book-section></div></main><ol class='toc'><li><a href='#' @click="showing='Table of Content'">Table of Content</a></li><li><a href='#' @click="showing='Xcode 介面介紹'">Xcode 介面介紹</a></li><li><a href='#' @click="showing='開發 iOS App，我應該選擇 Objective-C 還是 Swift 語言？'">開發 iOS App，我應該選擇 Objective-C 還是 Swift 語言？</a></li><li><a href='#' @click="showing='iOS Simulator'">iOS Simulator</a></li><li><a href='#' @click="showing='UIImageView'">UIImageView</a></li><li><a href='#' @click="showing='Extension'">Extension</a></li><li><a href='#' @click="showing='IBAction & IBOutlet'">IBAction & IBOutlet</a></li><li><a href='#' @click="showing='Storyboard'">Storyboard</a></li><li><a href='#' @click="showing='UIButton'">UIButton</a></li><li><a href='#' @click="showing='App Store 上架介紹'">App Store 上架介紹</a></li><li><a href='#' @click="showing='使用 AlamoFire 取得網絡資源'">使用 AlamoFire 取得網絡資源</a></li><li><a href='#' @click="showing='範例：載入澳門圖書館列表'">範例：載入澳門圖書館列表</a></li><li><a href='#' @click="showing='錯誤提示'">錯誤提示</a></li><li><a href='#' @click="showing='載入中提示'">載入中提示</a></li></ol></div></div><script src='https://unpkg.com/vue@2.5.17/dist/vue.js'></script><script>// reader.js
+
+Vue.component('book-section', {
+  props: ['title', 'showing'],
+  template: `
+    <section href='#' v-show='showing==title'>
+      <h1>{{title}}</h1>
+      <slot></slot>
+    </section>
+  `
+})
+
+new Vue({
+  el: "#book",
+  data: {
+    showing: 'Table of Content'
+  }
+})</script>
