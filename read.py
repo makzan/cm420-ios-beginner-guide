@@ -3,7 +3,7 @@ from lxml import etree
 
 
 
-css_content = open("reader.css").read()
+css_content = open("output/reader.css").read()
 js_content = open("reader.js").read()
 
 
@@ -56,7 +56,7 @@ output_content += "<link rel='stylesheet' href='reader.css'>"
 # output_content += "<style>" + css_content + "</style>\n"
 output_content += "<div id='book'><header><h1>iOS App 開發入門</h1></header><div class='main-area'><main>\n<div class='section-content'>" + '\n'.join(book_setions) + "</div></main>" + toc_content + "</div></div><script src='https://unpkg.com/vue@2.5.17/dist/vue.js'></script><script>" + js_content + "</script>"
 
-open("output.html", 'w').write(output_content)
+open("output/index.html", 'w').write(output_content)
 
 
 
