@@ -6,7 +6,14 @@ iOS Simulator
 元件介紹/IBAction & IBOutlet
 元件介紹/Storyboard
 元件介紹/UIButton
+儲存數據/UserDefaults
+儲存數據/Core Data
+儲存數據/保護層級
+多語言/設定多語言
+多語言/多語言下的檔案列表
+多語言/輸出及匯入多語言檔案
 上架/App Store 上架介紹
+上架/使用 AppStoreConnect
 AlamoFire/使用 AlamoFire 取得網絡資源
 AlamoFire/範例：載入澳門圖書館列表
 AlamoFire/錯誤提示
