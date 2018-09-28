@@ -1,0 +1,23 @@
+<div id="move-to-top"><a href="#">Move to Top</a></div>
+
+<script src='https://unpkg.com/vue@2.5.17/dist/vue.js'></script>
+<script>
+  // reader.js
+
+Vue.component('book-section', {
+  props: ['title', 'showing'],
+  template: `
+    <section href='#' v-show='showing==title'>
+      <h1>{{title}}</h1>
+      <slot></slot>
+    </section>
+  `
+})
+
+new Vue({
+  el: "#book",
+  data: {
+    showing: 'Table of Content'
+  }
+})
+</script>

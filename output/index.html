@@ -1,7 +1,25 @@
 <!DOCTYPE html>
-<meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><title>iOS App 開發入門</title><link rel='stylesheet' href='reader.css'><div id='book'><header><h1>iOS App 開發入門</h1></header><div class='main-area'><main>
-<div class='section-content'><section v-show='showing=="Table of Content"'><ol class='toc'><li><a href='#' @click="showing='Table of Content'">Table of Content</a></li><li><a href='#' @click="showing='Xcode 介面介紹'">Xcode 介面介紹</a></li><li><a href='#' @click="showing='開發 iOS App，我應該選擇 Objective-C 還是 Swift 語言？'">開發 iOS App，我應該選擇 Objective-C 還是 Swift 語言？</a></li><li><a href='#' @click="showing='iOS Simulator'">iOS Simulator</a></li><li><a href='#' @click="showing='UIImageView'">UIImageView</a></li><li><a href='#' @click="showing='Extension'">Extension</a></li><li><a href='#' @click="showing='IBAction & IBOutlet'">IBAction & IBOutlet</a></li><li><a href='#' @click="showing='Storyboard'">Storyboard</a></li><li><a href='#' @click="showing='UIButton'">UIButton</a></li><li><a href='#' @click="showing='UserDefaults'">UserDefaults</a></li><li><a href='#' @click="showing='Core Data'">Core Data</a></li><li><a href='#' @click="showing='保護層級'">保護層級</a></li><li><a href='#' @click="showing='設定多語言'">設定多語言</a></li><li><a href='#' @click="showing='多語言下的檔案列表'">多語言下的檔案列表</a></li><li><a href='#' @click="showing='輸出及匯入多語言檔案'">輸出及匯入多語言檔案</a></li><li><a href='#' @click="showing='App Store 上架介紹'">App Store 上架介紹</a></li><li><a href='#' @click="showing='使用 AppStoreConnect'">使用 AppStoreConnect</a></li><li><a href='#' @click="showing='使用 AlamoFire 取得網絡資源'">使用 AlamoFire 取得網絡資源</a></li><li><a href='#' @click="showing='範例：載入澳門圖書館列表'">範例：載入澳門圖書館列表</a></li><li><a href='#' @click="showing='錯誤提示'">錯誤提示</a></li><li><a href='#' @click="showing='載入中提示'">載入中提示</a></li></ol></section>
+<head>
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <title>iOS App 開發入門</title>
+  <link rel='stylesheet' href='reader.css'>
+</head>
+<body>
+  <div id='book'>
+    <header>
+      <h1><a @click="showing='Table of Content'">iOS App 開發入門</a></h1>
+      <div class="menu-btn"><a href="#toc">Menu</a></div>
+    </header>
+    <div class='main-area'>
+      <main>
+        <div class='section-content'>
+<section v-show='showing=="Table of Content"'><h1>iOS App 開發入門</h1>
+
+<p>
+這是一個針對 iOS 開發的入門課程。目標教授如何利用 Xcode 開發環境及 iOS 的開發 SDK 及各種 API 來開發移動應用程式。最後將程應發佈到 App Store 上架。
+
+</p><ol class='toc'><li><a href='#' @click="showing='Table of Content'">Table of Content</a></li><li><a href='#' @click="showing='Xcode 介面介紹'">Xcode 介面介紹</a></li><li><a href='#' @click="showing='開發 iOS App，我應該選擇 Objective-C 還是 Swift 語言？'">開發 iOS App，我應該選擇 Objective-C 還是 Swift 語言？</a></li><li><a href='#' @click="showing='iOS Simulator'">iOS Simulator</a></li><li><a href='#' @click="showing='UIImageView'">UIImageView</a></li><li><a href='#' @click="showing='Extension'">Extension</a></li><li><a href='#' @click="showing='IBAction & IBOutlet'">IBAction & IBOutlet</a></li><li><a href='#' @click="showing='Storyboard'">Storyboard</a></li><li><a href='#' @click="showing='UIButton'">UIButton</a></li><li><a href='#' @click="showing='UserDefaults'">UserDefaults</a></li><li><a href='#' @click="showing='Core Data'">Core Data</a></li><li><a href='#' @click="showing='保護層級'">保護層級</a></li><li><a href='#' @click="showing='設定多語言'">設定多語言</a></li><li><a href='#' @click="showing='多語言下的檔案列表'">多語言下的檔案列表</a></li><li><a href='#' @click="showing='輸出及匯入多語言檔案'">輸出及匯入多語言檔案</a></li><li><a href='#' @click="showing='App Store 上架介紹'">App Store 上架介紹</a></li><li><a href='#' @click="showing='使用 AppStoreConnect'">使用 AppStoreConnect</a></li><li><a href='#' @click="showing='使用 AlamoFire 取得網絡資源'">使用 AlamoFire 取得網絡資源</a></li><li><a href='#' @click="showing='範例：載入澳門圖書館列表'">範例：載入澳門圖書館列表</a></li><li><a href='#' @click="showing='錯誤提示'">錯誤提示</a></li><li><a href='#' @click="showing='載入中提示'">載入中提示</a></li></ol></section>
 <book-section :showing='showing' title='Xcode 介面介紹'><div>
 <div content-type="image" url="http://ios-dev.netlify.com/b5da5dc4a21a4035ce80c63890c5fd5a93b0bf6f/images/Screen_Shot_2018-03-12_at_10.41.00_PM.png" width="2160" height="1512"><figure class="attachment attachment--preview">
   <img width="2160" height="1512" src="http://ios-dev.netlify.com/b5da5dc4a21a4035ce80c63890c5fd5a93b0bf6f/images/Screen_Shot_2018-03-12_at_10.41.00_PM.png"/>
@@ -679,7 +697,11 @@ override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexP
 
 <div>Apple 官網也有使用<a href="https://developer.apple.com/design/human-interface-guidelines/ios/controls/progress-indicators/" target="_blank" rel="noreferrer">詳情說明</a>。</div>
 
-</book-section></div></main><ol class='toc'><li><a href='#' @click="showing='Table of Content'">Table of Content</a></li><li><a href='#' @click="showing='Xcode 介面介紹'">Xcode 介面介紹</a></li><li><a href='#' @click="showing='開發 iOS App，我應該選擇 Objective-C 還是 Swift 語言？'">開發 iOS App，我應該選擇 Objective-C 還是 Swift 語言？</a></li><li><a href='#' @click="showing='iOS Simulator'">iOS Simulator</a></li><li><a href='#' @click="showing='UIImageView'">UIImageView</a></li><li><a href='#' @click="showing='Extension'">Extension</a></li><li><a href='#' @click="showing='IBAction & IBOutlet'">IBAction & IBOutlet</a></li><li><a href='#' @click="showing='Storyboard'">Storyboard</a></li><li><a href='#' @click="showing='UIButton'">UIButton</a></li><li><a href='#' @click="showing='UserDefaults'">UserDefaults</a></li><li><a href='#' @click="showing='Core Data'">Core Data</a></li><li><a href='#' @click="showing='保護層級'">保護層級</a></li><li><a href='#' @click="showing='設定多語言'">設定多語言</a></li><li><a href='#' @click="showing='多語言下的檔案列表'">多語言下的檔案列表</a></li><li><a href='#' @click="showing='輸出及匯入多語言檔案'">輸出及匯入多語言檔案</a></li><li><a href='#' @click="showing='App Store 上架介紹'">App Store 上架介紹</a></li><li><a href='#' @click="showing='使用 AppStoreConnect'">使用 AppStoreConnect</a></li><li><a href='#' @click="showing='使用 AlamoFire 取得網絡資源'">使用 AlamoFire 取得網絡資源</a></li><li><a href='#' @click="showing='範例：載入澳門圖書館列表'">範例：載入澳門圖書館列表</a></li><li><a href='#' @click="showing='錯誤提示'">錯誤提示</a></li><li><a href='#' @click="showing='載入中提示'">載入中提示</a></li></ol></div></div><script src='https://unpkg.com/vue@2.5.17/dist/vue.js'></script><script>// reader.js
+</book-section></div></main><aside id='toc' v-show='showing!="Table of Content"'><ol class='toc'><li><a href='#' @click="showing='Table of Content'">Table of Content</a></li><li><a href='#' @click="showing='Xcode 介面介紹'">Xcode 介面介紹</a></li><li><a href='#' @click="showing='開發 iOS App，我應該選擇 Objective-C 還是 Swift 語言？'">開發 iOS App，我應該選擇 Objective-C 還是 Swift 語言？</a></li><li><a href='#' @click="showing='iOS Simulator'">iOS Simulator</a></li><li><a href='#' @click="showing='UIImageView'">UIImageView</a></li><li><a href='#' @click="showing='Extension'">Extension</a></li><li><a href='#' @click="showing='IBAction & IBOutlet'">IBAction & IBOutlet</a></li><li><a href='#' @click="showing='Storyboard'">Storyboard</a></li><li><a href='#' @click="showing='UIButton'">UIButton</a></li><li><a href='#' @click="showing='UserDefaults'">UserDefaults</a></li><li><a href='#' @click="showing='Core Data'">Core Data</a></li><li><a href='#' @click="showing='保護層級'">保護層級</a></li><li><a href='#' @click="showing='設定多語言'">設定多語言</a></li><li><a href='#' @click="showing='多語言下的檔案列表'">多語言下的檔案列表</a></li><li><a href='#' @click="showing='輸出及匯入多語言檔案'">輸出及匯入多語言檔案</a></li><li><a href='#' @click="showing='App Store 上架介紹'">App Store 上架介紹</a></li><li><a href='#' @click="showing='使用 AppStoreConnect'">使用 AppStoreConnect</a></li><li><a href='#' @click="showing='使用 AlamoFire 取得網絡資源'">使用 AlamoFire 取得網絡資源</a></li><li><a href='#' @click="showing='範例：載入澳門圖書館列表'">範例：載入澳門圖書館列表</a></li><li><a href='#' @click="showing='錯誤提示'">錯誤提示</a></li><li><a href='#' @click="showing='載入中提示'">載入中提示</a></li></ol></aside></div></div><div id="move-to-top"><a href="#">Move to Top</a></div>
+
+<script src='https://unpkg.com/vue@2.5.17/dist/vue.js'></script>
+<script>
+  // reader.js
 
 Vue.component('book-section', {
   props: ['title', 'showing'],
@@ -696,4 +718,5 @@ new Vue({
   data: {
     showing: 'Table of Content'
   }
-})</script>
+})
+</script>

@@ -6,6 +6,13 @@ from lxml import etree
 css_content = open("output/reader.css").read()
 js_content = open("reader.js").read()
 
+header_content = open("header.html").read()
+footer_content = open("footer.html").read()
+
+
+book_summary = open("book-summary.txt").read()
+
+
 
 
 # print( title )
@@ -49,16 +56,10 @@ for title in section_titles:
     toc_content += "<li><a href='#' @click=\"showing='" + title + "'\">" + title + "</a></li>"
 toc_content += "</ol>"
 
-book_setions.insert(0, "<section v-show='showing==\"Table of Content\"'>%s</section>" % toc_content)
-
-# print( book_setions )
+book_setions.insert(0, "<section v-show='showing==\"Table of Content\"'>%s%s</section>" % (book_summary, toc_content) )
 
 
-output_content = "<!DOCTYPE html>\n<meta charset='utf-8'>\n<meta name='viewport' content='width=device-width, initial-scale=1'>"
-output_content += "<title>iOS App 開發入門</title>"
-output_content += "<link rel='stylesheet' href='reader.css'>"
-# output_content += "<style>" + css_content + "</style>\n"
-output_content += "<div id='book'><header><h1>iOS App 開發入門</h1></header><div class='main-area'><main>\n<div class='section-content'>" + '\n'.join(book_setions) + "</div></main>" + toc_content + "</div></div><script src='https://unpkg.com/vue@2.5.17/dist/vue.js'></script><script>" + js_content + "</script>"
+output_content = header_content + '\n'.join(book_setions) + "</div></main><aside id='toc' v-show='showing!=\"Table of Content\"'>" + toc_content + "</aside></div></div>" + footer_content
 
 open("output/index.html", 'w').write(output_content)
 
