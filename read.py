@@ -43,7 +43,7 @@ for file_to_read in files_to_read:
     for node in content_tree:
         # print(node)
         # print(etree.tostring(node, pretty_print=True, encoding='unicode'))
-        content += etree.tostring(node, pretty_print=True, encoding='unicode').replace("bc-attachment", "div").replace("<div/>","").replace("src=", "data-src=")
+        content += etree.tostring(node, pretty_print=True, encoding='unicode').replace("bc-attachment", "div").replace("<div/>","").replace("src=", "data-src=").replace("./../../Attachments", "./Attachments")
     content += "</book-section>"
 
     book_setions.append(content)

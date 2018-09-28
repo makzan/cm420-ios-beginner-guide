@@ -1,11 +1,16 @@
 簡介/About me- Makzan
+App 類型/App 類型介紹
 App 類型/工具類應用
 App 類型/攝影類 App
 App 類型/社交類型應用
 App 類型/電子多媒體類
 App 類型/資訊性app
 觀察
-Xcode 介面介紹
+簡介/iOS 開發的歷史
+簡介/Xcode 介面介紹
+簡介/製作 iOS 應用，須要什麼工具？
+簡介/將 Xcode 上的 iOS 專案發佈到 iPhone - iPad 上
+簡介/一個項目的檔案
 開發 iOS App，我應該選擇 Objective-C 還是 Swift 語言？
 iOS Simulator
 元件介紹/UIImageView
