@@ -1,4 +1,5 @@
 /* reader.css */
+*{box-sizing: border-box;}
 body, ul, ol, h1, h2 {
   margin: 0;
   padding: 0;
@@ -98,6 +99,26 @@ header .menu-btn a {
 #move-to-top a {
   text-decoration: none;
   color: white;
+}
+
+
+.prev-next-container {
+  overflow: auto;
+}
+.prev-next-container > a {
+  float: left;
+  width: 50%;
+  text-decoration: none;
+  padding: 1em;
+  color: black;
+  background: #ccc
+}
+.prev-next-container > a:hover,
+.prev-next-container > a:active {
+  background: #999;
+}
+.prev-next-container > a:last-child {
+  border-left: 1px solid #333;
 }
 
 @media screen and (min-width: 800px) {

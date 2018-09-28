@@ -38,28 +38,30 @@ for file_to_read in files_to_read:
     section_titles.append(title);
 
     # content = "<section href='#' v-show='showing==\"%s\"'><h1>%s</h1>\n" % (title, title)
-    content = "<book-section :showing='showing' title='%s'>" % title
+    content = "<book-section title='%s' :showing='showing' :next='this.next' :prev='this.prev'>" % title
     # print(content_tree)
     for node in content_tree:
         # print(node)
         # print(etree.tostring(node, pretty_print=True, encoding='unicode'))
-        content += etree.tostring(node, pretty_print=True, encoding='unicode').replace("bc-attachment", "div").replace("<div/>","")
+        content += etree.tostring(node, pretty_print=True, encoding='unicode').replace("bc-attachment", "div").replace("<div/>","").replace("src=", "data-src=")
     content += "</book-section>"
 
     book_setions.append(content)
 
 
 
+js_titles = "var titles=['" + "','".join(section_titles) + "'];"
+
 # table of content
 toc_content = "<ol class='toc'>"
 for title in section_titles:
-    toc_content += "<li><a href='#' @click=\"showing='" + title + "'\">" + title + "</a></li>"
+    toc_content += "<li><a href='#/" + title + "' @click=\"showing='" + title + "'\">" + title + "</a></li>"
 toc_content += "</ol>"
 
 book_setions.insert(0, "<section v-show='showing==\"Table of Content\"'>%s%s</section>" % (book_summary, toc_content) )
 
 
-output_content = header_content + '\n'.join(book_setions) + "</div></main><aside id='toc' v-show='showing!=\"Table of Content\"'>" + toc_content + "</aside></div></div>" + footer_content
+output_content = header_content + '\n'.join(book_setions) + "</div></main><aside id='toc' v-show='showing!=\"Table of Content\"'>" + toc_content + "</aside></div></div><script>" + js_titles + "</script>" + footer_content
 
 open("output/index.html", 'w').write(output_content)
 

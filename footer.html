@@ -1,15 +1,26 @@
 <div id="move-to-top"><a href="#">Move to Top</a></div>
 
-<script src='https://unpkg.com/vue@2.5.17/dist/vue.js'></script>
+<script src="lazy-load.js"></script>
+<script src='https://unpkg.com/vue@2.5.17/dist/vue.min.js'></script>
 <script>
-  // reader.js
+
+  document.querySelector("#move-to-top").onclick = function(e) {
+    e.preventDefault();
+    document.querySelector("body").scrollTop = 0;
+    document.querySelector("main").scrollTop = 0;
+    return false;
+  };
 
 Vue.component('book-section', {
-  props: ['title', 'showing'],
+  props: ['title', 'showing', 'next', 'prev'],
   template: `
-    <section href='#' v-show='showing==title'>
+    <section :id='title' v-show='showing==title'>
       <h1>{{title}}</h1>
       <slot></slot>
+      <div class="prev-next-container">
+        <a href='#' @click.prevent='prev()'>Prev</a>
+        <a href='#' @click.prevent='next()'>Next</a>
+      </div>
     </section>
   `
 })
@@ -18,6 +29,35 @@ new Vue({
   el: "#book",
   data: {
     showing: 'Table of Content'
+  },
+  methods: {
+    prev(e) {
+      var index = titles.indexOf(this.showing)
+      if (index > 0)
+        this.showing = titles[index-1];
+        window.location.hash = "#/" + this.showing;
+    },
+    next(e) {
+      var index = titles.indexOf(this.showing)
+      if (index < titles.length)
+        this.showing = titles[index+1];
+        window.location.hash = "#/" + this.showing;
+    }
+  },
+  watch: {
+    showing() {
+      document.querySelector("body").scrollTop = 0;
+      document.querySelector("main").scrollTop = 0;
+    }
+  },
+  mounted() {
+    var hash = window.location.hash.substring(2,9999);
+    if (hash.length > 0) {
+      this.showing = decodeURI(hash);
+    }
+
+    let images = document.querySelectorAll("[data-src]");
+    lazyload(images);
   }
 })
 </script>
