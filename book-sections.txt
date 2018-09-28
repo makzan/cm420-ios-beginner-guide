@@ -1,3 +1,10 @@
+簡介/About me- Makzan
+App 類型/工具類應用
+App 類型/攝影類 App
+App 類型/社交類型應用
+App 類型/電子多媒體類
+App 類型/資訊性app
+觀察
 Xcode 介面介紹
 開發 iOS App，我應該選擇 Objective-C 還是 Swift 語言？
 iOS Simulator

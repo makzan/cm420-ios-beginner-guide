@@ -104,21 +104,23 @@ header .menu-btn a {
 
 .prev-next-container {
   overflow: auto;
+  border-radius: 1em;
+  margin-top: 1em;
 }
 .prev-next-container > a {
   float: left;
   width: 50%;
   text-decoration: none;
   padding: 1em;
-  color: black;
-  background: #ccc
+  color: white;
+  background: rgba(0,0,0,.8);
 }
 .prev-next-container > a:hover,
 .prev-next-container > a:active {
   background: #999;
 }
 .prev-next-container > a:last-child {
-  border-left: 1px solid #333;
+  border-left: 1px solid #efefef;
 }
 
 @media screen and (min-width: 800px) {
