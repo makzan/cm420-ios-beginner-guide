@@ -33,7 +33,7 @@ for file_to_read in files_to_read:
     dom_tree = html.fromstring(html_content)
 
     title = dom_tree.xpath('//h1[@class="title"]/text()')[0]
-    content_tree = dom_tree.xpath('//div[@class="formatted_content"]/*')
+    content_tree = dom_tree.xpath('//div[@class="formatted_content"]')
 
     section_titles.append(title);
 
