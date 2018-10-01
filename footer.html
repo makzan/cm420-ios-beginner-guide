@@ -11,11 +11,21 @@
     return false;
   };
 
-Vue.component('book-section', {
+// Vue.component('book-section', {
+//   props: ['title', 'showing'],
+//   template: `
+//     <section :id='title' v-show='showing==title'>
+//       <h2>{{title}}</h2>
+//       <slot></slot>
+//     </section>
+//   `
+// });
+
+Vue.component('book-chapter', {
   props: ['title', 'showing', 'next', 'prev'],
   template: `
     <section :id='title' v-show='showing==title'>
-      <h1>{{title}}</h1>
+      <h1 class="section-title">{{title}}</h1>
       <slot></slot>
       <div class="prev-next-container">
         <a href='#' @click.prevent='prev()'>Prev</a>
@@ -23,7 +33,9 @@ Vue.component('book-section', {
       </div>
     </section>
   `
-})
+});
+
+
 
 new Vue({
   el: "#book",
