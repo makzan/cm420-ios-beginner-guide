@@ -45,7 +45,7 @@ for file_to_read in files_to_read:
     for node in content_tree:
         # print(node)
         # print(etree.tostring(node, pretty_print=True, encoding='unicode'))
-        content += etree.tostring(node, pretty_print=True, encoding='unicode').replace("bc-attachment", "div").replace("<div/>","").replace("src=", "data-src=").replace("./../../Attachments", "./images").replace("./../Attachments", "./images").replace("<pre>","<pre><code>").replace("</pre>","</code></pre>")
+        content += etree.tostring(node, pretty_print=True, encoding='unicode').replace("bc-attachment", "div").replace("<div/>","").replace("src=", "data-src=").replace("./../../Attachments", "./images").replace("./../Attachments", "./images").replace("<pre>","<pre><code>").replace("</pre>","</code></pre>").replace(".PNG",".jpg").replace(".png",".jpg").replace(".jpeg",".jpg")
     content += "</book-section>"
 
     book_setions.append(content)
@@ -86,7 +86,7 @@ for file_to_read in files_to_read:
     for node in content_tree:
         # print(node)
         # print(etree.tostring(node, pretty_print=True, encoding='unicode'))
-        content += etree.tostring(node, pretty_print=True, encoding='unicode').replace("bc-attachment", "div").replace("<div/>","").replace("./../../Attachments", "images").replace("./../Attachments", "images").replace("<pre>","<pre><code>").replace("</pre>","</code></pre>")
+        content += etree.tostring(node, pretty_print=True, encoding='unicode').replace("bc-attachment", "div").replace("<div/>","").replace("./../../Attachments", "images").replace("./../Attachments", "images").replace("<pre>","<pre><code>").replace("</pre>","</code></pre>").replace(".PNG",".jpg").replace(".png",".jpg").replace(".jpeg",".jpg")
     content += "</section>"
 
     markdown_sections.append(content)
