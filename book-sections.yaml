@@ -1,47 +1,67 @@
-- chapter: 簡介/About me- Makzan
-- chapter: App 類型/App 類型介紹
+- chapter: Chapter 01- 簡介/About me- Makzan
+- chapter: Chapter 01- 簡介/簡介
   sections:
-    - App 類型/遊戲類
-    - App 類型/工具類應用
-    - App 類型/攝影類 App
-    - App 類型/社交類型應用
-    - App 類型/電子多媒體類
-    - App 類型/資訊性app
-    - App 類型/觀察
-- chapter: 簡介/簡介
+    - Chapter 01- 簡介/iOS 開發的歷史
+    - Chapter 01- 簡介/iOS 系統背景
+    - Chapter 01- 簡介/iOS 系統版本與更新
+    - Chapter 01- 簡介/Xcode 介面介紹
+    - Chapter 01- 簡介/製作 iOS 應用，須要什麼工具？
+    - Chapter 01- 簡介/將 Xcode 上的 iOS 專案發佈到 iPhone - iPad 上
+    - Chapter 01- 簡介/一個項目的檔案
+    - Chapter 01- 簡介/開發 iOS App，我應該選擇 Objective-C 還是 Swift 語言？
+    - Chapter 01- 簡介/iOS Simulator
+- chapter: Chapter 01.1- App 類型/App 類型介紹
   sections:
-    - 簡介/iOS 開發的歷史
-    - 簡介/iOS 系統背景
-    - 簡介/Xcode 介面介紹
-    - 簡介/製作 iOS 應用，須要什麼工具？
-    - 簡介/將 Xcode 上的 iOS 專案發佈到 iPhone - iPad 上
-    - 簡介/一個項目的檔案
-    - 簡介/開發 iOS App，我應該選擇 Objective-C 還是 Swift 語言？
-    - 簡介/iOS Simulator
-- chapter: 儲存數據/在 iOS 上儲存數據
+    - Chapter 01.1- App 類型/遊戲類
+    - Chapter 01.1- App 類型/工具類應用
+    - Chapter 01.1- App 類型/攝影類 App
+    - Chapter 01.1- App 類型/社交類型應用
+    - Chapter 01.1- App 類型/電子多媒體類
+    - Chapter 01.1- App 類型/資訊性app
+    - Chapter 01.1- App 類型/觀察
+- chapter: Chapter 02- Storyboard App Prototype/使用 Storybaord 建立 App Prototype
   sections:
-    - 儲存數據/UserDefaults
-    - 儲存數據/Core Data
-    - 儲存數據/保護層級
-- chapter: 多語言/多語言
+    - Chapter 02- Storyboard App Prototype/Stoeyboard 的前世今生
+    - Chapter 02- Storyboard App Prototype/IBOutlet & IBAction
+    - Chapter 02- Storyboard App Prototype/選擇介面元件庫
+    - Chapter 02- Storyboard App Prototype/Xcode 是如何配對相應的 Swift class 的？
+    - Chapter 02- Storyboard App Prototype/iOS 的過場呈現
+- chapter: Chapter 04- UITextField and Delegate/UITextField Video Example
+- chapter: Chapter 05- AutoLayout & UIStackView/AutoLayout Examples
   sections:
-    - 多語言/設定多語言
-    - 多語言/多語言下的檔案列表
-    - 多語言/輸出及匯入多語言檔案
-- chapter: 上架/上架
+    - Chapter 05- AutoLayout & UIStackView/UIStackView
+- chapter: Chapter 08- AlamoFire/使用 AlamoFire 取得網絡資源
   sections:
-    - 上架/App Store 上架介紹
-    - 上架/使用 AppStoreConnect
-- chapter: AlamoFire/使用 AlamoFire 取得網絡資源
+    - Chapter 08- AlamoFire/範例：載入澳門圖書館列表
+    - Chapter 08- AlamoFire/錯誤提示
+    - Chapter 08- AlamoFire/載入中提示
+- chapter: Chapter 09- Table and List/UITableViewController 2
   sections:
-    - AlamoFire/範例：載入澳門圖書館列表
-    - AlamoFire/錯誤提示
-    - AlamoFire/載入中提示
-- chapter: 元件介紹/元件介紹
+    - Chapter 09- Table and List/UITableViewController
+- chapter: Chapter 10- 儲存數據/在 iOS 上儲存數據
   sections:
-    - 元件介紹/UIImageView
-    - 元件介紹/Extension
-    - 元件介紹/IBAction & IBOutlet
-    - 元件介紹/Storyboard
-    - 元件介紹/UIButton
+    - Chapter 10- 儲存數據/UserDefaults
+    - Chapter 10- 儲存數據/Core Data
+    - Chapter 10- 儲存數據/保護層級
+- chapter: Chapter 11- 上架/上架
+  sections:
+    - Chapter 11- 上架/App Store 上架介紹
+    - Chapter 11- 上架/使用 AppStoreConnect
+    - Chapter 11- 上架/選擇正確的 Apple Developer Program
+- chapter: Chapter 12- Push Notifications/iOS 推送信息
+- chapter: Chapter 13- 多語言 Localization/多語言
+  sections:
+    - Chapter 13- 多語言 Localization/設定多語言
+    - Chapter 13- 多語言 Localization/多語言下的檔案列表
+    - Chapter 13- 多語言 Localization/輸出及匯入多語言檔案
+- chapter: Chapter Appendix- 元件介紹/元件介紹
+  sections:
+    - Chapter Appendix- 元件介紹/UIView 與 UIViewController
+    - Chapter Appendix- 元件介紹/物件導向編程 Object-Oriented Programming
+    - Chapter Appendix- 元件介紹/UIImageView
+    - Chapter Appendix- 元件介紹/Extension
+    - Chapter Appendix- 元件介紹/IBAction & IBOutlet
+    - Chapter Appendix- 元件介紹/Storyboard
+    - Chapter Appendix- 元件介紹/UIButton
+    - Chapter Appendix- 元件介紹/使用 AppDelegate 製作在 Switcher 覆蓋畫面的 UI
 - chapter: 教材更新歷史
