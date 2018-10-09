@@ -289,6 +289,26 @@
     
 </section></section>
 
+<section><h1>UILabel and UIButton</h1><div class="formatted_content">
+  <div>UILabel 及 UIButton 是其中兩個最常使用的 UI 介面元件。在這一節，我們製作一個簡單的 TIPS 貼士計算器。</div>
+</div>
+
+    
+<section><h2 class='section-title'>TIPS 貼士計算器</h2><div class="formatted_content">
+  <div>製作 UI 及連接 IBOutlet &amp; IBAction<br/><br/><a target="_blank" rel="noreferrer" class="autolinked" data-behavior="truncate" href="https://vimeo.com/294110244">https://vimeo.com/294110244</a><br/><br/>撰寫計算代碼<br/><br/><a target="_blank" rel="noreferrer" class="autolinked" data-behavior="truncate" href="https://vimeo.com/294111381">https://vimeo.com/294111381</a><br/><br/>優化代碼成一個 IBAction<br/><br/><a target="_blank" rel="noreferrer" class="autolinked" data-behavior="truncate" href="https://vimeo.com/294112605">https://vimeo.com/294112605</a><br/><br/>製作 AutoLayout 以符合不同尺寸屏幕使用<br/><br/><a target="_blank" rel="noreferrer" class="autolinked" data-behavior="truncate" href="https://vimeo.com/294116423">https://vimeo.com/294116423</a><br/><br/>附上 Xcode 項目檔案：<br/><br/><div sgid="BAh7CEkiCGdpZAY6BkVUSSItZ2lkOi8vYmMzL0F0dGFjaG1lbnQvODY4NjEyOTM_ZXhwaXJlc19pbgY7AFRJIgxwdXJwb3NlBjsAVEkiD2F0dGFjaGFibGUGOwBUSSIPZXhwaXJlc19hdAY7AFQw--a7839a5691b64b00c14f3418e166e896d474ae34" content-type="application/zip" url="https://preview.3.basecamp.com/3085247/blobs/6c188f94-cbab-11e8-a944-ecf4bbd72afa/previews/full/tips-calculator.zip" href="https://3.basecamp.com/3085247/blobs/6c188f94-cbab-11e8-a944-ecf4bbd72afa/download/tips-calculator.zip" filename="tips-calculator.zip" filesize="31376" width="" height="" previewable="false">  <a href="images/106771235-tips-calculator.zip">
+    <figure class="attachment attachment--file">
+      <span class="attachment__label">View this in the “attachments” folder</span>
+      <figcaption>
+          <strong>tips-calculator.zip</strong> · 30.6 KB
+      </figcaption>
+    </figure>
+</a></div>
+</div>
+</div>
+
+    
+</section></section>
+
 <section><h1>UITextField Video Example</h1><div class="formatted_content">
   <div><a target="_blank" rel="noreferrer" class="autolinked" data-behavior="truncate" href="https://vimeo.com/274443670">https://vimeo.com/274443670</a></div>
 </div>
