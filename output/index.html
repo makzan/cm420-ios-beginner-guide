@@ -1010,6 +1010,15 @@ if coverVC != nil {
 </book-chapter></div></main><aside id='toc' v-show='showing!="Table of Content"'><ol class='toc'><li><a href='#/Table of Content' @click="showing='Table of Content'">Table of Content</a></li><li><a href='#/About me: Makzan' @click="showing='About me: Makzan'">About me: Makzan</a></li><li><a href='#/簡介' @click="showing='簡介'">簡介</a></li><li><a href='#/App 類型介紹' @click="showing='App 類型介紹'">App 類型介紹</a></li><li><a href='#/使用 Storybaord 建立 App Prototype' @click="showing='使用 Storybaord 建立 App Prototype'">使用 Storybaord 建立 App Prototype</a></li><li><a href='#/UITextField Video Example' @click="showing='UITextField Video Example'">UITextField Video Example</a></li><li><a href='#/AutoLayout Examples' @click="showing='AutoLayout Examples'">AutoLayout Examples</a></li><li><a href='#/使用 AlamoFire 取得網絡資源' @click="showing='使用 AlamoFire 取得網絡資源'">使用 AlamoFire 取得網絡資源</a></li><li><a href='#/UITableViewController' @click="showing='UITableViewController'">UITableViewController</a></li><li><a href='#/在 iOS 上儲存數據' @click="showing='在 iOS 上儲存數據'">在 iOS 上儲存數據</a></li><li><a href='#/上架' @click="showing='上架'">上架</a></li><li><a href='#/iOS 推送信息' @click="showing='iOS 推送信息'">iOS 推送信息</a></li><li><a href='#/多語言' @click="showing='多語言'">多語言</a></li><li><a href='#/元件介紹' @click="showing='元件介紹'">元件介紹</a></li><li><a href='#/教材更新歷史' @click="showing='教材更新歷史'">教材更新歷史</a></li></ol></aside></div></div><script>var titles=['Table of Content','About me: Makzan','簡介','App 類型介紹','使用 Storybaord 建立 App Prototype','UITextField Video Example','AutoLayout Examples','使用 AlamoFire 取得網絡資源','UITableViewController','在 iOS 上儲存數據','上架','iOS 推送信息','多語言','元件介紹','教材更新歷史'];</script><div id="move-to-top"><a href="#">Move to Top</a></div>
 
 <script src="lazy-load.js"></script>
+<script src='https://unpkg.com/jquery@3.3.1/dist/jquery.js'></script>
+<script>
+for(var a of document.querySelectorAll('a')){
+  if (a.href.substring(0,18) == 'https://vimeo.com/') {
+    console.log('https://player.vimeo.com/video/' + a.href.substring(19,999));
+    $(a).before('<iframe src="https://player.vimeo.com/video/'+a.href.substring(18,999)+'" width="640" height="411" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>');
+  }
+}
+</script>
 <script src='https://unpkg.com/vue@2.5.17/dist/vue.min.js'></script>
 <script>
 

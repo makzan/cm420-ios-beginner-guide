@@ -1,6 +1,15 @@
 <div id="move-to-top"><a href="#">Move to Top</a></div>
 
 <script src="lazy-load.js"></script>
+<script src='https://unpkg.com/jquery@3.3.1/dist/jquery.js'></script>
+<script>
+for(var a of document.querySelectorAll('a')){
+  if (a.href.substring(0,18) == 'https://vimeo.com/') {
+    console.log('https://player.vimeo.com/video/' + a.href.substring(19,999));
+    $(a).before('<iframe src="https://player.vimeo.com/video/'+a.href.substring(18,999)+'" width="640" height="411" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>');
+  }
+}
+</script>
 <script src='https://unpkg.com/vue@2.5.17/dist/vue.min.js'></script>
 <script>
 

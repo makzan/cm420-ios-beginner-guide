@@ -1,449 +1,406 @@
-# iOS App 開發入門
+<section><h1>iOS App 開發入門</h1><h1>iOS App 開發入門</h1>
 
+<p>
 這是一個針對 iOS 開發的入門課程。目標教授如何利用 Xcode 開發環境及 iOS 的開發 SDK 及各種 API 來開發移動應用程式。最後將程應發佈到 App Store 上架。
 
-# About me: Makzan
-
-我自細撰寫開發不同的網頁系統，Facebook推出之初，我開始你用Facebook平台撰寫社交遊戲及 Flash 遊戲。亦有開發大型線上多人即時遊戲。
-
-自 2010 年推出 iPad 起，投入開發 iOS 遊戲及應用程式。在 iPad 2010 年3月尾首發當天，我的第一隻iPad遊戲就在App Store上被一群群剛剛拿着iPad上App Store 尋找好用 app 的用戶下載。
-
-過往開發亮點：
-
--   Fish Ball game
--   Chicken Rain app
--   音樂 app
--   Music Player app
--   AR app
--   Unity games
--   Multiplayers game
-
-
-
-![](images/105424743-fishball.jpg)
-
-
-
-![](images/105424744-chicken-rain.jpg)
-
-
-
-你可以從以下途徑找到我：
-
--   網站：[https://makzan.net](https://makzan.net)
--   Github：[https://github.com/makzan](https://github.com/makzan)
--   推特：[https://twitter.com/makzan](https://twitter.com/makzan)
--   FB：[https://fb.com/makzan](https://fb.com/makzan)
-
-# 簡介
-
-簡介 iOS 開發背景
-
-## iOS 開發的歷史
-
-
-iPhone 在 2007 年推出，當時是沒有針對 iPhone 系統的開發工具開放的。Xcode 已經有，但仍然是給開發 Mac 機上的軟件而。2007 年第一代 iPhone，主打的是開發者可以開發 Web App 網頁程序。
-
-
-![](images/105425080-screen_shot_2018-03-12_at_9-39-09_pm.jpg)
-
-
-可惜，經過 2007 年推出以來約一年的 Web app 開發，大家還是渴求得到運用 iPhone 硬件及系統的原生（Native）軟件開發工具。於是，在 2008 年三月，蘋果公佈了基於 Xcode 及 iOS 2 的開發套件。自次，我們的生活便再離不開手機應用了。
-
-## iOS 系統背景
-
-iOS 的底層是 Mac OS X 的 Darwin Unix 系統，蘋果在上方增加了專門為 Touch 而設計的 UIKit。而其他例如數據類型則繼續和 Mac OS X 共用，例如 NSData, NSArray, NSString, NSDictionary 等。
-
-蘋果系統的 Class 是使用 Prefix 來做 Namespacing 的，例如專門給 iOS 用的界面就是 UI 字開頭，如 UIView, UILabel, UIButton 等。遊戲用的 SpriteKit 就有 SKView, SKScene, SKNode 等。位置相關的 CoreLocation 就有 CLLocationManager 等。
-
-而數據類型 NSData, NSArray 等，其 NS 則是遺傳自 Mac OS X 的前身：NextStep 電腦。而在蘋果推行 Swift 之際，亦在努力令系統去 NS 化，例如推出 Swift 專用的 Array, Dictionary, String, Data 等。
-
-## iOS 系統版本與更新
-
-iOS 的使用者都頗願意更新系統，一般最近兩代系統使用佔有率會超過 95%。所以我們在製作 App 的時候可以更放心使用最新的 API，造出更先進的 App 功能。
-
-## Xcode 介面介紹
-
-Xcode一打開會令人覺得太多 panel 太多功能，一時可能無所適從。但其實只需要掌握左中右最基本的功能便可以開始 iOS 編程。
-
-左邊 panel 細看有不同的 Tab，但只需要先集中使用第一個檔案 Tab，這𥚃是我們轉換檔案時需要的。一個應用程式會分為很多不同的檔案，每一個分別負責一項功能，所以我們將會經常於不同檔案之間切換。
-
-中間是主要編輯區域，無論是界面編輯還是程序編程，都主要集中在中間區域。
-
-中間區域有時可以分為左右兩邊，例如需要將界面元件與程序連接時，便須要在這個左右分屏編輯器進行。又或者兩段化碼的 git diff 對比亦會需要左右兩個畫面。
-
-右邊 panel 細看亦有不同 Tab。這個 Panel 我們會在幾個常用 Tab 之間切換。
-
-第一個 Tab 是最不常用的，是檔案屬性。當要做多語言 Localization 後便需要在這個 Tab 中設定。
-
-之後就視乎檔案類型，例如界面，我們便會使用尺寸 Tab、界面屬性 Tab 等等。
-
-
-![](images/105425098-screen_shot_2018-03-12_at_10-41-00_pm.jpg)
-
-
-
-在 Xcode 中，界面主要分為四部份，上方狀態列，左方檔案列表，中間主要編輯器，右方設定面板（Panel）。右上角可以打開及收起左右兩個面板（Panel）。另外還可以打開打開下方的輔助輸出框。如果運行期間有除錯信息需要查看，可以在這個輸出框中查找。
-
-
-![](images/105425100-screen_shot_2018-03-13_at_3-51-46_pm.jpg)
-
-
-
-![](images/105425101-985495df-31f2-4f38-a23f-9dcd4529b4d4.jpg)
-
-## 製作 iOS 應用，須要什麼工具？
-
-首先，我們需要一台 **Mac** 機，可以是 Macbook / iMac / Mac mini，總之就是要一個可以運行 macOS 的蘋果機。
-
-
-然後，我們需要下載 **Xcode**，Xcode 是蘋果的開發工具。無論是 Mac 機上的桌面軟件、iOS 的手機應用、iPad 平板應用、Apple Watch 程序，還是 Apple TV 上的播放器等，都是使用 Xcode 來開發的。Xcode 可以在 Mac 系統上的 App Store 免費下載。
-
-
-Xcode 會跟隨一個 **iOS Simulator**，方便我們直接在電腦上測試各種屏幕的 iPhone/iPad 設備，從 iPhone 5s 到 iPhone X 都有。當我們要測試自己的應用在大大小小不同屏幕尺寸上的運行情形時，我們就很需要這個模擬器。
-
-
-再者，如果需要將開發中的 iOS App 放到實體 iPhone/iPad 上運行時，我們使需要一個開發用的 **Apple ID**。以往 iOS 開發最多的投訴就是要付費才可以落機試。一個 Apple Developer 付費帳號需要美金 99 一年，折合約澳門幣 800 㘣，還需要每年續期。但自從 iOS 9 以後，只需要使用免費註冊的 Apple ID，便可以將撰寫中的應用程式，通過 USB Lightening 線直接落機測試。
-
-## 將 Xcode 上的 iOS 專案發佈到 iPhone / iPad 上
-
-以往最常聽到寫 iOS 應用的人投訴，要付出 $99 美金（約 $800 葡幣）才可以在實體電話落機調試。
-
-
-自從 iOS 9 以後，只要註冊免費 Apple ID 帳號，就可以通過直接 USB 連接手機及 Xcode 暫寫中的應用程式直接放到手機上運行。
-
-
-[http://help.apple.com/developer-account/#/dev21218dfd6](http://help.apple.com/developer-account/#/dev21218dfd6)
-
-
-
-### 如何註冊 Apple ID ?
-
-
-
-一般如果我們已經有 iCloud 或者在 App Store 中下載軟件，都會有自己的 Apple ID，可以使用這個 Apple ID 進行開發。而我過往的習慣，我個人會使用另一個電郵作為開發者的 ID 帳號，因為開發期間不同設定及使用情形，我不想和個人的購買記錄或者個人相片等資料等混在一起。所以，我會使用獨立的電郵地址來申請多一個 Apple ID 專門用於開發帳號。
-
-## 一個項目的檔案
-
-一個項目有不同的檔案，以下簡介其功能：
-
-
--   AppDelegate.swift 負責控制檔案的 Life Cycle
--   Info.plist 是應用程式的系統設定，例如於 Home Screen 顯示的名稱、需要的權限及說明文字
--   Main.storyboard 是主要的介面檔案，如果是簡單的應用程式，這個檔案可以包含整個 App 的所有界面
--   LaunchScreen.storyboard 是打開 App 時，未完成載入期間，用戶望到的第一個個畫面。
--   Assets.xcassets 裝著一群群的圖片檔案，例如 App Icon，App Icon 有不同的尺寸以符合不同機種及使用情景。
--   ViewController.swift 是預設 Single View App 的範本檔案，是第一個畫面背後的程序碼。
-
-
-
-![](images/105268994-screenshot-2018-09-28-17-45-50.jpg)
-
-## 開發 iOS App，我應該選擇 Objective-C 還是 Swift 語言？
-
-
-Objective-C 歷史悠久，自 80 年代後便已面世，並且一直是 Mac 機軟件開發所使用的編程語言，所以 iOS 推出時，也順理成章使用 Objective-C 語言。但 Objective-C 語言其實寫法較為獨特，和傳統的 C / Java 等語言寫法有一定差距，導致除了 Mac 開發外，使用 Objective-C 的人不多。
-
-Objective-C 提倡 Message Passing，即 Call function 是溝通，而不是命令。所以用 Objective-C 寫出來的語句很像在說英文。例如：
-
-
-```
-[gameObject placeAtX: 123 andY: 456];
-```
-
-
-
-![](images/105423701-screen_shot_2018-03-13_at_4-07-27_pm.jpg)
-
-
-為了更好地推廣編程學習，蘋果便於數年前推出了 [Swift 語言](https://swift.org/)。在經歷多年的使用及調整後，現在 Swift 語言已經趨向穩定成熟，而且網上的新教材基本上都使用 Swift 語言了。
-
-
-所以，如果現在開始學寫 iOS 應用，直接選擇 Swift 是擁抱未來的好選擇。而 Objective-C，就是過往已寫的代碼，沒有出錯不去改而矣。
-
-## iOS Simulator
-
-在我們落實體機試之前，我們一般會利用 Xcode 跟來的模擬器進行測試。iOS Simulator 模擬器讓我們選擇從 iPhone 5s 至 iPhone X 的不同畫面尺寸，方便測試應用在不同畫面的運行情況。
-
-
-
-
-
-
-![](images/105422605-screen_shot_2018-03-12_at_10-41-07_pm.jpg)
-
-![](images/105422606-screen_shot_2018-03-12_at_10-38-11_pm.jpg)
-
-# App 類型介紹
-
-我們來看看 App Store 上常見的有哪些類型應用及它們的特點。
-
-## 遊戲類
-
-以前的遊戲類多使用不同的第三方 Framework，例如 cocos2d，再配搭物理模擬引撃如 Box2D。但然而，從 Apple 推出了 SpriteKit 後，便可以直接在 Xcode 中製作遊戲了。當然，像 Unity 這種大型遊戲引撃仍然是很受歡迎的，例如 Alto's Adventure 就是用 Unity 來撰寫的 2D 遊戲。
-
-
-![](images/105424150-img_a3f4609af5f7-1.jpg)
-
-## 工具類應用
-
-通常針對特定或單一功能需求外設計，其特點是所針對的功能往往能提供很優秀的解決方案。 例如針對不同情況的計算機、文字編輯器等。
-
-
-![](images/105326299-img_1535.jpg)
-
-
-
-不同情況的計算機，可以有專門計折扣的、專門計算AA制的、專門計算不同單位換算的、專門計算某特定公式的等等。
-
-
-![](images/105320007-img_1534.jpg)
-
-
-
-![](images/105309683-img_1530.jpg)
-
-
-
-
-
-![](images/105309778-img_1532.jpg)
-
-## 攝影類 App
-
-攝影是其中一個大分類。 
-
-自 iOS 剛推出以來，第三方攝影 App 一直有捧場客。 
-
-例如以晚上影相穩定主打的、有影相後加貼紙的、有多重曝光的、有專門影正方形的、有專門影 360 環迴全景的、有手動控制的、有影 Raw 檔的、有自動人臉美化的、有前後鏡頭一起用的，等等，數之不盡。
-
-
-![](images/105320989-img_1538.jpg)
-
-## 社交類型應用
-
-社交應用不一定是大型的 Facebook，也可以是針對特定群中，例如 Tumblr 這種多媒體個人日誌、知乎這種有問有答社區、Path 這種有朋友上下的好友分享，也有只針對家庭甚至情侶的小眾社交應用，只要能夠成功針對特定社群的需求，其功能往往會比普通的大型社交網絡更加實用。
-
-
-![](images/105310602-img_1533.jpg)
-
-## 電子多媒體類
-
-即是電子雜誌。
-
-最基本的是靜態將 PDF 直接呈現，更深入的有重新為手提設備排版的，甚至為手提設備加入多媒體互動的。
-
-例如專門針對手機上的純文字由上向下閱讀文章功能。
-
-例如針對 iPad 的多媒體互動設計雜誌。
-
-甚至電子雜誌商城。
-
-## 資訊性app
-
-當我們有一些資訊需要情的時候，例如交通事務局的停車場、巴士路線、巴士報站、路面視頻等等，又例如天氣、民生、電影資訊等等，都屬於資訊性app。 
-
-這些 App 的特點是根據資訊的內容設計實用美觀的閱讀體驗，並且通過良好的導航及分類讓使用者方便瀏覽訊息。
-
-
-![](images/105320870-img_1536.jpg)
-
-## 觀察
-
-要寫好 iOS app，其中一個重要步驟是觀察。
-
-通過觀察其他人使用電話上的不便，通過觀察蘋果推出的新 API，通過觀察蘋果新輸入方式，通過觀察日常生活方式，然後想出嶄新的應用方式、嶄新的功能、嶄新的 API 組合、嶄新的服務。
-
-新 API，可以為原本不能做的事情變成可做，可以為原本做不好的事情變得更完善。例如 GeoFence 推出使我們可以在地圖上劃定不同的圓，當電話進入或離開時系統便會通知我們的應用程式。又例如某新版 iOS 加入了手動控制鏡頭功能，於是相機 App 都可以手動控制快門及 ISO。
-
-
-![](images/105321840-img_1537.jpg)
-
-
-
-新輸入方式，往往會是新電話或新潮流的徴兆。例如推出更多手勢功能，例如鍵盤可以兩隻手指變成 Trackpad 等。 通過觀察，可以比其他人走先一步；通過觀察，可以比其他人更了解 API 背後的原意。當你能夠在不同 API 之間創出別人沒有的組合時，你便造出了一個獨一無二的應用程式。
-
-# 使用 Storybaord 建立 App Prototype
-
-在撰寫第一行代碼之前，我們可以純用 Storyboard 生成頗為完整的原型 Prototype。當然，有條件判斷的 Prototype 還是須要寫少量代碼的。
-
-在 Storyboard 中，我們可以把介面元件拖拉至 Storyboard 的畫面中，我們亦可以將 UIViewController 拖拉至 Storyboard 生成一個新畫面，然後我們可以把一個 UIButton 放到第一個畫面中，再滑鼠右鍵拖拉，從那個 Button 拖拉淺藍色線至另一個畫面中，這時 Xcode 會問我們用哪種方式呈現這個畫面過場。這裹我們可以先選取 **Present Modally**。
-
-[https://vimeo.com/293524239](https://vimeo.com/293524239)
-
-另外，我們亦可以使用 UINavigationController 配合自定義的 UIViewController 介面，再使用 **Show** 來做到左右推入的呈現方式。
-
-[https://vimeo.com/293523608](https://vimeo.com/293523608)
-
-## Stoeyboard 的前世今生
-
-我們製作 iOS app 介面，都是使用Storyboard的，現在 Stoeyboard 的功能越來越強大，我們可以兩三下便把整個app的 prototype 流程造出來進行實驗測試。
-
-例如，
-
-## IBOutlet & IBAction
-
-雖然 Xcode 將介面及代碼放在同一個編輯環境中，但它們仍然是不同的檔案。在介面和代碼之間，我們通過 IBOutlet 及 IBAction 連繫。
-
-IB 是 Interface Builder 的縮寫。Outlet 是用來於代碼中 Reference 一個介面元件的，即給予所連繫的介面元件一個 Variable 變量名稱。Action 則是用來於代碼中 Reference 一個介面元件的動作，即給予所連繫的動件一個 Method 函數名稱。
-
-
-### 連接 IBOutlet 及 IBAction
-
-我們一般在 Xcode 中打開 Assistant editor，這樣左面將會是 Storyboard 介面，而右邊則會是對應的 Swift 代碼。然後我們可以滑鼠右鍵從介面元件拖拉到代碼之中，這時會彈出一個視窗問我們這個 IBOutlet 的變量名稱。
-
-這個名稱不能有空格，而且建議用細寫開頭，如 button 等。如果須𨪁兩個字，可以使用細駱駝峰命名法，即連接起全部字，第一個字母細寫，其餘詞的首字母大寫。例如 submitButton 等。
-
-注意的是，若果我們不慎改錯名，然後想回來重新修正，就必須要小心，因為這個名稱是分別在 2 個檔案中存在的：Storyboard 檔案及其對應的 Swift 代碼檔案。所以很多時，我們會習慣只改了 Swift 檔案內的 IBOutlet 變量名稱，而忘記去修改 Storyboard。一運行這個修改了一半的程序，便會因為存取不存在的變量而出現 App Crash 彈 App。
-
-所以正確的修改 IBOutlet 名稱方法是在 Storyboard 中刪去 IBOutlet Reference，再於 Swift 代碼中改名，然後反向，從代碼左鍵按住 (+) 號拖拉至介面中。
-
-## 選擇介面元件庫
-
- Xcode 的右下角為元件庫。主要使用的是第三個 Tab 介面元件。
-
-注：Xcode 10 後，元件庫從右下方移到上方的 Toolbar 中，亦可以使用 cmd+shift+L 來叫出元件庫。
-
-## Xcode 是如何配對相應的 Swift class 的？
-
-在 Storyboard 中，每一版都對應一個 UIViewController，例如預設的 Single View Application 範本中，Xcode 已為我們建立一個 ViewController 的 Swift 類，並在 Storyboard 中建立了一個空白的畫面。如果選取這個畫面的 Controller（橙色盒子），再在右方 Panel 的第一個 Tab 中（cmd+option+1），會有一個 custom class 的輸入框，就會出現對應的代碼檔案及其類。這時會見到這個預設的畫面 Controller 是對應 ViewController 檔案。
-
-每一個介面都應有一個對應的 UIViewController 類別，方法是建立新檔案，選擇 subclass of UIViewController，再自定對其命稱，一般命名方式是 YourNameViewController，即前綴是描述這個介面做什麼，後綴是保持 ViewController 這個稱號。
-
-## iOS 的過場呈現
-
-在 iOS 中，有幾個既定的過場呈現效果：
-
-1.  通過 UINavigationController 實現左右推的過場效果。
-2.  通過 UITabBarController 實現直接轉 Tab 的切換呈現。
-3.  通過 Present Modally 由下向上呈現效果。
-
-這三個基本涵蓋大部份轉畫面情形，其餘還有 Flip 翻轉效果及利用手指左右 Slide 的 Scroll View 左右撥轉畫面效果。
-
-# UITextField Video Example
-
-[https://vimeo.com/274443670](https://vimeo.com/274443670)
-
-# AutoLayout Examples
-
-[https://vimeo.com/275028007](https://vimeo.com/275028007)
-
-[https://vimeo.com/275027985](https://vimeo.com/275027985)
-
-[https://vimeo.com/275031419](https://vimeo.com/275031419)
-
-## UIStackView
-
-Reference: [https://spin.atomicobject.com/2016/06/22/uistackview-distribution/](https://spin.atomicobject.com/2016/06/22/uistackview-distribution/)
-
-# 使用 AlamoFire 取得網絡資源
-
-在 iOS 開發中，我們可以使用 [NSURLSession](https://developer.apple.com/documentation/foundation/nsurlsession)。這是 iOS 7 以後加上的，在此前，我們須使用 NSURLConnection 做更底層的網絡操作。
-
-
-然而，為了更集中處理高層次設計，我們可以選擇避開太基層的網絡存取 API 應用，而是使用第三方程序庫。在 iOS Swift 中，其中一個常用到的網絡存取資源庫是 [AlamoFire](https://github.com/Alamofire/Alamofire)。
-
-
-在 AlamoFire 的文件中，有幾項可以幫助我們快速上手：
-
--   [基本存取](https://github.com/Alamofire/Alamofire/blob/master/Documentation/Usage.md#making-a-request)
--   [確定手機可以連接網絡](https://github.com/Alamofire/Alamofire/blob/master/Documentation/AdvancedUsage.md#network-reachability)
--   [於返回成功才處理數據](https://github.com/Alamofire/Alamofire/blob/master/Documentation/Usage.md#response-validation)
-
-## 範例：載入澳門圖書館列表
-
-![](images/105424550-alamofire-tableview-images.jpg)
-
-
-在這個範例中，我們將使用以下 JSON 作為圖書館列表資料的來源。資料來源自[澳門政府圖書館網站](https://www.library.gov.mo/)。
-
-
-```
-https://s3-us-west-2.amazonaws.com/s.cdpn.io/15649/macao-library.json
-
-```
-
-
-從 AlamoFire 的 Github 中下載整個項目回來後，將檔案放到項目目錄下，接著把 Alamofire.xcodeproj 拖拉進目標 Xcode project。
-
-
-
-僅記在 Project 的 Framework 中要加入 Alamofire.framework。
-
-
-![](images/105424578-alamofire-embed-framework.jpg)
-
-
-我們會使用自定義的 LibraryListTableViewController 來實現 Table View，在其最頂端，需要匯入 Alamofire 框架，方法是：
-
-
-```
-import Alamofire
-
-```
-
-
-為了方便稍後載入網絡相片，我們也可以一併匯入 [AlamofireImage](https://github.com/Alamofire/AlamofireImage) 擴展。
-
-
-
-接著在 LibraryListTableViewController 中，定義兩個變量：
-
-
-```
-var libraryData:NSDictionary?
+</p></section>
+
+<section><h1>About me: Makzan</h1><div class="formatted_content">
+  <div>我自細撰寫開發不同的網頁系統，Facebook推出之初，我開始你用Facebook平台撰寫社交遊戲及 Flash 遊戲。亦有開發大型線上多人即時遊戲。<br/><br/>自 2010 年推出 iPad 起，投入開發 iOS 遊戲及應用程式。在 iPad 2010 年3月尾首發當天，我的第一隻iPad遊戲就在App Store上被一群群剛剛拿着iPad上App Store 尋找好用 app 的用戶下載。<br/><br/>過往開發亮點：</div>
+<ul>
+<li>Fish Ball game</li>
+<li>Chicken Rain app</li>
+<li>音樂 app</li>
+<li>Music Player app</li>
+<li>AR app</li>
+<li>Unity games</li>
+<li>Multiplayers game</li>
+</ul>
+<div><br/></div>
+<div><div sgid="BAh7CEkiCGdpZAY6BkVUSSItZ2lkOi8vYmMzL0F0dGFjaG1lbnQvODU1MTQ3NDM_ZXhwaXJlc19pbgY7AFRJIgxwdXJwb3NlBjsAVEkiD2F0dGFjaGFibGUGOwBUSSIPZXhwaXJlc19hdAY7AFQw--5170d54a0adfbfe2bfb27f6a2e2f1d26b849c9a1" content-type="image/jpeg" url="https://preview.3.basecamp.com/3085247/blobs/5379e344-c3f8-11e8-b1e5-a0369f740fe3/previews/full/fishball.jpg" href="https://3.basecamp.com/3085247/blobs/5379e344-c3f8-11e8-b1e5-a0369f740fe3/download/fishball.jpg" filename="fishball.jpg" filesize="574836" width="3072" height="768" previewable="true" presentation="gallery">  <figure class="attachment attachment--image">
+    <img src="images/105424743-fishball.jpg"/>
+
+  </figure></div></div>
+<div><br/></div>
+<div>
+<div sgid="BAh7CEkiCGdpZAY6BkVUSSItZ2lkOi8vYmMzL0F0dGFjaG1lbnQvODU1MTQ3NDQ_ZXhwaXJlc19pbgY7AFRJIgxwdXJwb3NlBjsAVEkiD2F0dGFjaGFibGUGOwBUSSIPZXhwaXJlc19hdAY7AFQw--f2ddf40ad55a55d123938f9eeca1f35f8bac26bd" content-type="image/jpeg" url="https://preview.3.basecamp.com/3085247/blobs/549476f4-c3f8-11e8-b109-a0369f740db3/previews/full/chicken-rain.jpg" href="https://3.basecamp.com/3085247/blobs/549476f4-c3f8-11e8-b109-a0369f740db3/download/chicken-rain.jpg" filename="chicken-rain.jpg" filesize="511312" width="2996" height="1614" previewable="true" presentation="gallery">  <figure class="attachment attachment--image">
+    <img src="images/105424744-chicken-rain.jpg"/>
+
+  </figure></div><br/><br/>你可以從以下途徑找到我：</div>
+<ul>
+<li>網站：<a target="_blank" rel="noreferrer" class="autolinked" data-behavior="truncate" href="https://makzan.net">https://makzan.net</a>
+</li>
+<li>Github：<a target="_blank" rel="noreferrer" class="autolinked" data-behavior="truncate" href="https://github.com/makzan">https://github.com/makzan</a>
+</li>
+<li>推特：<a target="_blank" rel="noreferrer" class="autolinked" data-behavior="truncate" href="https://twitter.com/makzan">https://twitter.com/makzan</a>
+</li>
+<li>FB：<a target="_blank" rel="noreferrer" class="autolinked" data-behavior="truncate" href="https://fb.com/makzan">https://fb.com/makzan</a>
+</li>
+</ul>
+</div>
+
+    
+</section>
+
+<section><h1>簡介</h1><div class="formatted_content">
+  <div>簡介 iOS 開發背景</div>
+</div>
+
+    
+<section><h2 class='section-title'>iOS 開發的歷史</h2><div class="formatted_content">
+  <div>
+<br/>iPhone 在 2007 年推出，當時是沒有針對 iPhone 系統的開發工具開放的。Xcode 已經有，但仍然是給開發 Mac 機上的軟件而。2007 年第一代 iPhone，主打的是開發者可以開發 Web App 網頁程序。<br/><br/>
+</div>
+<div><div sgid="BAh7CEkiCGdpZAY6BkVUSSItZ2lkOi8vYmMzL0F0dGFjaG1lbnQvODU1MTUwODA_ZXhwaXJlc19pbgY7AFRJIgxwdXJwb3NlBjsAVEkiD2F0dGFjaGFibGUGOwBUSSIPZXhwaXJlc19hdAY7AFQw--af956a04e031e6b948381dd0a21c1ca75ddb67be" content-type="image/png" url="https://preview.3.basecamp.com/3085247/blobs/2fbd5650-c3fa-11e8-8e31-a0369f740df5/previews/full/Screen_Shot_2018-03-12_at_9.39.09_PM.jpg" href="https://3.basecamp.com/3085247/blobs/2fbd5650-c3fa-11e8-8e31-a0369f740df5/download/Screen_Shot_2018-03-12_at_9.39.09_PM.jpg" filename="Screen_Shot_2018-03-12_at_9.39.09_PM.jpg" filesize="279996" width="1604" height="940" previewable="true" presentation="gallery">  <figure class="attachment attachment--image">
+    <img src="images/105425080-screen_shot_2018-03-12_at_9-39-09_pm.jpg"/>
+
+  </figure></div></div>
+<div>
+<br/>可惜，經過 2007 年推出以來約一年的 Web app 開發，大家還是渴求得到運用 iPhone 硬件及系統的原生（Native）軟件開發工具。於是，在 2008 年三月，蘋果公佈了基於 Xcode 及 iOS 2 的開發套件。自次，我們的生活便再離不開手機應用了。</div>
+</div>
+
+    
+</section><section><h2 class='section-title'>iOS 系統背景</h2><div class="formatted_content">
+  <div>iOS 的底層是 Mac OS X 的 Darwin Unix 系統，蘋果在上方增加了專門為 Touch 而設計的 UIKit。而其他例如數據類型則繼續和 Mac OS X 共用，例如 NSData, NSArray, NSString, NSDictionary 等。<br/><br/>蘋果系統的 Class 是使用 Prefix 來做 Namespacing 的，例如專門給 iOS 用的界面就是 UI 字開頭，如 UIView, UILabel, UIButton 等。遊戲用的 SpriteKit 就有 SKView, SKScene, SKNode 等。位置相關的 CoreLocation 就有 CLLocationManager 等。<br/><br/>而數據類型 NSData, NSArray 等，其 NS 則是遺傳自 Mac OS X 的前身：NextStep 電腦。而在蘋果推行 Swift 之際，亦在努力令系統去 NS 化，例如推出 Swift 專用的 Array, Dictionary, String, Data 等。</div>
+</div>
+
+    
+</section><section><h2 class='section-title'>iOS 系統版本與更新</h2><div class="formatted_content">
+  iOS 的使用者都頗願意更新系統，一般最近兩代系統使用佔有率會超過 95%。所以我們在製作 App 的時候可以更放心使用最新的 API，造出更先進的 App 功能。
+</div>
+
+    
+</section><section><h2 class='section-title'>Xcode 介面介紹</h2><div class="formatted_content">
+  <div>Xcode一打開會令人覺得太多 panel 太多功能，一時可能無所適從。但其實只需要掌握左中右最基本的功能便可以開始 iOS 編程。<br/><br/>左邊 panel 細看有不同的 Tab，但只需要先集中使用第一個檔案 Tab，這𥚃是我們轉換檔案時需要的。一個應用程式會分為很多不同的檔案，每一個分別負責一項功能，所以我們將會經常於不同檔案之間切換。<br/><br/>中間是主要編輯區域，無論是界面編輯還是程序編程，都主要集中在中間區域。<br/><br/>中間區域有時可以分為左右兩邊，例如需要將界面元件與程序連接時，便須要在這個左右分屏編輯器進行。又或者兩段化碼的 git diff 對比亦會需要左右兩個畫面。<br/><br/>右邊 panel 細看亦有不同 Tab。這個 Panel 我們會在幾個常用 Tab 之間切換。<br/><br/>第一個 Tab 是最不常用的，是檔案屬性。當要做多語言 Localization 後便需要在這個 Tab 中設定。<br/><br/>之後就視乎檔案類型，例如界面，我們便會使用尺寸 Tab、界面屬性 Tab 等等。<br/><br/><div sgid="BAh7CEkiCGdpZAY6BkVUSSItZ2lkOi8vYmMzL0F0dGFjaG1lbnQvODU1MTUwOTg_ZXhwaXJlc19pbgY7AFRJIgxwdXJwb3NlBjsAVEkiD2F0dGFjaGFibGUGOwBUSSIPZXhwaXJlc19hdAY7AFQw--6d39b6af02fb2b781f9696a583ca8acb3a59f9be" content-type="image/png" url="https://preview.3.basecamp.com/3085247/blobs/4fe76448-c3fa-11e8-b34d-a0369f740fe3/previews/full/Screen_Shot_2018-03-12_at_10.41.00_PM.jpg" href="https://3.basecamp.com/3085247/blobs/4fe76448-c3fa-11e8-b34d-a0369f740fe3/download/Screen_Shot_2018-03-12_at_10.41.00_PM.jpg" filename="Screen_Shot_2018-03-12_at_10.41.00_PM.jpg" filesize="451507" width="2160" height="1512" previewable="true" presentation="gallery">  <figure class="attachment attachment--image">
+    <img src="images/105425098-screen_shot_2018-03-12_at_10-41-00_pm.jpg"/>
+
+  </figure></div><br/><br/>在 Xcode 中，界面主要分為四部份，上方狀態列，左方檔案列表，中間主要編輯器，右方設定面板（Panel）。右上角可以打開及收起左右兩個面板（Panel）。另外還可以打開打開下方的輔助輸出框。如果運行期間有除錯信息需要查看，可以在這個輸出框中查找。<br/><br/><div sgid="BAh7CEkiCGdpZAY6BkVUSSItZ2lkOi8vYmMzL0F0dGFjaG1lbnQvODU1MTUxMDA_ZXhwaXJlc19pbgY7AFRJIgxwdXJwb3NlBjsAVEkiD2F0dGFjaGFibGUGOwBUSSIPZXhwaXJlc19hdAY7AFQw--a5fd8f76526163798747f3e25565cf821a21e23a" content-type="image/png" url="https://preview.3.basecamp.com/3085247/blobs/5314dac4-c3fa-11e8-bcec-a0369f740db3/previews/full/Screen_Shot_2018-03-13_at_3.51.46_PM.jpg" href="https://3.basecamp.com/3085247/blobs/5314dac4-c3fa-11e8-bcec-a0369f740db3/download/Screen_Shot_2018-03-13_at_3.51.46_PM.jpg" filename="Screen_Shot_2018-03-13_at_3.51.46_PM.jpg" filesize="6982" width="190" height="58" previewable="true" presentation="gallery">  <figure class="attachment attachment--image">
+    <img src="images/105425100-screen_shot_2018-03-13_at_3-51-46_pm.jpg"/>
+
+  </figure></div><br/><div sgid="BAh7CEkiCGdpZAY6BkVUSSItZ2lkOi8vYmMzL0F0dGFjaG1lbnQvODU1MTUxMDE_ZXhwaXJlc19pbgY7AFRJIgxwdXJwb3NlBjsAVEkiD2F0dGFjaGFibGUGOwBUSSIPZXhwaXJlc19hdAY7AFQw--49633901a41e14e7f4e8357bc7f283dbe0ef6fa4" content-type="image/jpeg" url="https://preview.3.basecamp.com/3085247/blobs/54ba5426-c3fa-11e8-87bb-a0369f740fe6/previews/full/985495DF-31F2-4F38-A23F-9DCD4529B4D4.jpg" href="https://3.basecamp.com/3085247/blobs/54ba5426-c3fa-11e8-87bb-a0369f740fe6/download/985495DF-31F2-4F38-A23F-9DCD4529B4D4.jpg" filename="985495DF-31F2-4F38-A23F-9DCD4529B4D4.jpg" filesize="284052" width="2853" height="1963" previewable="true" presentation="gallery">  <figure class="attachment attachment--image">
+    <img src="images/105425101-985495df-31f2-4f38-a23f-9dcd4529b4d4.jpg"/>
+
+  </figure></div>
+</div>
+</div>
+
+    
+</section><section><h2 class='section-title'>製作 iOS 應用，須要什麼工具？</h2><div class="formatted_content">
+  <div>首先，我們需要一台 <strong>Mac</strong> 機，可以是 Macbook / iMac / Mac mini，總之就是要一個可以運行 macOS 的蘋果機。</div>
+<div>
+<br/>然後，我們需要下載 <strong>Xcode</strong>，Xcode 是蘋果的開發工具。無論是 Mac 機上的桌面軟件、iOS 的手機應用、iPad 平板應用、Apple Watch 程序，還是 Apple TV 上的播放器等，都是使用 Xcode 來開發的。Xcode 可以在 Mac 系統上的 App Store 免費下載。<br/><br/>
+</div>
+<div>Xcode 會跟隨一個 <strong>iOS Simulator</strong>，方便我們直接在電腦上測試各種屏幕的 iPhone/iPad 設備，從 iPhone 5s 到 iPhone X 都有。當我們要測試自己的應用在大大小小不同屏幕尺寸上的運行情形時，我們就很需要這個模擬器。<br/><br/>
+</div>
+<div>再者，如果需要將開發中的 iOS App 放到實體 iPhone/iPad 上運行時，我們使需要一個開發用的 <strong>Apple ID</strong>。以往 iOS 開發最多的投訴就是要付費才可以落機試。一個 Apple Developer 付費帳號需要美金 99 一年，折合約澳門幣 800 㘣，還需要每年續期。但自從 iOS 9 以後，只需要使用免費註冊的 Apple ID，便可以將撰寫中的應用程式，通過 USB Lightening 線直接落機測試。</div>
+</div>
+
+    
+</section><section><h2 class='section-title'>將 Xcode 上的 iOS 專案發佈到 iPhone / iPad 上</h2><div class="formatted_content">
+  <div>以往最常聽到寫 iOS 應用的人投訴，要付出 $99 美金（約 $800 葡幣）才可以在實體電話落機調試。<br/><br/>
+</div>
+<div>自從 iOS 9 以後，只要註冊免費 Apple ID 帳號，就可以通過直接 USB 連接手機及 Xcode 暫寫中的應用程式直接放到手機上運行。<br/><br/>
+</div>
+<div><a href="http://help.apple.com/developer-account/#/dev21218dfd6" target="_blank" rel="noreferrer">http://help.apple.com/developer-account/#/dev21218dfd6</a></div>
+<div><br/></div>
+<h3>如何註冊 Apple ID ?</h3>
+<div><br/></div>
+<div>一般如果我們已經有 iCloud 或者在 App Store 中下載軟件，都會有自己的 Apple ID，可以使用這個 Apple ID 進行開發。而我過往的習慣，我個人會使用另一個電郵作為開發者的 ID 帳號，因為開發期間不同設定及使用情形，我不想和個人的購買記錄或者個人相片等資料等混在一起。所以，我會使用獨立的電郵地址來申請多一個 Apple ID 專門用於開發帳號。</div>
+</div>
+
+    
+</section><section><h2 class='section-title'>一個項目的檔案</h2><div class="formatted_content">
+  <div>一個項目有不同的檔案，以下簡介其功能：<br/><br/>
+</div>
+<ul>
+<li>AppDelegate.swift 負責控制檔案的 Life Cycle</li>
+<li>Info.plist 是應用程式的系統設定，例如於 Home Screen 顯示的名稱、需要的權限及說明文字</li>
+<li>Main.storyboard 是主要的介面檔案，如果是簡單的應用程式，這個檔案可以包含整個 App 的所有界面</li>
+<li>LaunchScreen.storyboard 是打開 App 時，未完成載入期間，用戶望到的第一個個畫面。</li>
+<li>Assets.xcassets 裝著一群群的圖片檔案，例如 App Icon，App Icon 有不同的尺寸以符合不同機種及使用情景。</li>
+<li>ViewController.swift 是預設 Single View App 的範本檔案，是第一個畫面背後的程序碼。</li>
+</ul>
+<div>
+<br/><div sgid="BAh7CEkiCGdpZAY6BkVUSSItZ2lkOi8vYmMzL0F0dGFjaG1lbnQvODUzNTg5OTI_ZXhwaXJlc19pbgY7AFRJIgxwdXJwb3NlBjsAVEkiD2F0dGFjaGFibGUGOwBUSSIPZXhwaXJlc19hdAY7AFQw--36b81f41662090b6b59e646af664ca006ab7c149" content-type="image/png" url="https://preview.3.basecamp.com/3085247/blobs/6478e000-c303-11e8-b4db-ecf4bbd72afa/previews/full/Screenshot%202018-09-28%2017.45.50.jpg" href="https://3.basecamp.com/3085247/blobs/6478e000-c303-11e8-b4db-ecf4bbd72afa/download/Screenshot%202018-09-28%2017.45.50.jpg" filename="Screenshot 2018-09-28 17.45.50.jpg" filesize="489262" width="538" height="624" previewable="true" presentation="gallery">  <figure class="attachment attachment--image">
+    <img src="images/105268994-screenshot-2018-09-28-17-45-50.jpg"/>
+
+  </figure></div>
+</div>
+</div>
+
+    
+</section><section><h2 class='section-title'>開發 iOS App，我應該選擇 Objective-C 還是 Swift 語言？</h2><div class="formatted_content">
+  <div>
+<br/>Objective-C 歷史悠久，自 80 年代後便已面世，並且一直是 Mac 機軟件開發所使用的編程語言，所以 iOS 推出時，也順理成章使用 Objective-C 語言。但 Objective-C 語言其實寫法較為獨特，和傳統的 C / Java 等語言寫法有一定差距，導致除了 Mac 開發外，使用 Objective-C 的人不多。<br/><br/>Objective-C 提倡 Message Passing，即 Call function 是溝通，而不是命令。所以用 Objective-C 寫出來的語句很像在說英文。例如：<br/><br/>
+</div>
+<pre><code>[gameObject placeAtX: 123 andY: 456];</code></pre>
+<div><br/></div>
+<div><div sgid="BAh7CEkiCGdpZAY6BkVUSSItZ2lkOi8vYmMzL0F0dGFjaG1lbnQvODU1MTM2OTk_ZXhwaXJlc19pbgY7AFRJIgxwdXJwb3NlBjsAVEkiD2F0dGFjaGFibGUGOwBUSSIPZXhwaXJlc19hdAY7AFQw--ce4bf6afc2528722c962f2f798a5a6dfb4cca949" content-type="image/png" url="https://preview.3.basecamp.com/3085247/blobs/0cb8494c-c3f2-11e8-a295-a0369f740db3/previews/full/Screen_Shot_2018-03-13_at_4.07.27_PM.jpg" href="https://3.basecamp.com/3085247/blobs/0cb8494c-c3f2-11e8-a295-a0369f740db3/download/Screen_Shot_2018-03-13_at_4.07.27_PM.jpg" filename="Screen_Shot_2018-03-13_at_4.07.27_PM.jpg" filesize="26139" width="824" height="104" previewable="true" presentation="gallery">  <figure class="attachment attachment--image">
+    <img src="images/105423701-screen_shot_2018-03-13_at_4-07-27_pm.jpg"/>
+
+  </figure></div></div>
+<div>
+<br/>為了更好地推廣編程學習，蘋果便於數年前推出了 <a href="https://swift.org/" target="_blank" rel="noreferrer">Swift 語言</a>。在經歷多年的使用及調整後，現在 Swift 語言已經趨向穩定成熟，而且網上的新教材基本上都使用 Swift 語言了。</div>
+<div>
+<br/>所以，如果現在開始學寫 iOS 應用，直接選擇 Swift 是擁抱未來的好選擇。而 Objective-C，就是過往已寫的代碼，沒有出錯不去改而矣。</div>
+</div>
+
+    
+</section><section><h2 class='section-title'>iOS Simulator</h2><div class="formatted_content">
+  <div>在我們落實體機試之前，我們一般會利用 Xcode 跟來的模擬器進行測試。iOS Simulator 模擬器讓我們選擇從 iPhone 5s 至 iPhone X 的不同畫面尺寸，方便測試應用在不同畫面的運行情況。<br/><br/>
+</div>
+<div><br/></div>
+<div><br/></div>
+<div class="attachment-gallery attachment-gallery--2">
+  <div sgid="BAh7CEkiCGdpZAY6BkVUSSItZ2lkOi8vYmMzL0F0dGFjaG1lbnQvODU1MTI2MDM_ZXhwaXJlc19pbgY7AFRJIgxwdXJwb3NlBjsAVEkiD2F0dGFjaGFibGUGOwBUSSIPZXhwaXJlc19hdAY7AFQw--b4c27b6ddbbcb03072af6d5ae491045d2814843e" content-type="image/png" url="https://preview.3.basecamp.com/3085247/blobs/8f8bcab2-c3eb-11e8-8a02-a0369f740db7/previews/full/Screen_Shot_2018-03-12_at_10.41.07_PM.jpg" href="https://3.basecamp.com/3085247/blobs/8f8bcab2-c3eb-11e8-8a02-a0369f740db7/download/Screen_Shot_2018-03-12_at_10.41.07_PM.jpg" filename="Screen_Shot_2018-03-12_at_10.41.07_PM.jpg" filesize="65925" width="784" height="1618" previewable="true" presentation="gallery">  <figure class="attachment attachment--image">
+    <img src="images/105422605-screen_shot_2018-03-12_at_10-41-07_pm.jpg"/>
+
+  </figure></div><div sgid="BAh7CEkiCGdpZAY6BkVUSSItZ2lkOi8vYmMzL0F0dGFjaG1lbnQvODU1MTI2MDQ_ZXhwaXJlc19pbgY7AFRJIgxwdXJwb3NlBjsAVEkiD2F0dGFjaGFibGUGOwBUSSIPZXhwaXJlc19hdAY7AFQw--3061fa67523dcf3d76863854ae74fda0f583ade8" content-type="image/png" url="https://preview.3.basecamp.com/3085247/blobs/90d6dd26-c3eb-11e8-b8a1-a0369f740db1/previews/full/Screen_Shot_2018-03-12_at_10.38.11_PM.jpg" href="https://3.basecamp.com/3085247/blobs/90d6dd26-c3eb-11e8-b8a1-a0369f740db1/download/Screen_Shot_2018-03-12_at_10.38.11_PM.jpg" filename="Screen_Shot_2018-03-12_at_10.38.11_PM.jpg" filesize="161561" width="570" height="1044" previewable="true" presentation="gallery">  <figure class="attachment attachment--image">
+    <img src="images/105422606-screen_shot_2018-03-12_at_10-38-11_pm.jpg"/>
+
+  </figure></div>
+</div>
+</div>
+
+    
+</section></section>
+
+<section><h1>App 類型介紹</h1><div class="formatted_content">
+  <div>我們來看看 App Store 上常見的有哪些類型應用及它們的特點。</div>
+</div>
+
+    
+<section><h2 class='section-title'>遊戲類</h2><div class="formatted_content">
+  <div>以前的遊戲類多使用不同的第三方 Framework，例如 cocos2d，再配搭物理模擬引撃如 Box2D。但然而，從 Apple 推出了 SpriteKit 後，便可以直接在 Xcode 中製作遊戲了。當然，像 Unity 這種大型遊戲引撃仍然是很受歡迎的，例如 Alto's Adventure 就是用 Unity 來撰寫的 2D 遊戲。<br/><br/><div sgid="BAh7CEkiCGdpZAY6BkVUSSItZ2lkOi8vYmMzL0F0dGFjaG1lbnQvODU1MTQxNDg_ZXhwaXJlc19pbgY7AFRJIgxwdXJwb3NlBjsAVEkiD2F0dGFjaGFibGUGOwBUSSIPZXhwaXJlc19hdAY7AFQw--d73a19ac49cbd01f3b58156f7f1ab3a81f7a4ba1" content-type="image/jpeg" url="https://preview.3.basecamp.com/3085247/blobs/7a9b5ba0-c3f4-11e8-9385-a0369f740fe6/previews/full/IMG_A3F4609AF5F7-1.jpg" href="https://3.basecamp.com/3085247/blobs/7a9b5ba0-c3f4-11e8-9385-a0369f740fe6/download/IMG_A3F4609AF5F7-1.jpg" filename="IMG_A3F4609AF5F7-1.jpg" filesize="1985598" width="2436" height="1125" previewable="true" presentation="gallery">  <figure class="attachment attachment--image">
+    <img src="images/105424150-img_a3f4609af5f7-1.jpg"/>
+
+  </figure></div>
+</div>
+</div>
+
+    
+</section><section><h2 class='section-title'>工具類應用</h2><div class="formatted_content">
+  <div>通常針對特定或單一功能需求外設計，其特點是所針對的功能往往能提供很優秀的解決方案。 例如針對不同情況的計算機、文字編輯器等。<br/><br/><div sgid="BAh7CEkiCGdpZAY6BkVUSSItZ2lkOi8vYmMzL0F0dGFjaG1lbnQvODU0MTYyOTc_ZXhwaXJlc19pbgY7AFRJIgxwdXJwb3NlBjsAVEkiD2F0dGFjaGFibGUGOwBUSSIPZXhwaXJlc19hdAY7AFQw--ebce3e31d2573b2a66c9438642af6e711d0b4116" content-type="image/jpeg" url="https://preview.3.basecamp.com/3085247/blobs/9f18a442-c336-11e8-b7c7-a0369f740db1/previews/full/IMG_1535.jpg" href="https://3.basecamp.com/3085247/blobs/9f18a442-c336-11e8-b7c7-a0369f740db1/download/IMG_1535.jpg" filename="IMG_1535.jpg" filesize="385650" width="677" height="1110" previewable="true" presentation="gallery">  <figure class="attachment attachment--image">
+    <img src="images/105326299-img_1535.jpg"/>
+
+  </figure></div><br/><br/>不同情況的計算機，可以有專門計折扣的、專門計算AA制的、專門計算不同單位換算的、專門計算某特定公式的等等。<br/><br/><div sgid="BAh7CEkiCGdpZAY6BkVUSSItZ2lkOi8vYmMzL0F0dGFjaG1lbnQvODU0MTAwMDU_ZXhwaXJlc19pbgY7AFRJIgxwdXJwb3NlBjsAVEkiD2F0dGFjaGFibGUGOwBUSSIPZXhwaXJlc19hdAY7AFQw--0dd4155b1cd6fd6dddd35bcb9af4b8579ee2fb4b" content-type="image/jpeg" url="https://preview.3.basecamp.com/3085247/blobs/b5849082-c332-11e8-83ed-a0369f740db1/previews/full/IMG_1534.jpg" href="https://3.basecamp.com/3085247/blobs/b5849082-c332-11e8-83ed-a0369f740db1/download/IMG_1534.jpg" filename="IMG_1534.jpg" filesize="830216" width="1873" height="803" previewable="true" presentation="gallery">  <figure class="attachment attachment--image">
+    <img src="images/105320007-img_1534.jpg"/>
+
+  </figure></div><br/><div sgid="BAh7CEkiCGdpZAY6BkVUSSItZ2lkOi8vYmMzL0F0dGFjaG1lbnQvODUzOTk2ODE_ZXhwaXJlc19pbgY7AFRJIgxwdXJwb3NlBjsAVEkiD2F0dGFjaGFibGUGOwBUSSIPZXhwaXJlc19hdAY7AFQw--8654567c975f82bde5dbc1f344dd52fe14deb898" content-type="image/png" url="https://preview.3.basecamp.com/3085247/blobs/1cc97c96-c32c-11e8-9024-a0369f740dfa/previews/full/IMG_1530.jpg" href="https://3.basecamp.com/3085247/blobs/1cc97c96-c32c-11e8-9024-a0369f740dfa/download/IMG_1530.jpg" filename="IMG_1530.jpg" filesize="1275088" width="2224" height="1668" previewable="true" presentation="gallery">  <figure class="attachment attachment--image">
+    <img src="images/105309683-img_1530.jpg"/>
+
+  </figure></div><br/><br/><br/><div sgid="BAh7CEkiCGdpZAY6BkVUSSItZ2lkOi8vYmMzL0F0dGFjaG1lbnQvODUzOTk3NzY_ZXhwaXJlc19pbgY7AFRJIgxwdXJwb3NlBjsAVEkiD2F0dGFjaGFibGUGOwBUSSIPZXhwaXJlc19hdAY7AFQw--4a9838ea39628ad7106b371d2bddd4aeffc59a4f" content-type="image/png" url="https://preview.3.basecamp.com/3085247/blobs/2c62edb8-c32c-11e8-9d36-ecf4bbd6f9a0/previews/full/IMG_1532.jpg" href="https://3.basecamp.com/3085247/blobs/2c62edb8-c32c-11e8-9d36-ecf4bbd6f9a0/download/IMG_1532.jpg" filename="IMG_1532.jpg" filesize="2531796" width="2224" height="1668" previewable="true" presentation="gallery">  <figure class="attachment attachment--image">
+    <img src="images/105309778-img_1532.jpg"/>
+
+  </figure></div>
+</div>
+</div>
+
+    
+</section><section><h2 class='section-title'>攝影類 App</h2><div class="formatted_content">
+  <div>攝影是其中一個大分類。 <br/><br/>自 iOS 剛推出以來，第三方攝影 App 一直有捧場客。 <br/><br/>例如以晚上影相穩定主打的、有影相後加貼紙的、有多重曝光的、有專門影正方形的、有專門影 360 環迴全景的、有手動控制的、有影 Raw 檔的、有自動人臉美化的、有前後鏡頭一起用的，等等，數之不盡。<br/><br/><div sgid="BAh7CEkiCGdpZAY6BkVUSSItZ2lkOi8vYmMzL0F0dGFjaG1lbnQvODU0MTA5ODc_ZXhwaXJlc19pbgY7AFRJIgxwdXJwb3NlBjsAVEkiD2F0dGFjaGFibGUGOwBUSSIPZXhwaXJlc19hdAY7AFQw--fd58c4f17c5b9a7dda02772c1fc2fe50090960db" content-type="image/jpeg" url="https://preview.3.basecamp.com/3085247/blobs/554c6fc2-c333-11e8-b23e-a0369f740dfa/previews/full/IMG_1538.jpg" href="https://3.basecamp.com/3085247/blobs/554c6fc2-c333-11e8-b23e-a0369f740dfa/download/IMG_1538.jpg" filename="IMG_1538.jpg" filesize="640691" width="737" height="1324" previewable="true" presentation="gallery">  <figure class="attachment attachment--image">
+    <img src="images/105320989-img_1538.jpg"/>
+
+  </figure></div>
+</div>
+</div>
+
+    
+</section><section><h2 class='section-title'>社交類型應用</h2><div class="formatted_content">
+  <div>社交應用不一定是大型的 Facebook，也可以是針對特定群中，例如 Tumblr 這種多媒體個人日誌、知乎這種有問有答社區、Path 這種有朋友上下的好友分享，也有只針對家庭甚至情侶的小眾社交應用，只要能夠成功針對特定社群的需求，其功能往往會比普通的大型社交網絡更加實用。<br/><br/><div sgid="BAh7CEkiCGdpZAY6BkVUSSItZ2lkOi8vYmMzL0F0dGFjaG1lbnQvODU0MDA2MDA_ZXhwaXJlc19pbgY7AFRJIgxwdXJwb3NlBjsAVEkiD2F0dGFjaGFibGUGOwBUSSIPZXhwaXJlc19hdAY7AFQw--b8ebc123104335979d79569f2408654a3c2d8757" content-type="image/png" url="https://preview.3.basecamp.com/3085247/blobs/c2fbd6ea-c32c-11e8-bda9-ecf4bbd72afa/previews/full/IMG_1533.jpg" href="https://3.basecamp.com/3085247/blobs/c2fbd6ea-c32c-11e8-bda9-ecf4bbd72afa/download/IMG_1533.jpg" filename="IMG_1533.jpg" filesize="31094" width="664" height="138" previewable="true" presentation="gallery">  <figure class="attachment attachment--image">
+    <img src="images/105310602-img_1533.jpg"/>
+
+  </figure></div>
+</div>
+</div>
+
+    
+</section><section><h2 class='section-title'>電子多媒體類</h2><div class="formatted_content">
+  即是電子雜誌。
+<br/>
+<br/>最基本的是靜態將 PDF 直接呈現，更深入的有重新為手提設備排版的，甚至為手提設備加入多媒體互動的。
+<br/>
+<br/>例如專門針對手機上的純文字由上向下閱讀文章功能。
+<br/>
+<br/>例如針對 iPad 的多媒體互動設計雜誌。
+<br/>
+<br/>甚至電子雜誌商城。
+</div>
+
+    
+</section><section><h2 class='section-title'>資訊性app</h2><div class="formatted_content">
+  <div>當我們有一些資訊需要情的時候，例如交通事務局的停車場、巴士路線、巴士報站、路面視頻等等，又例如天氣、民生、電影資訊等等，都屬於資訊性app。 <br/><br/>這些 App 的特點是根據資訊的內容設計實用美觀的閱讀體驗，並且通過良好的導航及分類讓使用者方便瀏覽訊息。<br/><br/><div sgid="BAh7CEkiCGdpZAY6BkVUSSItZ2lkOi8vYmMzL0F0dGFjaG1lbnQvODU0MTA4Njg_ZXhwaXJlc19pbgY7AFRJIgxwdXJwb3NlBjsAVEkiD2F0dGFjaGFibGUGOwBUSSIPZXhwaXJlc19hdAY7AFQw--699e89fadd6f2279a96d50508f2f7a8089bbf7db" content-type="image/jpeg" url="https://preview.3.basecamp.com/3085247/blobs/45b0ef3e-c333-11e8-90da-a0369f740fe3/previews/full/IMG_1536.jpg" href="https://3.basecamp.com/3085247/blobs/45b0ef3e-c333-11e8-90da-a0369f740fe3/download/IMG_1536.jpg" filename="IMG_1536.jpg" filesize="1528238" width="1837" height="1322" previewable="true" presentation="gallery">  <figure class="attachment attachment--image">
+    <img src="images/105320870-img_1536.jpg"/>
+
+  </figure></div>
+</div>
+</div>
+
+    
+</section><section><h2 class='section-title'>觀察</h2><div class="formatted_content">
+  <div>要寫好 iOS app，其中一個重要步驟是觀察。 <br/><br/>通過觀察其他人使用電話上的不便，通過觀察蘋果推出的新 API，通過觀察蘋果新輸入方式，通過觀察日常生活方式，然後想出嶄新的應用方式、嶄新的功能、嶄新的 API 組合、嶄新的服務。 <br/><br/>新 API，可以為原本不能做的事情變成可做，可以為原本做不好的事情變得更完善。例如 GeoFence 推出使我們可以在地圖上劃定不同的圓，當電話進入或離開時系統便會通知我們的應用程式。又例如某新版 iOS 加入了手動控制鏡頭功能，於是相機 App 都可以手動控制快門及 ISO。 <br/><br/><div sgid="BAh7CEkiCGdpZAY6BkVUSSItZ2lkOi8vYmMzL0F0dGFjaG1lbnQvODU0MTE4Mzg_ZXhwaXJlc19pbgY7AFRJIgxwdXJwb3NlBjsAVEkiD2F0dGFjaGFibGUGOwBUSSIPZXhwaXJlc19hdAY7AFQw--503da10b5a5af955820ccfd25f6f92cf868b84fa" content-type="image/jpeg" url="https://preview.3.basecamp.com/3085247/blobs/d5c3abb6-c333-11e8-a34d-a0369f740da4/previews/full/IMG_1537.jpg" href="https://3.basecamp.com/3085247/blobs/d5c3abb6-c333-11e8-a34d-a0369f740da4/download/IMG_1537.jpg" filename="IMG_1537.jpg" filesize="483615" width="716" height="1090" previewable="true" presentation="gallery">  <figure class="attachment attachment--image">
+    <img src="images/105321840-img_1537.jpg"/>
+
+  </figure></div><br/><br/>新輸入方式，往往會是新電話或新潮流的徴兆。例如推出更多手勢功能，例如鍵盤可以兩隻手指變成 Trackpad 等。 通過觀察，可以比其他人走先一步；通過觀察，可以比其他人更了解 API 背後的原意。當你能夠在不同 API 之間創出別人沒有的組合時，你便造出了一個獨一無二的應用程式。</div>
+</div>
+
+    
+</section></section>
+
+<section><h1>使用 Storybaord 建立 App Prototype</h1><div class="formatted_content">
+  <div>在撰寫第一行代碼之前，我們可以純用 Storyboard 生成頗為完整的原型 Prototype。當然，有條件判斷的 Prototype 還是須要寫少量代碼的。<br/><br/>在 Storyboard 中，我們可以把介面元件拖拉至 Storyboard 的畫面中，我們亦可以將 UIViewController 拖拉至 Storyboard 生成一個新畫面，然後我們可以把一個 UIButton 放到第一個畫面中，再滑鼠右鍵拖拉，從那個 Button 拖拉淺藍色線至另一個畫面中，這時 Xcode 會問我們用哪種方式呈現這個畫面過場。這裹我們可以先選取 <strong>Present Modally</strong>。<br/><br/><a target="_blank" rel="noreferrer" class="autolinked" data-behavior="truncate" href="https://vimeo.com/293524239">https://vimeo.com/293524239</a><br/><br/>另外，我們亦可以使用 UINavigationController 配合自定義的 UIViewController 介面，再使用 <strong>Show </strong>來做到左右推入的呈現方式。<br/><br/><a target="_blank" rel="noreferrer" class="autolinked" data-behavior="truncate" href="https://vimeo.com/293523608">https://vimeo.com/293523608</a>
+</div>
+</div>
+
+    
+<section><h2 class='section-title'>Stoeyboard 的前世今生</h2><div class="formatted_content">
+  <div>我們製作 iOS app 介面，都是使用Storyboard的，現在 Stoeyboard 的功能越來越強大，我們可以兩三下便把整個app的 prototype 流程造出來進行實驗測試。<br/><br/>例如，</div>
+</div>
+
+    
+</section><section><h2 class='section-title'>IBOutlet & IBAction</h2><div class="formatted_content">
+  <div>雖然 Xcode 將介面及代碼放在同一個編輯環境中，但它們仍然是不同的檔案。在介面和代碼之間，我們通過 IBOutlet 及 IBAction 連繫。<br/><br/>IB 是 Interface Builder 的縮寫。Outlet 是用來於代碼中 Reference 一個介面元件的，即給予所連繫的介面元件一個 Variable 變量名稱。Action 則是用來於代碼中 Reference 一個介面元件的動作，即給予所連繫的動件一個 Method 函數名稱。<br/><br/>
+</div>
+<h3>連接 IBOutlet 及 IBAction</h3>
+<div>我們一般在 Xcode 中打開 Assistant editor，這樣左面將會是 Storyboard 介面，而右邊則會是對應的 Swift 代碼。然後我們可以滑鼠右鍵從介面元件拖拉到代碼之中，這時會彈出一個視窗問我們這個 IBOutlet 的變量名稱。<br/><br/>這個名稱不能有空格，而且建議用細寫開頭，如 button 等。如果須𨪁兩個字，可以使用細駱駝峰命名法，即連接起全部字，第一個字母細寫，其餘詞的首字母大寫。例如 submitButton 等。<br/><br/>注意的是，若果我們不慎改錯名，然後想回來重新修正，就必須要小心，因為這個名稱是分別在 2 個檔案中存在的：Storyboard 檔案及其對應的 Swift 代碼檔案。所以很多時，我們會習慣只改了 Swift 檔案內的 IBOutlet 變量名稱，而忘記去修改 Storyboard。一運行這個修改了一半的程序，便會因為存取不存在的變量而出現 App Crash 彈 App。<br/><br/>所以正確的修改 IBOutlet 名稱方法是在 Storyboard 中刪去 IBOutlet Reference，再於 Swift 代碼中改名，然後反向，從代碼左鍵按住 (+) 號拖拉至介面中。</div>
+</div>
+
+    
+</section><section><h2 class='section-title'>選擇介面元件庫</h2><div class="formatted_content">
+  <div> Xcode 的右下角為元件庫。主要使用的是第三個 Tab 介面元件。<br/><br/>注：Xcode 10 後，元件庫從右下方移到上方的 Toolbar 中，亦可以使用 cmd+shift+L 來叫出元件庫。</div>
+</div>
+
+    
+</section><section><h2 class='section-title'>Xcode 是如何配對相應的 Swift class 的？</h2><div class="formatted_content">
+  <div>在 Storyboard 中，每一版都對應一個 UIViewController，例如預設的 Single View Application 範本中，Xcode 已為我們建立一個 ViewController 的 Swift 類，並在 Storyboard 中建立了一個空白的畫面。如果選取這個畫面的 Controller（橙色盒子），再在右方 Panel 的第一個 Tab 中（cmd+option+1），會有一個 custom class 的輸入框，就會出現對應的代碼檔案及其類。這時會見到這個預設的畫面 Controller 是對應 ViewController 檔案。<br/><br/>每一個介面都應有一個對應的 UIViewController 類別，方法是建立新檔案，選擇 subclass of UIViewController，再自定對其命稱，一般命名方式是 YourNameViewController，即前綴是描述這個介面做什麼，後綴是保持 ViewController 這個稱號。</div>
+</div>
+
+    
+</section><section><h2 class='section-title'>iOS 的過場呈現</h2><div class="formatted_content">
+  <div>在 iOS 中，有幾個既定的過場呈現效果：</div>
+<ol>
+<li>通過 UINavigationController 實現左右推的過場效果。</li>
+<li>通過 UITabBarController 實現直接轉 Tab 的切換呈現。</li>
+<li>通過 Present Modally 由下向上呈現效果。</li>
+</ol>
+<div>這三個基本涵蓋大部份轉畫面情形，其餘還有 Flip 翻轉效果及利用手指左右 Slide 的 Scroll View 左右撥轉畫面效果。</div>
+</div>
+
+    
+</section></section>
+
+<section><h1>UITextField Video Example</h1><div class="formatted_content">
+  <div><a target="_blank" rel="noreferrer" class="autolinked" data-behavior="truncate" href="https://vimeo.com/274443670">https://vimeo.com/274443670</a></div>
+</div>
+
+    
+</section>
+
+<section><h1>AutoLayout Examples</h1><div class="formatted_content">
+  <div>
+<a target="_blank" rel="noreferrer" class="autolinked" data-behavior="truncate" href="https://vimeo.com/275028007">https://vimeo.com/275028007</a><br/><br/><a target="_blank" rel="noreferrer" class="autolinked" data-behavior="truncate" href="https://vimeo.com/275027985">https://vimeo.com/275027985</a><br/><br/><a target="_blank" rel="noreferrer" class="autolinked" data-behavior="truncate" href="https://vimeo.com/275031419">https://vimeo.com/275031419</a>
+</div>
+</div>
+
+    
+<section><h2 class='section-title'>UIStackView</h2><div class="formatted_content">
+  <div>Reference: <a target="_blank" rel="noreferrer" class="autolinked" data-behavior="truncate" href="https://spin.atomicobject.com/2016/06/22/uistackview-distribution/">https://spin.atomicobject.com/2016/06/22/uistackview-distribution/</a>
+</div>
+</div>
+
+    
+</section></section>
+
+<section><h1>使用 AlamoFire 取得網絡資源</h1><div class="formatted_content">
+  <div>在 iOS 開發中，我們可以使用 <a href="https://developer.apple.com/documentation/foundation/nsurlsession" target="_blank" rel="noreferrer">NSURLSession</a>。這是 iOS 7 以後加上的，在此前，我們須使用 NSURLConnection 做更底層的網絡操作。</div>
+<div>
+<br/>然而，為了更集中處理高層次設計，我們可以選擇避開太基層的網絡存取 API 應用，而是使用第三方程序庫。在 iOS Swift 中，其中一個常用到的網絡存取資源庫是 <a href="https://github.com/Alamofire/Alamofire" target="_blank" rel="noreferrer">AlamoFire</a>。<br/><br/>
+</div>
+<div>在 AlamoFire 的文件中，有幾項可以幫助我們快速上手：</div>
+<ul>
+<li><a href="https://github.com/Alamofire/Alamofire/blob/master/Documentation/Usage.md#making-a-request" target="_blank" rel="noreferrer">基本存取</a></li>
+<li><a href="https://github.com/Alamofire/Alamofire/blob/master/Documentation/AdvancedUsage.md#network-reachability" target="_blank" rel="noreferrer">確定手機可以連接網絡</a></li>
+<li><a href="https://github.com/Alamofire/Alamofire/blob/master/Documentation/Usage.md#response-validation" target="_blank" rel="noreferrer">於返回成功才處理數據</a></li>
+</ul>
+</div>
+
+    
+<section><h2 class='section-title'>範例：載入澳門圖書館列表</h2><div class="formatted_content">
+  <div><div sgid="BAh7CEkiCGdpZAY6BkVUSSItZ2lkOi8vYmMzL0F0dGFjaG1lbnQvODU1MTQ1NTA_ZXhwaXJlc19pbgY7AFRJIgxwdXJwb3NlBjsAVEkiD2F0dGFjaGFibGUGOwBUSSIPZXhwaXJlc19hdAY7AFQw--a5c17d8ba76755208cd0fc22139e73b6d5c00a43" content-type="image/png" url="https://preview.3.basecamp.com/3085247/blobs/3bdef194-c3f7-11e8-b4ef-a0369f740da4/previews/full/alamofire-tableview-images.jpg" href="https://3.basecamp.com/3085247/blobs/3bdef194-c3f7-11e8-b4ef-a0369f740da4/download/alamofire-tableview-images.jpg" filename="alamofire-tableview-images.jpg" filesize="322202" width="750" height="1378" previewable="true" presentation="gallery">  <figure class="attachment attachment--image">
+    <img src="images/105424550-alamofire-tableview-images.jpg"/>
+
+  </figure></div></div>
+<div>
+<br/>在這個範例中，我們將使用以下 JSON 作為圖書館列表資料的來源。資料來源自<a href="https://www.library.gov.mo/" target="_blank" rel="noreferrer">澳門政府圖書館網站</a>。<br/><br/>
+</div>
+<pre><code>https://s3-us-west-2.amazonaws.com/s.cdpn.io/15649/macao-library.json
+<br/></code></pre>
+<div>
+<br/>從 AlamoFire 的 Github 中下載整個項目回來後，將檔案放到項目目錄下，接著把 Alamofire.xcodeproj 拖拉進目標 Xcode project。<br/><br/>
+</div>
+<div>
+<br/>僅記在 Project 的 Framework 中要加入 Alamofire.framework。<br/><br/>
+</div>
+<div><div sgid="BAh7CEkiCGdpZAY6BkVUSSItZ2lkOi8vYmMzL0F0dGFjaG1lbnQvODU1MTQ1Nzg_ZXhwaXJlc19pbgY7AFRJIgxwdXJwb3NlBjsAVEkiD2F0dGFjaGFibGUGOwBUSSIPZXhwaXJlc19hdAY7AFQw--1061b9d58e85ac8f68e7d6cf903441042df4555c" content-type="image/png" url="https://preview.3.basecamp.com/3085247/blobs/6d2124fc-c3f7-11e8-b203-ecf4bbd6f9a0/previews/full/alamofire-embed%20framework.jpg" href="https://3.basecamp.com/3085247/blobs/6d2124fc-c3f7-11e8-b203-ecf4bbd6f9a0/download/alamofire-embed%20framework.jpg" filename="alamofire-embed framework.jpg" filesize="1107967" width="2800" height="1920" previewable="true" presentation="gallery">  <figure class="attachment attachment--image">
+    <img src="images/105424578-alamofire-embed-framework.jpg"/>
+
+  </figure></div></div>
+<div>
+<br/>我們會使用自定義的 LibraryListTableViewController 來實現 Table View，在其最頂端，需要匯入 Alamofire 框架，方法是：<br/><br/>
+</div>
+<pre><code>import Alamofire
+<br/></code></pre>
+<div>
+<br/>為了方便稍後載入網絡相片，我們也可以一併匯入 <a href="https://github.com/Alamofire/AlamofireImage" target="_blank" rel="noreferrer">AlamofireImage</a> 擴展。<br/><br/>
+</div>
+<div>
+<br/>接著在 LibraryListTableViewController 中，定義兩個變量：<br/><br/>
+</div>
+<pre><code>var libraryData:NSDictionary?
 var regionNames:NSMutableArray = []
-
-```
-
-
-然後在 viewDidLoad 中存取目標 JSON:
-
-
-```
-Alamofire.request("https://s3-us-west-2.amazonaws.com/s.cdpn.io/15649/macao-library.json").validate().responseJSON { (response) in
+<br/></code></pre>
+<div>
+<br/>然後在 viewDidLoad 中存取目標 JSON:<br/><br/>
+</div>
+<pre><code>Alamofire.request("https://s3-us-west-2.amazonaws.com/s.cdpn.io/15649/macao-library.json").validate().responseJSON { (response) in
     let json = response.result.value as! NSDictionary
-
+    
     for (region, _) in json {
         self.regionNames.add(region)
     }
     self.libraryData = json
     self.tableView.reloadData()
 }
-
-```
-
-
-以下是 TableView 的各主要函數代碼。（也可以整個[項目範例下載](http://ios-dev.netlify.com/b5da5dc4a21a4035ce80c63890c5fd5a93b0bf6f/code_examples/AlamoFireDemo.zip)）
-
-
-```
-override func numberOfSections(in tableView: UITableView) -> Int {
+<br/></code></pre>
+<div>
+<br/>以下是 TableView 的各主要函數代碼。（也可以整個<a href="http://ios-dev.netlify.com/b5da5dc4a21a4035ce80c63890c5fd5a93b0bf6f/code_examples/AlamoFireDemo.zip" target="_blank" rel="noreferrer">項目範例下載</a>）<br/><br/>
+</div>
+<pre><code>override func numberOfSections(in tableView: UITableView) -&gt; Int {
     if libraryData != nil {
         return libraryData!.count
     }
     return 0
 }
 
-override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -&gt; Int {
     if libraryData != nil {
-
+        
         let libraries = libraryData![regionNames[section]] as! NSArray
         return libraries.count
     }
     return 0
 }
 
-override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -&gt; String? {
     if libraryData != nil {
-
+        
         return regionNames[section] as? String
     }
     return ""
 }
 
 
-override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -&gt; UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "BasicCell", for: indexPath)
 
     // Configure the cell...
@@ -452,263 +409,229 @@ override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexP
 
     cell.textLabel?.text = library["name"] as? String
     cell.accessoryType = .disclosureIndicator
-
+    
     // 若果有使用 AlamofireImage 擴展
-    let photoURL = URL(string: library["photo"] as! String)
-
+    let photoURL = URL(string: library["photo"] as! String)        
+    
     cell.imageView?.af_setImage(withURL: photoURL!, filter:AspectScaledToFillSizeFilter(size: CGSize(width: 50, height: 50)), completion: { (_) in
         tableView.reloadRows(at: [indexPath], with: .none)
     })
 
 
     return cell
-}
-```
-
-## 錯誤提示
-
-
-網絡存取時有發生錯誤的時候，例如當用戶進入升降機時，原本正在送出的網絡請求便有機會超時。這時我們可以向用戶顯示提示，這涉及兩個層次：
-
-
-1.  給出一個用戶能明白的錯誤文字
-2.  決定彈出錯誤的界面方式
-
-
-其中一個常見的錯誤是存取超時，如果我們直接將錯誤信息跟用戶說，例如 “Error: Request Timeout”，用戶未必會知道發生了什麼事，但如果我們將信息改為：「暫時未能存取網絡，請稍後再試，如問題持續可以聯絡我們」，這樣便會有更好的用戶體驗。
-
-
-
-至於界面，我們有幾個選擇：
-
-
-1.  使用 UIAlert 彈出錯誤提示信息。這是最常見的方式。
-2.  自定一個由上向下的錯誤信息橫條 Banner，置於屏幕上方。（或由下向上放於下方）。常用於錯誤不影響用戶繼續操作的情況下
-3.  使用覆蓋全畫面的錯誤提示。例如一些錯誤希望用戶提供額外資料
-
-## 載入中提示
-
-在 iOS 系統中，有兩種載入界面可以使用。
-
-1.  [於 Status Bar 上顯示](https://developer.apple.com/documentation/uikit/uiapplication/1623102-networkactivityindicatorvisible)
-2.  [使用 UIActivityIndicatorView](https://developer.apple.com/documentation/uikit/uiactivityindicatorview)
-
-Apple 官網也有使用[詳情說明](https://developer.apple.com/design/human-interface-guidelines/ios/controls/progress-indicators/)。
-
-# UITableViewController
-
-這是 iOS 開發中其中一個最重要的元件。
-
-## UITableViewController
-
-要使用 UITableViewController，必須了解其 Delegate Protocol：UITableViewDelegate 及 UITableViewSource。
-
-
-
-UITableView 的構建及顯示（Rendering）是系統負責的，這樣可以確保 UITableView 的渲染符合 iOS 的速度要求。
-
-
-
-UITableView 可以自動在用戶滑動（Scroll）時將 UITableViewCell 重用，當那個格（Cell）被滑出畫面時，便會被放入重用列表（Reuse Queue），再有需要時，便會被拿來重用，按新顯示需求的資訊而重新準備好，然後再呈現出來。
-
-
-
-這個就是 UITableView 的重用機制，這樣可以確保無論有多少數據要顯示，UITableViewCell 數量都可以控制在有限數目。
-
-
-
-因為相對於數據（Data），UIView 會較為佔用記憶體，而且不斷 Allocate 開新及移除 View ，也是耗時較多的操作，所以將最耗時的操作重用，便可以有效提升效率。
-
-
-
-同時，由於 UITableView 的製作都是由系統負責才做到如此高效，所以開發時便需要為這個專門的系統而有獨特的 API 設計，這就是 UITableViewDelegate 及 UITableViewDataSource 的由來。
-
-
-**
-那麼 Delegate 和 DataSource 有什麼分別？
-**
-
-
-DataSource 是連接 UITableView 及數據的專用 Protocol。
-
-
-
-內有最重要的 3 個函數：
-
-
--   Number of sections
--   Number of rows in section
--   Cell for Table View at Index Path
-
-
-通過解答此三個問題，iOS便懂得如何製作及顯示我們的 UITableView。第一個問題，預設答案是 1 個Section。Section 即是分類，例如將聯絡列表分開成 A-Z 26 個分類等。第二個問題，會因應有多少個 Section 便會問我們多少次，逐個逐個 Section 問我們這個分組內有多少個Row。
-
-
-
-話說，這個返回數字不須要 Hard Code。可以因應情況改變，例如如果列出Profile 時，有分 VIP 及 非 VIP 兩種帳號，則有可能他們顯示的 Profile 個人帳號資料列表有不同的 Row 行數。
-
-
-**
-Cell for Table View at Index Path
-**
-
-
-至於第三個問題，
-
-
-
-IndexPath 是記錄低哪個 Section 哪個 Row，
-
-
-
-所以這個函數就是在問某一個 Section 某一個 Row 的那個介面，在 UITableView 中，一行的介面是 UITableViewCell。
-
-
-
-為何我說某一？因為系統會自動處理整個列表的顯示，所以，如果用戶滑動列表到途中某位置時，系統便會突然需要某一個的資料及如何顯示的介面設定。 要用好這個函數，可以分為兩個階段：
-
-
-1.  ReuseIdentifier
-2.  準備要 Return 的 Cell
-
-**
-ReuseIdentifier
-**
-
-
-一個基本的 UITableView，只需要一個 reuse identifier，意即只有一種類的 UITableViewCell。
-
-
-
-但當 Table 變得複雜後，我們便有需要多於一種 Identifier，以設定 App 為例，當中有的 Cell 只是 Icon 及文字，有的 Cell是有 > 符號，有的則有個 UISwitch 在右方，有的則有 Checkmark。這樣一數，就有 4 種不同的 UITableViewCell，那麼我們須要 4 種 reuse identifier 嗎？可以，但不必要。
-
-
-
-一個 reuse identifier 代表一個重用列表（Reuse Queue)，要設定獨立重用列表的主要原因，是涉及有不同的 Layout 界面排版或有不同的 UIView 介面在內。例如，有 UISwitch 的，可以自成一個重用列表，有 UIImage Icon 的也可以。至於其他文字加一個右方標記，可以共用一個重用列表。
-
-
-
-所以在這個 cellForTableViewAtIndexPath 函數中，第一步是需要按所提供 IndexPath 的 Section 及 Row，決定要使用哪一個 ReuseIdentifier （假設我們已經分析知道自己的列表類型分類）
-
-
-**
-準備 Cell Return
-**
-
-
-拿出可以重用的 UITableViewCell 後，我們就要因應這個 Section 這個 Row 須要的界面，換上內容及設定好當中倘有的 UIView。
-
-
-
-例如 UISwitch 的，我們便要按數據設定這個 Switch 是 On 還是Off。另外還要替換文字。
-
-
-
-如果是右邊有 Checkmark 或 > 號等 Accessory的，也要一併準備好。 準備好後，便可以把這個 UITableViewCell return 給 iOS 系統了。 所以，如果這個準備過程中，你發現程序中不只有簡單的文字替換及UIView 設定，而是有新增或移除 UIView，那麼便很有可能這個 Cell 需要一個獨立的重用列表（Reuse Queue）了。
-
-
-**
-UITableViewAccessory
-**
-
-
-預設的 UITableViewCell 右方有個 Accessory，這個位置預設有 4 種方式：
-
-
--   Checkmark
--   Disclosure Indicator
--   Info button
--   Disclosure Info Button
-
-
-Checkmark通常用於選擇，例如設定App 內，Safari的搜尋器選擇，不同 Row 右方要麼是 Checkmark，要麼是 None。這樣就可以令到一個多選也能繼承 UITableView 的彈性。例如 Header View 可以加入額外的文字描述，每個 Row除了用文字，亦可以利用Subtitle 加入輔助描述文字。至於是單選還是多選，就要視乎我們的 ViewController 邏輯是如何處理了。
-
-
-
-至於 > Disclosure Indicator，用法則較為明顯，就是代表按下後可以跳入下一層，剛剛的 Setting 設定 App，在臨進入 Safari 時，其 Indicator 就是一個 > 符號，代表按下後將會進入下一層。
-
-
-
-所以 UINavigationController 和 UITableViewController 常常是放在一起使用的。
-
-
-
-Info button 及 Disclosure info button 則較為特別，其 Info 是獨立為一個 UIButton。通常按下後會是和這一行 Item 有關的資訊。例如設定。
-
-
-
-以 1-to-many 的列表為例，例如列出不同 Projects 項目，當中亦有不同的 Task 待辦事項列表，正常按下項目後，會彈出下一版的列表顯示其待辦事項。
-
-
-
-而 Info Button 就可以充當另一按鈕，於按下後打開項目的設定頁而不是打開其列表，通常會使用 present 來由下向上滑出，以代表這個畫面和原有的 Navigation Controller 是不同一個層級的。
-
-
-# 在 iOS 上儲存數據
-
-在這章，我們探討不同的儲存數據方法，由最簡單的 UserDefaults 到整個數據庫系統的 CoreData。
-
-## UserDefaults
-
-使用方式：
-
-```
-// set
+}</code></pre>
+</div>
+
+    
+</section><section><h2 class='section-title'>錯誤提示</h2><div class="formatted_content">
+  <div>
+<br/>網絡存取時有發生錯誤的時候，例如當用戶進入升降機時，原本正在送出的網絡請求便有機會超時。這時我們可以向用戶顯示提示，這涉及兩個層次：<br/><br/>
+</div>
+<ol>
+<li>給出一個用戶能明白的錯誤文字</li>
+<li>決定彈出錯誤的界面方式</li>
+</ol>
+<div>
+<br/>其中一個常見的錯誤是存取超時，如果我們直接將錯誤信息跟用戶說，例如 “Error: Request Timeout”，用戶未必會知道發生了什麼事，但如果我們將信息改為：「暫時未能存取網絡，請稍後再試，如問題持續可以聯絡我們」，這樣便會有更好的用戶體驗。<br/><br/>
+</div>
+<div>
+<br/>至於界面，我們有幾個選擇：<br/><br/>
+</div>
+<ol>
+<li>使用 UIAlert 彈出錯誤提示信息。這是最常見的方式。</li>
+<li>自定一個由上向下的錯誤信息橫條 Banner，置於屏幕上方。（或由下向上放於下方）。常用於錯誤不影響用戶繼續操作的情況下</li>
+<li>使用覆蓋全畫面的錯誤提示。例如一些錯誤希望用戶提供額外資料</li>
+</ol>
+</div>
+
+    
+</section><section><h2 class='section-title'>載入中提示</h2><div class="formatted_content">
+  <div>在 iOS 系統中，有兩種載入界面可以使用。</div>
+<ol>
+<li><a href="https://developer.apple.com/documentation/uikit/uiapplication/1623102-networkactivityindicatorvisible" target="_blank" rel="noreferrer">於 Status Bar 上顯示</a></li>
+<li><a href="https://developer.apple.com/documentation/uikit/uiactivityindicatorview" target="_blank" rel="noreferrer">使用 UIActivityIndicatorView</a></li>
+</ol>
+<div>Apple 官網也有使用<a href="https://developer.apple.com/design/human-interface-guidelines/ios/controls/progress-indicators/" target="_blank" rel="noreferrer">詳情說明</a>。</div>
+</div>
+
+    
+</section></section>
+
+<section><h1>UITableViewController</h1><div class="formatted_content">
+  <div>這是 iOS 開發中其中一個最重要的元件。</div>
+</div>
+
+    
+<section><h2 class='section-title'>UITableViewController</h2><div class="formatted_content">
+  <div>要使用 UITableViewController，必須了解其 Delegate Protocol：UITableViewDelegate 及 UITableViewSource。<br/><br/>
+</div>
+<div>
+<br/>UITableView 的構建及顯示（Rendering）是系統負責的，這樣可以確保 UITableView 的渲染符合 iOS 的速度要求。<br/><br/>
+</div>
+<div>
+<br/>UITableView 可以自動在用戶滑動（Scroll）時將 UITableViewCell 重用，當那個格（Cell）被滑出畫面時，便會被放入重用列表（Reuse Queue），再有需要時，便會被拿來重用，按新顯示需求的資訊而重新準備好，然後再呈現出來。<br/><br/>
+</div>
+<div>
+<br/>這個就是 UITableView 的重用機制，這樣可以確保無論有多少數據要顯示，UITableViewCell 數量都可以控制在有限數目。<br/><br/>
+</div>
+<div>
+<br/>因為相對於數據（Data），UIView 會較為佔用記憶體，而且不斷 Allocate 開新及移除 View ，也是耗時較多的操作，所以將最耗時的操作重用，便可以有效提升效率。<br/><br/>
+</div>
+<div>
+<br/>同時，由於 UITableView 的製作都是由系統負責才做到如此高效，所以開發時便需要為這個專門的系統而有獨特的 API 設計，這就是 UITableViewDelegate 及 UITableViewDataSource 的由來。<br/><br/>
+</div>
+<div>
+<strong><br/>那麼 Delegate 和 DataSource 有什麼分別？<br/></strong><br/>
+</div>
+<div>
+<br/>DataSource 是連接 UITableView 及數據的專用 Protocol。<br/><br/>
+</div>
+<div>
+<br/>內有最重要的 3 個函數：<br/><br/>
+</div>
+<ul>
+<li>Number of sections</li>
+<li>Number of rows in section</li>
+<li>Cell for Table View at Index Path</li>
+</ul>
+<div>
+<br/>通過解答此三個問題，iOS便懂得如何製作及顯示我們的 UITableView。第一個問題，預設答案是 1 個Section。Section 即是分類，例如將聯絡列表分開成 A-Z 26 個分類等。第二個問題，會因應有多少個 Section 便會問我們多少次，逐個逐個 Section 問我們這個分組內有多少個Row。<br/><br/>
+</div>
+<div>
+<br/>話說，這個返回數字不須要 Hard Code。可以因應情況改變，例如如果列出Profile 時，有分 VIP 及 非 VIP 兩種帳號，則有可能他們顯示的 Profile 個人帳號資料列表有不同的 Row 行數。<br/><br/>
+</div>
+<div>
+<strong><br/>Cell for Table View at Index Path<br/></strong><br/>
+</div>
+<div>
+<br/>至於第三個問題，<br/><br/>
+</div>
+<div>
+<br/>IndexPath 是記錄低哪個 Section 哪個 Row，<br/><br/>
+</div>
+<div>
+<br/>所以這個函數就是在問某一個 Section 某一個 Row 的那個介面，在 UITableView 中，一行的介面是 UITableViewCell。<br/><br/>
+</div>
+<div>
+<br/>為何我說某一？因為系統會自動處理整個列表的顯示，所以，如果用戶滑動列表到途中某位置時，系統便會突然需要某一個的資料及如何顯示的介面設定。 要用好這個函數，可以分為兩個階段：<br/><br/>
+</div>
+<ol>
+<li>ReuseIdentifier</li>
+<li>準備要 Return 的 Cell</li>
+</ol>
+<div>
+<strong><br/>ReuseIdentifier<br/></strong><br/>
+</div>
+<div>
+<br/>一個基本的 UITableView，只需要一個 reuse identifier，意即只有一種類的 UITableViewCell。<br/><br/>
+</div>
+<div>
+<br/>但當 Table 變得複雜後，我們便有需要多於一種 Identifier，以設定 App 為例，當中有的 Cell 只是 Icon 及文字，有的 Cell是有 &gt; 符號，有的則有個 UISwitch 在右方，有的則有 Checkmark。這樣一數，就有 4 種不同的 UITableViewCell，那麼我們須要 4 種 reuse identifier 嗎？可以，但不必要。<br/><br/>
+</div>
+<div>
+<br/>一個 reuse identifier 代表一個重用列表（Reuse Queue)，要設定獨立重用列表的主要原因，是涉及有不同的 Layout 界面排版或有不同的 UIView 介面在內。例如，有 UISwitch 的，可以自成一個重用列表，有 UIImage Icon 的也可以。至於其他文字加一個右方標記，可以共用一個重用列表。<br/><br/>
+</div>
+<div>
+<br/>所以在這個 cellForTableViewAtIndexPath 函數中，第一步是需要按所提供 IndexPath 的 Section 及 Row，決定要使用哪一個 ReuseIdentifier （假設我們已經分析知道自己的列表類型分類）<br/><br/>
+</div>
+<div>
+<strong><br/>準備 Cell Return<br/></strong><br/>
+</div>
+<div>
+<br/>拿出可以重用的 UITableViewCell 後，我們就要因應這個 Section 這個 Row 須要的界面，換上內容及設定好當中倘有的 UIView。<br/><br/>
+</div>
+<div>
+<br/>例如 UISwitch 的，我們便要按數據設定這個 Switch 是 On 還是Off。另外還要替換文字。<br/><br/>
+</div>
+<div>
+<br/>如果是右邊有 Checkmark 或 &gt; 號等 Accessory的，也要一併準備好。 準備好後，便可以把這個 UITableViewCell return 給 iOS 系統了。 所以，如果這個準備過程中，你發現程序中不只有簡單的文字替換及UIView 設定，而是有新增或移除 UIView，那麼便很有可能這個 Cell 需要一個獨立的重用列表（Reuse Queue）了。<br/><br/>
+</div>
+<div>
+<strong><br/>UITableViewAccessory<br/></strong><br/>
+</div>
+<div>
+<br/>預設的 UITableViewCell 右方有個 Accessory，這個位置預設有 4 種方式：<br/><br/>
+</div>
+<ul>
+<li>Checkmark</li>
+<li>Disclosure Indicator</li>
+<li>Info button</li>
+<li>Disclosure Info Button</li>
+</ul>
+<div>
+<br/>Checkmark通常用於選擇，例如設定App 內，Safari的搜尋器選擇，不同 Row 右方要麼是 Checkmark，要麼是 None。這樣就可以令到一個多選也能繼承 UITableView 的彈性。例如 Header View 可以加入額外的文字描述，每個 Row除了用文字，亦可以利用Subtitle 加入輔助描述文字。至於是單選還是多選，就要視乎我們的 ViewController 邏輯是如何處理了。<br/><br/>
+</div>
+<div>
+<br/>至於 &gt; Disclosure Indicator，用法則較為明顯，就是代表按下後可以跳入下一層，剛剛的 Setting 設定 App，在臨進入 Safari 時，其 Indicator 就是一個 &gt; 符號，代表按下後將會進入下一層。<br/><br/>
+</div>
+<div>
+<br/>所以 UINavigationController 和 UITableViewController 常常是放在一起使用的。<br/><br/>
+</div>
+<div>
+<br/>Info button 及 Disclosure info button 則較為特別，其 Info 是獨立為一個 UIButton。通常按下後會是和這一行 Item 有關的資訊。例如設定。<br/><br/>
+</div>
+<div>
+<br/>以 1-to-many 的列表為例，例如列出不同 Projects 項目，當中亦有不同的 Task 待辦事項列表，正常按下項目後，會彈出下一版的列表顯示其待辦事項。<br/><br/>
+</div>
+<div>
+<br/>而 Info Button 就可以充當另一按鈕，於按下後打開項目的設定頁而不是打開其列表，通常會使用 present 來由下向上滑出，以代表這個畫面和原有的 Navigation Controller 是不同一個層級的。<br/><br/>
+</div>
+
+</div>
+
+    
+</section></section>
+
+<section><h1>在 iOS 上儲存數據</h1><div class="formatted_content">
+  <div>在這章，我們探討不同的儲存數據方法，由最簡單的 UserDefaults 到整個數據庫系統的 CoreData。</div>
+</div>
+
+    
+<section><h2 class='section-title'>UserDefaults</h2><div class="formatted_content">
+  <div>使用方式：</div>
+<pre><code>// set
 UserDefaults.standard.set("anything", forKey: "yourKey")
 
 // get
-UserDefaults.standard.value(forKey: "yourKey")
-```
+UserDefaults.standard.value(forKey: "yourKey")</code></pre>
+<div>
+<br/>UserDefaults 的儲存格式是 plist，作為一個 XML 檔案儲存於 App 的應用 Sandbox 之內。</div>
+</div>
 
-
-UserDefaults 的儲存格式是 plist，作為一個 XML 檔案儲存於 App 的應用 Sandbox 之內。
-
-## Core Data
-
-Keywords：
-
--   PersistentContainer
--   PersistentStore
--   PersistentStoreCoordinator
--   Entity
--   EntityDescription
--   Context
--   Managed Object
-
-**
-Managed Object code generation**
-
--   Class Definition: 全部 Xcode 管理
--   Category/Extension: 自己定義 NSManagedObject subclass，Xcode 管理 Extension
--   Manual/None: 自己定義 NSManagedObject subclass 及 Extension
-
-
-自己管理越多，彈性越大，但亦越要自己動手寫。
-
-
-
-### **新增記錄**
-
-
-
-```
-let entity = NSEntityDescription.entity(forEntityName: "Friend", in: persistentContainer.viewContext)
-
+    
+</section><section><h2 class='section-title'>Core Data</h2><div class="formatted_content">
+  <div>Keywords：</div>
+<ul>
+<li>PersistentContainer</li>
+<li>PersistentStore</li>
+<li>PersistentStoreCoordinator</li>
+<li>Entity</li>
+<li>EntityDescription</li>
+<li>Context</li>
+<li>Managed Object</li>
+</ul>
+<div><strong><br/>Managed Object code generation</strong></div>
+<ul>
+<li>Class Definition: 全部 Xcode 管理</li>
+<li>Category/Extension: 自己定義 NSManagedObject subclass，Xcode 管理 Extension</li>
+<li>Manual/None: 自己定義 NSManagedObject subclass 及 Extension</li>
+</ul>
+<div>
+<br/>自己管理越多，彈性越大，但亦越要自己動手寫。</div>
+<div><br/></div>
+<h3><strong>新增記錄</strong></h3>
+<div><br/></div>
+<pre><code>let entity = NSEntityDescription.entity(forEntityName: "Friend", in: persistentContainer.viewContext)
+        
 let friend = Friend(entity: entity!, insertInto: persistentContainer.viewContext)
 friend.name = "Jack Chan"
 friend.tel = "66661234"
 self.saveContext()
-
-```
-
-
-
-### 搜尋記錄
-
-
-
-```
-let fetchRequest:NSFetchRequest<Friend> = Friend.fetchRequest()
+<br/></code></pre>
+<div><br/></div>
+<h3>搜尋記錄</h3>
+<div><br/></div>
+<pre><code>let fetchRequest:NSFetchRequest&lt;Friend&gt; = Friend.fetchRequest()
 
 do {
     let results = try persistentContainer.viewContext.fetch(fetchRequest)
@@ -720,411 +643,366 @@ do {
 } catch {
     print("Fetch error.")
 }
-
-```
-
-
-
-### 刪除
-
-
-
-```
-persistentContainer.viewContext.delete(friend)
-```
-
-## 保護層級
-
-保護層級
-
--   NSFileProtectionComplete
--   NSFileProtectionCompleteUnlessOpen
--   NSFileProtectionCompleteUntilFirstUserAuthentication
--   NSFileProtectionNone
-
-
-More Detail： [https://pspdfkit.com/blog/2017/how-to-use-ios-data-protection/
-](https://pspdfkit.com/blog/2017/how-to-use-ios-data-protection/)
-
-
-Apple iOS Security Guide： [https://www.apple.com/business/docs/iOS\_Security\_Guide.pdf
-](https://www.apple.com/business/docs/iOS_Security_Guide.pdf)
-
-
-
-### **設定 File Protection Tips:**
-
-1.  Enable File Protection using the Capabilities tab on your app target
-2.  If you do not want the default NSFileProtectionComplete, change this setting in the developer portal under your app id
-3.  Make sure Xcode has the new provisioning profile this creates.
-4.  For protecting files your app creates, that's it.
-5.  To protect Core Data, you need to add the NSPersistentStoreFileProtectionKey: NSFileProtectionComplete option to your persistent store.
-
-```
-storeDescription.setOption(FileProtectionType.completeUnlessOpen as NSObject, forKey: NSPersistentStoreFileProtectionKey)
-            container.persistentStoreDescriptions = [storeDescription]
-```
-
-# 上架
-
-上架介紹
-
-## App Store 上架介紹
-
-
-上架條件：
-
-
-1.  付費的 Apple Developer Program
-2.  於 Developers.apple.com 或 Xcode ，並設定了唯一的 Bundle ID
-3.  於 AppStoreConnect (原 iTunesConnect) 上設定了上架所須的資料，並處於 **Ready to Submit** 狀態。
-4.  於 Xcode 進行 Project Archive，然後經 Xcode Submit 上 AppStore Connect 並等待審批。
-
-
-
-### 選擇正確的 Apple Developer Program
-
-
-
-
-Apple Developer Program 有幾種，但我們基本上只會在 _個人_ 及 _公司_ 兩者間選擇。
-
-
-
-其餘的 _Enterprise_ 及 _University_ 都不是我們常用的選擇。
-
-
-
-
-### 使用 Test Flight 進行測試
-
-
-
-
-[https://developer.apple.com/testflight/](https://developer.apple.com/testflight/)
-
-
-
-Test Flight 背後使用了 itms-services 技術。這間公司前身是獨立公司，後來被蘋果收購了。
-
-
-
-
-### 蘋果上架指引
-
-
-
-
-[https://developer.apple.com/app-store/review/guidelines/](https://developer.apple.com/app-store/review/guidelines/)
-
-
-
-注意：這個指引會不定時更新，所以建議久不久便要重新閱讀一次。
-
-## 使用 AppStoreConnect
-
-首先要認識兩個 Apple 設定後台網址：
-
-1.  developer.apple.com
-2.  iTunesConnect.apple.com
-
-
-注：於 2018 年中，iTunesConnect 已更名為 AppStoreConnect。
-
-
-Developer 網址是用來設定 App 開發相關資訊的，例如 App Provisioning
-
-
-而 iTunes Connect 則是設定在 App Store 上面向用戶的資訊。
-
-
-這個 iTunes Connect，原身是音樂公司於 iTunes 上賣歌的後台設定網站，後來擴展至於 App Store 上發佈應用程式。
-
-
-![](images/105424082-itunesconnect.jpg)
-
-
-AppStore Connect 分為幾大模塊：
-
-1.  Apps
-2.  Analytics
-3.  Sales and Trends
-4.  Payment
-5.  User and roles
-6.  Agreement, Tax
-7.  Resources Help
-
-## 選擇正確的 Apple Developer Program
-
-Apple Developer Program 有幾種，但我們基本上只會在 個人 及 公司 兩者間選擇。
-
-其餘的 Enterprise 及 University 都不是我們常用的選擇。
-
-個人帳號申請比較簡單，填妥資料然後付款便可以了。其限制是用個人帳號發佈的所有應用程式，無論版權位置寫上什麼公司名稱，在App Store上邊公眾看到的畫面還是必須會列出個人帳號的全名。 
-
-公司帳號就沒有這個顯示全名的限制，公司帳號與App Store上面會顯示公司名稱，而這個公司名稱於啟動帳號一開始便需要輸入，而且一經輸入後便不能更改公司名稱。
-
-公司帳號也可以建立不同的人員登入帳號，以供不同人員需要，例如專門負責監察下載量的、專門負責處理財務的、專門負責發佈應用程式的等等。 不過由於公司帳號不會顯示個人資料，所以曾經公司帳號被濫用來發佈一些質量較低的濫竽充數的手機，從而降低整個App Store的應用程式質量。有見及此，蘋果現在增加了公司註冊的門檻，必須要提供 DUNS 號碼，這個號碼是由一間認證公司登記派發，其目的是驗證公司的存在及有一個統一的公司聯絡資料資料庫。這樣便可以幫助蘋果在需要追究法律責任時可以有依據可尋。
-
-# iOS 推送信息
-
-在 iOS 中，推送信息 Notification 有分為 Remote 及 Local 兩種，技術上兩者不同，但對用戶而言，使用上是沒有分別的，不會察覺到兩者的分別。
-
-
-
-技術上，Local Notification 不用伺服器進行推送，只需要在 App 內對推送信息排程（Schedule）。一般用法會是排程已知的
-
-# 多語言
-
-在 Xcode 中，多語言設定在 IDE 中已經高度嵌入。在這章中，我們會了解：
-
-
--   如何在 Xcode 中設定及使用多語言字串
--   如何設定多語言圖片
--   如何設定多語言 Storyboard
--   如何在 Storyboard 中測試長短不一的多語言環境
--   如何導出及導入多語言字串標準格式
-
-## 設定多語言
-
-**加入語言**
-
-
-首先選擇項目，然後在 Menu 中選擇 Editor > Add Localization
-
-
-![](images/105423761-screenshot-2018-07-19-15-55-32.jpg)
-
-
-如果已經有 Localized 檔案，Xcode 會詢問基於哪個語言的檔案來建立新語言。
-
-![](images/105423944-screenshot-2018-07-19-15-20-48.jpg)
-
-
-
-**調試多語言
-**
-
-可以在 Scheme > Edit Scheme 中，在運行選項（Run > Options）中選擇要使用哪種語言來運行應用程式。
-
-
-![](images/105423965-screenshot-2018-07-19-15-50-13.jpg)
-
-
-亦可以在 Assistant Editor 中選擇相關多語言設定。
-
-
-![](images/105423972-screenshot-2018-07-19-18-01-03.jpg)
-
-如果選擇 Preview，可以直接在 Xcode Storyboard 中預覽不同語言的介面。
-
-
-![](images/105423977-screenshot-2018-07-19-15-31-07.jpg)
-
-
-
-### 圖片的多語言化
-
-
-
-在檔案列按下圖片，然後在右方的第一個 Tab 中，選擇 Localize...
-
-
-![](images/105423987-screenshot-2018-07-19-17-57-40.jpg)
-
-![](images/105423997-screenshot-2018-07-19-15-52-49.jpg)
-
-跟接著，替換相關檔案：
-
-
-![](images/105669246-unknown.jpg)
-
-三個多語言檔案
-
-
-
-
-
-
-並得出最終成品：
-
-
-![](images/105424018-screenshot-2018-07-19-17-58-40.jpg)
-
-執行結果：
-
-![](images/105424020-screenshot-2018-07-19-15-53-44.jpg)
-
-## 多語言下的檔案列表
-
-多語言下的檔案列表
-
-
-
-![](images/105423719-screenshot-2018-07-19-15-54-51.jpg)
-
-## 輸出及匯入多語言檔案
-
-Xcode 可以讓我們輸出多語言用的 XLIFF 檔案，以方便翻譯者翻譯。
-
-
-
-XLIFF 是 XML Localization Interexchange File Format 的意思。
-
-
-翻譯完成後，我們可以從新匯入，匯入時，如果和原有檔案有 Conflict，Xcode 會彈出比較讓我們審視。
-
-
-![](images/105424052-screenshot-2018-07-19-15-12-43.jpg)
-
-
-
-### 如何開啟 XLIFF 檔案？
-
--   [https://en.wikipedia.org/wiki/XLIFF](https://en.wikipedia.org/wiki/XLIFF)
--   [http://xliff.brightec.co.uk](http://xliff.brightec.co.uk)
-
-
-
-### 於 App 內轉換語言
-
-
-要在 App 內轉換語言，涉及動態地載入不同的 .lproj 檔案。
-
-
--   [Stackflow](https://stackoverflow.com/questions/29985614/how-can-i-change-the-localization-programmatically-by-swift)
--   [https://www.factorialcomplexity.com/](https://www.factorialcomplexity.com/blog/2015/01/28/how-to-change-localization-internally-in-your-ios-application.html)
--   [蘋果職員不建議 App 內轉換：](https://forums.developer.apple.com/message/36704#36704)
-
->
-> The system does not support changing your app's localisation on the fly. If you look through the App Frameworks / Localization topic area (which is where I moved your question, btw) you'll find that a significant fraction of the threads are from people having problems when they try to do this. You may be able to work around some of the problems but there are others that have no workaround. Probably the most significant relates to system UI components.
->
->
-> If the system puts up a UI component on your behalf (the document picker, or Game Center user interface parts, or whatever) it will do so in the localisation that it thinks that your app is running in. If your app is 'pretending' to run in some other language, you'll end up with a mixed localisation, where some parts of your app (the parts you control) are in one language and other parts of your app (the parts controlled by the OS) are in another. That's a very poor user experience.
->
->
-> In my opinion it is much better to avoid this problem entirely by localising your app in the standard way and relying on the system to choose the language for you based on the user's system-wide preferences.
->
->
-> — Quinn "The Eskimo!"
-
-# 元件介紹
-
-這個附錄中列出了不同的元件介紹。
-
-## UIView 與 UIViewController
-
-ViewController 顧名思義，就是定義介面的控制代碼（controller），一個介面（View）有自己的界面顯示特性，例如 UILabel 負責顯示文字、UIButton 負責顯示按鈕及其文字並接受觸碰事件，生成相應的 IBAction、UIImageView 負責顯示圖片。這些都是界面（View），亦是屬於 UIView類別。
-
-而 iOS 中，每一整的版界面是一個通用的 UIView，它的作用是作為 Container 裝載著其他 UIView 元件，例如裝著 UILabel、UIButton。而 View 的主要作用是顯示，但我們還是須要邏輯控制，例如控制當某個 UIButton 按下時怎樣做，某個 UILabel 什麼時候更改顯示成什麼文字，某個 UIImageView 是顯示還是隱藏等等。這些代碼就是介面的控制，所以是 ViewController。而 iOS 中對應的類別就是 UIViewController。
-
-每一版獨立的整版界面，都是一個 UIViewController。而且我們會為其配上一個繼承自 UIViewController 的自定義類別，才可以撰寫自定義代碼。
-
-我們會為每一個畫面的 UIViewController 建立一個 class，這個 class 繼承自 UIViewController，命名方式是這個功能的描述 + ViewController 字眼。例如 ShareViewController, HomeViewController, AllRecordsViewController. 注意首字母都是大寫的。建立新 class 方法是 File > New File 然後選擇 Swift class，再選擇 subclass of UIViewController，這時名稱會自動填上 ViewController，再在前綴補上描述名稱便可。
-
-建立新檔案後，要在 Storyboard 選取介面的橙色方盒，在右方的 panel 第一個 Tab 中，custom class 選擇剛剛建立的新檔案。
-
-## 物件導向編程 Object-Oriented Programming
-
-什麼是物件導向編程？
-
-在 Swift 中，我們常常看見 Class 類，例如 ViewController。而類之中，有 method 及 variable。這是物件導向編程的一些述語，可以了解一下，加強認識。
-
-class 類別是定義，例如定義「汽車」，假設我們定義汽車是四輪的，有引擎的。但這只是定義。再假設有一個汽車工廠，按著這個定義去製造汽車，那麼所製造的每一部汽車就是實體 Instance。這些實體都屬於「汽車」這個類別，都有四輪及引擎。
-
-套用到 UIViewController，這個類別定義了每個介面（View）的控制器（Controller）內應有什麼功能，例如可以控制它們的 Life Cycle（viewWillAppear、viewDidLoad etc）。所以每個介面伴隨的控制器，就山日一卜人這個 UIViewController 的實體。
-
-
-### 繼承 Extend
-
-物件導向編程的另一個重要概念是繼承，日戈中我們可以就一個類別定義一個更夾義的類別，例如「汽車」可以進一步分為「電動汽車」「汽油汽車」「電能混合車」三個子類別，再分別生成其實體。
-
-所以當我們有不同的畫面時，就須要定義不同的 UIViewController 的繼承，令到每一個既有的 UIViewController 特性，亦有各自定義的控制代碼。
-
-## UIImageView
-
-UIImageView 是用來顯示 UIImage 的界面元素。
-
-預設 UIImageView 只適合顯示本地（Local）的影像數據。UIImageView 顧名思義是顯示 UIImage 的，所以要顯示什麼數據，就主要看 UIImage 的影像數據從哪𥚃獲得。
-
-
-1.  最直接的方法是使用_影像檔案名稱_，來載入已經儲存到項目內的本地圖像。
-2.  另外，就是使用 NSData，想辦法動態生成圖像格式，然後以 UIImageView顯示出來。例如畫板 App 或者填色 App，又或者不同特效的影相 App，都是動態生成圖像的。
-3.  從網絡載入圖片，預設的 API 會較為繁複。需要先使用 NSURLConnection 或 NSURLSession 取得網絡數據，再按其返回值（Response）的 header 來說明下載回來的數據所相對應的圖片格式。然後通過 NSData 生成 UIImage。
-4.  另一個從網絡載入圖片的快速方法，是使用第三方程序庫，其內部做法跟以上第 3 點一樣，但通常第三方程序庫會提供了一個易用的 API。例如 AlamoFire 會有個 UIImageView extension： \`af\_setImage(withURL:)\`
-
-
-
-### 緊記要設定的 Content Mode：Aspect Fill & Aspect Fit
-
-
-
-UIImageView 在呈現圖片時，如果 UIView 的界面框的尺寸比例和圖片不匹配，就可以設定 Content Mode。主要我們要選擇的是 Aspect Fill 還是 Aspect Fit，分別代表要**填滿**還是**顯示整張圖片**？
-
-## Extension
-
-Swift 的 Extension 就要所謂的 Monkey Patch。即對一個已 Compile 的類（Class）再擴展。
-
-
-Extension 有點類似 Mixin 的概念。其優點是不用再為特定功能而建立 Subclass，因為不同情況下為使用不同功能，未必是 Subclass 可以解決的。
-
-
-其缺點是如果擴展的函數和原有的函數名稱相同，就會有 Override 出現，並產生同一個函數而行為不一致的問題。所以 AlamoFire 的解決方法是在所有 Extension 上加上 prefix，例如 \`af\_setImage(withURL:)\` 而不是直接使用 \`setImage(withURL:)\`。
-
-## IBAction & IBOutlet
-
-IBAction 和 IBOutlet 是程序和界面的兩種連結。
-
-IBOutlet 是用一程序變量來記錄（reference）一個界面元素，好讓我們在程序中再動態地設定這個界面元素。例如設定一個 UILabel 顯示不同的文字輸出等。
-
-
-IBAction 是一個函數（function/method），當界面上有互動發生時，例如 UIButton 按下時，需要調用程序的哪一段代碼。
-
-## Storyboard
-
-Storyboard 可以讓我們在一個檔案管理多個關連的介面。這方便我們統一管理這些界面及他們之間的顯示關連。
-
-
-在使用 Storyboard 以前，我們使用 xib 檔案獨立設定每個畫面。單獨畫面設定的操作其實和 Storyboard 內的畫面設定差不多，Storyboard 多了的是界面之間的連繫。
-
-## UIButton
-
-UIButton 可以讓我們接受用戶互動的各項事件，在介面上拉好 UIButton 後，就可以通過滑鼠右鍵拖拉的方式，拖拉到程序上，建立 IBAction。
-
-
-另外，UIButton 在設定選項中，可以選擇不同的狀態（State），最常用的狀態，除了平常狀態外，就是 當手指按下時的 Highlight 了。如果於按鈕上使用圖片，也可以在這個 Highlight 狀態設定不同的圖片，做到按下去的效果。
-
-
-另一種狀態是停用（Disabled），當一個按鈕不想被用戶按下時可以設定為停用。
-
-## 使用 AppDelegate 製作在 Switcher 覆蓋畫面的 UI
-
-1) 先定義一個新的 UIViewController，在 Storyboard 中製作其畫面，並定義 Storyboard ID 為 CoverViewController。
-
-
-
-2) 在 AppDelegate.swift 中定義 instance variable coverVC:UIViewController，然後在 applicationWillResignActive中：
-
-
-```
-coverVC = application.keyWindow?.rootViewController?.storyboard?.instantiateViewController(withIdentifier: "CoverViewController")
+<br/></code></pre>
+<div><br/></div>
+<h3>刪除</h3>
+<div><br/></div>
+<pre><code>persistentContainer.viewContext.delete(friend)</code></pre>
+</div>
+
+    
+</section><section><h2 class='section-title'>保護層級</h2><div class="formatted_content">
+  <div>保護層級</div>
+<ul>
+<li>NSFileProtectionComplete</li>
+<li>NSFileProtectionCompleteUnlessOpen</li>
+<li>NSFileProtectionCompleteUntilFirstUserAuthentication</li>
+<li>NSFileProtectionNone</li>
+</ul>
+<div>
+<br/>More Detail： <a href="https://pspdfkit.com/blog/2017/how-to-use-ios-data-protection/" target="_blank" rel="noreferrer">https://pspdfkit.com/blog/2017/how-to-use-ios-data-protection/<br/></a><br/>
+</div>
+<div>
+<br/>Apple iOS Security Guide： <a href="https://www.apple.com/business/docs/iOS_Security_Guide.pdf" target="_blank" rel="noreferrer">https://www.apple.com/business/docs/iOS_Security_Guide.pdf<br/></a><br/>
+</div>
+<div><br/></div>
+<h3><strong>設定 File Protection Tips:</strong></h3>
+<ol>
+<li>Enable File Protection using the Capabilities tab on your app target</li>
+<li>If you do not want the default NSFileProtectionComplete, change this setting in the developer portal under your app id</li>
+<li>Make sure Xcode has the new provisioning profile this creates.</li>
+<li>For protecting files your app creates, that's it.</li>
+<li>To protect Core Data, you need to add the NSPersistentStoreFileProtectionKey: NSFileProtectionComplete option to your persistent store.</li>
+</ol>
+<pre><code>storeDescription.setOption(FileProtectionType.completeUnlessOpen as NSObject, forKey: NSPersistentStoreFileProtectionKey)
+            container.persistentStoreDescriptions = [storeDescription]</code></pre>
+
+</div>
+
+    
+</section></section>
+
+<section><h1>上架</h1><div class="formatted_content">
+  <div>上架介紹</div>
+
+</div>
+
+    
+<section><h2 class='section-title'>App Store 上架介紹</h2><div class="formatted_content">
+  <div>
+<br/>上架條件：<br/><br/>
+</div>
+<ol>
+<li>付費的 Apple Developer Program</li>
+<li>於 Developers.apple.com 或 Xcode ，並設定了唯一的 Bundle ID</li>
+<li>於 AppStoreConnect (原 iTunesConnect) 上設定了上架所須的資料，並處於 <strong>Ready to Submit</strong> 狀態。</li>
+<li>於 Xcode 進行 Project Archive，然後經 Xcode Submit 上 AppStore Connect 並等待審批。</li>
+</ol>
+<div><br/></div>
+<h3>選擇正確的 Apple Developer Program</h3>
+<div><br/></div>
+<div>
+<br/>Apple Developer Program 有幾種，但我們基本上只會在 <em>個人</em> 及 <em>公司</em> 兩者間選擇。<br/><br/>
+</div>
+<div>
+<br/>其餘的 <em>Enterprise</em> 及 <em>University</em> 都不是我們常用的選擇。<br/><br/>
+</div>
+<div><br/></div>
+<h3>使用 Test Flight 進行測試</h3>
+<div><br/></div>
+<div>
+<br/><a target="_blank" rel="noreferrer" class="autolinked" data-behavior="truncate" href="https://developer.apple.com/testflight/">https://developer.apple.com/testflight/</a><br/><br/>
+</div>
+<div>
+<br/>Test Flight 背後使用了 itms-services 技術。這間公司前身是獨立公司，後來被蘋果收購了。<br/><br/>
+</div>
+<div><br/></div>
+<h3>蘋果上架指引</h3>
+<div><br/></div>
+<div>
+<br/><a target="_blank" rel="noreferrer" class="autolinked" data-behavior="truncate" href="https://developer.apple.com/app-store/review/guidelines/">https://developer.apple.com/app-store/review/guidelines/</a><br/><br/>
+</div>
+<div>
+<br/>注意：這個指引會不定時更新，所以建議久不久便要重新閱讀一次。</div>
+</div>
+
+    
+</section><section><h2 class='section-title'>使用 AppStoreConnect</h2><div class="formatted_content">
+  <div>首先要認識兩個 Apple 設定後台網址：</div>
+<ol>
+<li>developer.apple.com</li>
+<li>iTunesConnect.apple.com</li>
+</ol>
+<div>
+<br/>注：於 2018 年中，iTunesConnect 已更名為 AppStoreConnect。</div>
+<div>
+<br/>Developer 網址是用來設定 App 開發相關資訊的，例如 App Provisioning</div>
+<div>
+<br/>而 iTunes Connect 則是設定在 App Store 上面向用戶的資訊。</div>
+<div>
+<br/>這個 iTunes Connect，原身是音樂公司於 iTunes 上賣歌的後台設定網站，後來擴展至於 App Store 上發佈應用程式。<br/><br/>
+</div>
+<div><div sgid="BAh7CEkiCGdpZAY6BkVUSSItZ2lkOi8vYmMzL0F0dGFjaG1lbnQvODU1MTQwODA_ZXhwaXJlc19pbgY7AFRJIgxwdXJwb3NlBjsAVEkiD2F0dGFjaGFibGUGOwBUSSIPZXhwaXJlc19hdAY7AFQw--a8d16cb7d3c4c2bfb86360edc7881e42101a8bdd" content-type="image/png" url="https://preview.3.basecamp.com/3085247/blobs/15749408-c3f4-11e8-9bdd-ecf4bbd72afa/previews/full/itunesconnect.jpg" href="https://3.basecamp.com/3085247/blobs/15749408-c3f4-11e8-9bdd-ecf4bbd72afa/download/itunesconnect.jpg" filename="itunesconnect.jpg" filesize="324403" width="2224" height="1668" previewable="true" presentation="gallery">  <figure class="attachment attachment--image">
+    <img src="images/105424082-itunesconnect.jpg"/>
+
+  </figure></div></div>
+<div>
+<br/>AppStore Connect 分為幾大模塊：</div>
+<ol>
+<li>Apps</li>
+<li>Analytics</li>
+<li>Sales and Trends</li>
+<li>Payment</li>
+<li>User and roles</li>
+<li>Agreement, Tax</li>
+<li>Resources Help</li>
+</ol>
+</div>
+
+    
+</section><section><h2 class='section-title'>選擇正確的 Apple Developer Program</h2><div class="formatted_content">
+  <div>Apple Developer Program 有幾種，但我們基本上只會在 個人 及 公司 兩者間選擇。<br/><br/>其餘的 Enterprise 及 University 都不是我們常用的選擇。<br/><br/>個人帳號申請比較簡單，填妥資料然後付款便可以了。其限制是用個人帳號發佈的所有應用程式，無論版權位置寫上什麼公司名稱，在App Store上邊公眾看到的畫面還是必須會列出個人帳號的全名。 <br/><br/>公司帳號就沒有這個顯示全名的限制，公司帳號與App Store上面會顯示公司名稱，而這個公司名稱於啟動帳號一開始便需要輸入，而且一經輸入後便不能更改公司名稱。<br/><br/>公司帳號也可以建立不同的人員登入帳號，以供不同人員需要，例如專門負責監察下載量的、專門負責處理財務的、專門負責發佈應用程式的等等。 不過由於公司帳號不會顯示個人資料，所以曾經公司帳號被濫用來發佈一些質量較低的濫竽充數的手機，從而降低整個App Store的應用程式質量。有見及此，蘋果現在增加了公司註冊的門檻，必須要提供 DUNS 號碼，這個號碼是由一間認證公司登記派發，其目的是驗證公司的存在及有一個統一的公司聯絡資料資料庫。這樣便可以幫助蘋果在需要追究法律責任時可以有依據可尋。</div>
+</div>
+
+    
+</section></section>
+
+<section><h1>iOS 推送信息</h1><div class="formatted_content">
+  <div>在 iOS 中，推送信息 Notification 有分為 Remote 及 Local 兩種，技術上兩者不同，但對用戶而言，使用上是沒有分別的，不會察覺到兩者的分別。<br/><br/>
+</div>
+<div>
+<br/>技術上，Local Notification 不用伺服器進行推送，只需要在 App 內對推送信息排程（Schedule）。一般用法會是排程已知的</div>
+</div>
+
+    
+</section>
+
+<section><h1>多語言</h1><div class="formatted_content">
+  <div>在 Xcode 中，多語言設定在 IDE 中已經高度嵌入。在這章中，我們會了解：<br/><br/>
+</div>
+<ul>
+<li>如何在 Xcode 中設定及使用多語言字串</li>
+<li>如何設定多語言圖片</li>
+<li>如何設定多語言 Storyboard</li>
+<li>如何在 Storyboard 中測試長短不一的多語言環境</li>
+<li>如何導出及導入多語言字串標準格式</li>
+</ul>
+</div>
+
+    
+<section><h2 class='section-title'>設定多語言</h2><div class="formatted_content">
+  <div><strong>加入語言</strong></div>
+<div>
+<br/>首先選擇項目，然後在 Menu 中選擇 Editor &gt; Add Localization<br/><br/>
+</div>
+<div><div sgid="BAh7CEkiCGdpZAY6BkVUSSItZ2lkOi8vYmMzL0F0dGFjaG1lbnQvODU1MTM3NTk_ZXhwaXJlc19pbgY7AFRJIgxwdXJwb3NlBjsAVEkiD2F0dGFjaGFibGUGOwBUSSIPZXhwaXJlc19hdAY7AFQw--1f5a0ba8beca80811aea743774b69d6c429b24bc" content-type="image/png" url="https://preview.3.basecamp.com/3085247/blobs/5d0fb6c8-c3f2-11e8-bf37-a0369f740dfa/previews/full/Screenshot%202018-07-19%2015.55.32.jpg" href="https://3.basecamp.com/3085247/blobs/5d0fb6c8-c3f2-11e8-bf37-a0369f740dfa/download/Screenshot%202018-07-19%2015.55.32.jpg" filename="Screenshot 2018-07-19 15.55.32.jpg" filesize="443658" width="1024" height="1606" previewable="true" presentation="gallery">  <figure class="attachment attachment--image">
+    <img src="images/105423761-screenshot-2018-07-19-15-55-32.jpg"/>
+
+  </figure></div></div>
+<div>
+<br/>如果已經有 Localized 檔案，Xcode 會詢問基於哪個語言的檔案來建立新語言。<br/><div sgid="BAh7CEkiCGdpZAY6BkVUSSItZ2lkOi8vYmMzL0F0dGFjaG1lbnQvODU1MTM5NDI_ZXhwaXJlc19pbgY7AFRJIgxwdXJwb3NlBjsAVEkiD2F0dGFjaGFibGUGOwBUSSIPZXhwaXJlc19hdAY7AFQw--f22615e6014b8343c6a02d26437acb8e9e5404c7" content-type="image/png" url="https://preview.3.basecamp.com/3085247/blobs/73c852ca-c3f3-11e8-bc83-a0369f740db1/previews/full/Screenshot%202018-07-19%2015.20.48.jpg" href="https://3.basecamp.com/3085247/blobs/73c852ca-c3f3-11e8-bc83-a0369f740db1/download/Screenshot%202018-07-19%2015.20.48.jpg" filename="Screenshot 2018-07-19 15.20.48.jpg" filesize="133090" width="1542" height="980" previewable="true" presentation="gallery">  <figure class="attachment attachment--image">
+    <img src="images/105423944-screenshot-2018-07-19-15-20-48.jpg"/>
+
+  </figure></div>
+</div>
+<div><br/></div>
+<div>
+<strong>調試多語言<br/></strong><br/>
+</div>
+<div>可以在 Scheme &gt; Edit Scheme 中，在運行選項（Run &gt; Options）中選擇要使用哪種語言來運行應用程式。<br/><br/>
+</div>
+<div><div sgid="BAh7CEkiCGdpZAY6BkVUSSItZ2lkOi8vYmMzL0F0dGFjaG1lbnQvODU1MTM5NjM_ZXhwaXJlc19pbgY7AFRJIgxwdXJwb3NlBjsAVEkiD2F0dGFjaGFibGUGOwBUSSIPZXhwaXJlc19hdAY7AFQw--bf776d3b4f340807019f22803f440f8faa674e13" content-type="image/png" url="https://preview.3.basecamp.com/3085247/blobs/8e566c58-c3f3-11e8-8f23-a0369f740db3/previews/full/Screenshot%202018-07-19%2015.50.13.jpg" href="https://3.basecamp.com/3085247/blobs/8e566c58-c3f3-11e8-8f23-a0369f740db3/download/Screenshot%202018-07-19%2015.50.13.jpg" filename="Screenshot 2018-07-19 15.50.13.jpg" filesize="258293" width="1790" height="1026" previewable="true" presentation="gallery">  <figure class="attachment attachment--image">
+    <img src="images/105423965-screenshot-2018-07-19-15-50-13.jpg"/>
+
+  </figure></div></div>
+<div>
+<br/>亦可以在 Assistant Editor 中選擇相關多語言設定。<br/><br/>
+</div>
+<div><div sgid="BAh7CEkiCGdpZAY6BkVUSSItZ2lkOi8vYmMzL0F0dGFjaG1lbnQvODU1MTM5NzA_ZXhwaXJlc19pbgY7AFRJIgxwdXJwb3NlBjsAVEkiD2F0dGFjaGFibGUGOwBUSSIPZXhwaXJlc19hdAY7AFQw--2a439426430acf1a9a0948d9dbc05facc6810b59" content-type="image/png" url="https://preview.3.basecamp.com/3085247/blobs/93b4023c-c3f3-11e8-91e9-a0369f740da4/previews/full/Screenshot%202018-07-19%2018.01.03.jpg" href="https://3.basecamp.com/3085247/blobs/93b4023c-c3f3-11e8-91e9-a0369f740da4/download/Screenshot%202018-07-19%2018.01.03.jpg" filename="Screenshot 2018-07-19 18.01.03.jpg" filesize="106012" width="1142" height="404" previewable="true" presentation="gallery">  <figure class="attachment attachment--image">
+    <img src="images/105423972-screenshot-2018-07-19-18-01-03.jpg"/>
+
+  </figure></div></div>
+<div>如果選擇 Preview，可以直接在 Xcode Storyboard 中預覽不同語言的介面。<br/><br/>
+</div>
+<div><div sgid="BAh7CEkiCGdpZAY6BkVUSSItZ2lkOi8vYmMzL0F0dGFjaG1lbnQvODU1MTM5NzU_ZXhwaXJlc19pbgY7AFRJIgxwdXJwb3NlBjsAVEkiD2F0dGFjaGFibGUGOwBUSSIPZXhwaXJlc19hdAY7AFQw--64e32dca3b05db3a51b3f26644ab70e4eda4cd1d" content-type="image/png" url="https://preview.3.basecamp.com/3085247/blobs/9a3c295e-c3f3-11e8-9766-a0369f740db1/previews/full/Screenshot%202018-07-19%2015.31.07.jpg" href="https://3.basecamp.com/3085247/blobs/9a3c295e-c3f3-11e8-9766-a0369f740db1/download/Screenshot%202018-07-19%2015.31.07.jpg" filename="Screenshot 2018-07-19 15.31.07.jpg" filesize="1263633" width="5344" height="3058" previewable="true" presentation="gallery">  <figure class="attachment attachment--image">
+    <img src="images/105423977-screenshot-2018-07-19-15-31-07.jpg"/>
+
+  </figure></div></div>
+<div><br/></div>
+<h3>圖片的多語言化</h3>
+<div><br/></div>
+<div>在檔案列按下圖片，然後在右方的第一個 Tab 中，選擇 Localize...<br/><br/>
+</div>
+<div><div sgid="BAh7CEkiCGdpZAY6BkVUSSItZ2lkOi8vYmMzL0F0dGFjaG1lbnQvODU1MTM5ODU_ZXhwaXJlc19pbgY7AFRJIgxwdXJwb3NlBjsAVEkiD2F0dGFjaGFibGUGOwBUSSIPZXhwaXJlc19hdAY7AFQw--30907c4d8da68103414f41096298b3cf9b83c1f7" content-type="image/png" url="https://preview.3.basecamp.com/3085247/blobs/a918d88c-c3f3-11e8-805f-ecf4bbd6f9a0/previews/full/Screenshot%202018-07-19%2017.57.40.jpg" href="https://3.basecamp.com/3085247/blobs/a918d88c-c3f3-11e8-805f-ecf4bbd6f9a0/download/Screenshot%202018-07-19%2017.57.40.jpg" filename="Screenshot 2018-07-19 17.57.40.jpg" filesize="11386" width="534" height="142" previewable="true" presentation="gallery">  <figure class="attachment attachment--image">
+    <img src="images/105423987-screenshot-2018-07-19-17-57-40.jpg"/>
+
+  </figure></div></div>
+<div><div sgid="BAh7CEkiCGdpZAY6BkVUSSItZ2lkOi8vYmMzL0F0dGFjaG1lbnQvODU1MTM5OTU_ZXhwaXJlc19pbgY7AFRJIgxwdXJwb3NlBjsAVEkiD2F0dGFjaGFibGUGOwBUSSIPZXhwaXJlc19hdAY7AFQw--83c507d41bec2c81c08baa520ffc45cf14dea1b7" content-type="image/png" url="https://preview.3.basecamp.com/3085247/blobs/b6716756-c3f3-11e8-bc83-a0369f740db1/previews/full/Screenshot%202018-07-19%2015.52.49.jpg" href="https://3.basecamp.com/3085247/blobs/b6716756-c3f3-11e8-bc83-a0369f740db1/download/Screenshot%202018-07-19%2015.52.49.jpg" filename="Screenshot 2018-07-19 15.52.49.jpg" filesize="169543" width="1694" height="1360" previewable="true" presentation="gallery">  <figure class="attachment attachment--image">
+    <img src="images/105423997-screenshot-2018-07-19-15-52-49.jpg"/>
+
+  </figure></div></div>
+<div>跟接著，替換相關檔案：<br/><br/>
+</div>
+<div><div sgid="BAh7CEkiCGdpZAY6BkVUSSItZ2lkOi8vYmMzL0F0dGFjaG1lbnQvODU3NTkyNTA_ZXhwaXJlc19pbgY7AFRJIgxwdXJwb3NlBjsAVEkiD2F0dGFjaGFibGUGOwBUSSIPZXhwaXJlc19hdAY7AFQw--108225dfd738472d721ea55f6622937cca90b52c" content-type="image/jpeg" url="https://preview.3.basecamp.com/3085247/blobs/46904852-c5e8-11e8-9c25-a0369f740dfa/previews/full/Unknown.jpg" href="https://3.basecamp.com/3085247/blobs/46904852-c5e8-11e8-9c25-a0369f740dfa/download/Unknown.jpg" filename="Unknown.jpg" filesize="33429" width="1500" height="500" previewable="true" presentation="gallery" caption="三個多語言檔案">  <figure class="attachment attachment--image">
+    <img src="images/105669246-unknown.jpg"/>
+
+      <figcaption>三個多語言檔案</figcaption>
+  </figure></div></div>
+<div><br/></div>
+<div><br/></div>
+<div>
+<br/>並得出最終成品：<br/><br/><div sgid="BAh7CEkiCGdpZAY6BkVUSSItZ2lkOi8vYmMzL0F0dGFjaG1lbnQvODU1MTQwMTY_ZXhwaXJlc19pbgY7AFRJIgxwdXJwb3NlBjsAVEkiD2F0dGFjaGFibGUGOwBUSSIPZXhwaXJlc19hdAY7AFQw--e26e6b917210041497f80a68b494a61ca260b678" content-type="image/png" url="https://preview.3.basecamp.com/3085247/blobs/c67f244e-c3f3-11e8-82f2-ecf4bbd6f9a0/previews/full/Screenshot%202018-07-19%2017.58.40.jpg" href="https://3.basecamp.com/3085247/blobs/c67f244e-c3f3-11e8-82f2-ecf4bbd6f9a0/download/Screenshot%202018-07-19%2017.58.40.jpg" filename="Screenshot 2018-07-19 17.58.40.jpg" filesize="66357" width="646" height="212" previewable="true" presentation="gallery">  <figure class="attachment attachment--image">
+    <img src="images/105424018-screenshot-2018-07-19-17-58-40.jpg"/>
+
+  </figure></div>
+</div>
+<div>執行結果：<div sgid="BAh7CEkiCGdpZAY6BkVUSSItZ2lkOi8vYmMzL0F0dGFjaG1lbnQvODU1MTQwMTg_ZXhwaXJlc19pbgY7AFRJIgxwdXJwb3NlBjsAVEkiD2F0dGFjaGFibGUGOwBUSSIPZXhwaXJlc19hdAY7AFQw--3cd3a4b98382b16875c6d231be2a8dbbfddde858" content-type="image/png" url="https://preview.3.basecamp.com/3085247/blobs/cac216ec-c3f3-11e8-80d9-a0369f740df5/previews/full/Screenshot%202018-07-19%2015.53.44.jpg" href="https://3.basecamp.com/3085247/blobs/cac216ec-c3f3-11e8-80d9-a0369f740df5/download/Screenshot%202018-07-19%2015.53.44.jpg" filename="Screenshot 2018-07-19 15.53.44.jpg" filesize="179549" width="974" height="1602" previewable="true" presentation="gallery">  <figure class="attachment attachment--image">
+    <img src="images/105424020-screenshot-2018-07-19-15-53-44.jpg"/>
+
+  </figure></div>
+</div>
+</div>
+
+    
+</section><section><h2 class='section-title'>多語言下的檔案列表</h2><div class="formatted_content">
+  <div>多語言下的檔案列表</div>
+<div>
+<br/><div sgid="BAh7CEkiCGdpZAY6BkVUSSItZ2lkOi8vYmMzL0F0dGFjaG1lbnQvODU1MTM3MTc_ZXhwaXJlc19pbgY7AFRJIgxwdXJwb3NlBjsAVEkiD2F0dGFjaGFibGUGOwBUSSIPZXhwaXJlc19hdAY7AFQw--782dda852566e999bf681134b3d4561166b342f6" content-type="image/png" url="https://preview.3.basecamp.com/3085247/blobs/2442748e-c3f2-11e8-826c-a0369f740db3/previews/full/Screenshot%202018-07-19%2015.54.51.jpg" href="https://3.basecamp.com/3085247/blobs/2442748e-c3f2-11e8-826c-a0369f740db3/download/Screenshot%202018-07-19%2015.54.51.jpg" filename="Screenshot 2018-07-19 15.54.51.jpg" filesize="296413" width="548" height="1084" previewable="true" presentation="gallery">  <figure class="attachment attachment--image">
+    <img src="images/105423719-screenshot-2018-07-19-15-54-51.jpg"/>
+
+  </figure></div>
+</div>
+</div>
+
+    
+</section><section><h2 class='section-title'>輸出及匯入多語言檔案</h2><div class="formatted_content">
+  <div>Xcode 可以讓我們輸出多語言用的 XLIFF 檔案，以方便翻譯者翻譯。</div>
+<div><br/></div>
+<div>XLIFF 是 XML Localization Interexchange File Format 的意思。<br/><br/>
+</div>
+<div>翻譯完成後，我們可以從新匯入，匯入時，如果和原有檔案有 Conflict，Xcode 會彈出比較讓我們審視。<br/><br/>
+</div>
+<div><div sgid="BAh7CEkiCGdpZAY6BkVUSSItZ2lkOi8vYmMzL0F0dGFjaG1lbnQvODU1MTQwNTA_ZXhwaXJlc19pbgY7AFRJIgxwdXJwb3NlBjsAVEkiD2F0dGFjaGFibGUGOwBUSSIPZXhwaXJlc19hdAY7AFQw--8b3997acbcd92815d8c3e7a5b9315d7ce10f7dda" content-type="image/png" url="https://preview.3.basecamp.com/3085247/blobs/e52114a2-c3f3-11e8-b636-ecf4bbd6f9a0/previews/full/Screenshot%202018-07-19%2015.12.43.jpg" href="https://3.basecamp.com/3085247/blobs/e52114a2-c3f3-11e8-b636-ecf4bbd6f9a0/download/Screenshot%202018-07-19%2015.12.43.jpg" filename="Screenshot 2018-07-19 15.12.43.jpg" filesize="838390" width="5344" height="3058" previewable="true" presentation="gallery">  <figure class="attachment attachment--image">
+    <img src="images/105424052-screenshot-2018-07-19-15-12-43.jpg"/>
+
+  </figure></div></div>
+<div><br/></div>
+<h3>如何開啟 XLIFF 檔案？</h3>
+<ul>
+<li><a target="_blank" rel="noreferrer" class="autolinked" data-behavior="truncate" href="https://en.wikipedia.org/wiki/XLIFF">https://en.wikipedia.org/wiki/XLIFF</a></li>
+<li><a target="_blank" rel="noreferrer" class="autolinked" data-behavior="truncate" href="http://xliff.brightec.co.uk">http://xliff.brightec.co.uk</a></li>
+</ul>
+<div><br/></div>
+<h3>於 App 內轉換語言</h3>
+<div>
+<br/>要在 App 內轉換語言，涉及動態地載入不同的 .lproj 檔案。<br/><br/>
+</div>
+<ul>
+<li><a href="https://stackoverflow.com/questions/29985614/how-can-i-change-the-localization-programmatically-by-swift" target="_blank" rel="noreferrer">Stackflow</a></li>
+<li><a href="https://www.factorialcomplexity.com/blog/2015/01/28/how-to-change-localization-internally-in-your-ios-application.html" target="_blank" rel="noreferrer">https://www.factorialcomplexity.com/</a></li>
+<li><a href="https://forums.developer.apple.com/message/36704#36704" target="_blank" rel="noreferrer">蘋果職員不建議 App 內轉換：</a></li>
+</ul>
+<blockquote>
+<br/>The system does not support changing your app's localisation on the fly. If you look through the App Frameworks / Localization topic area (which is where I moved your question, btw) you'll find that a significant fraction of the threads are from people having problems when they try to do this. You may be able to work around some of the problems but there are others that have no workaround. Probably the most significant relates to system UI components.<br/><br/><br/>If the system puts up a UI component on your behalf (the document picker, or Game Center user interface parts, or whatever) it will do so in the localisation that it thinks that your app is running in. If your app is 'pretending' to run in some other language, you'll end up with a mixed localisation, where some parts of your app (the parts you control) are in one language and other parts of your app (the parts controlled by the OS) are in another. That's a very poor user experience.<br/><br/><br/>In my opinion it is much better to avoid this problem entirely by localising your app in the standard way and relying on the system to choose the language for you based on the user's system-wide preferences.<br/><br/><br/>— Quinn "The Eskimo!"</blockquote>
+</div>
+
+    
+</section></section>
+
+<section><h1>元件介紹</h1><div class="formatted_content">
+  <div>這個附錄中列出了不同的元件介紹。</div>
+</div>
+
+    
+<section><h2 class='section-title'>UIView 與 UIViewController</h2><div class="formatted_content">
+  <div>ViewController 顧名思義，就是定義介面的控制代碼（controller），一個介面（View）有自己的界面顯示特性，例如 UILabel 負責顯示文字、UIButton 負責顯示按鈕及其文字並接受觸碰事件，生成相應的 IBAction、UIImageView 負責顯示圖片。這些都是界面（View），亦是屬於 UIView類別。<br/><br/>而 iOS 中，每一整的版界面是一個通用的 UIView，它的作用是作為 Container 裝載著其他 UIView 元件，例如裝著 UILabel、UIButton。而 View 的主要作用是顯示，但我們還是須要邏輯控制，例如控制當某個 UIButton 按下時怎樣做，某個 UILabel 什麼時候更改顯示成什麼文字，某個 UIImageView 是顯示還是隱藏等等。這些代碼就是介面的控制，所以是 ViewController。而 iOS 中對應的類別就是 UIViewController。<br/><br/>每一版獨立的整版界面，都是一個 UIViewController。而且我們會為其配上一個繼承自 UIViewController 的自定義類別，才可以撰寫自定義代碼。<br/><br/>我們會為每一個畫面的 UIViewController 建立一個 class，這個 class 繼承自 UIViewController，命名方式是這個功能的描述 + ViewController 字眼。例如 ShareViewController, HomeViewController, AllRecordsViewController. 注意首字母都是大寫的。建立新 class 方法是 File &gt; New File 然後選擇 Swift class，再選擇 subclass of UIViewController，這時名稱會自動填上 ViewController，再在前綴補上描述名稱便可。<br/><br/>建立新檔案後，要在 Storyboard 選取介面的橙色方盒，在右方的 panel 第一個 Tab 中，custom class 選擇剛剛建立的新檔案。</div>
+</div>
+
+    
+</section><section><h2 class='section-title'>物件導向編程 Object-Oriented Programming</h2><div class="formatted_content">
+  <div>什麼是物件導向編程？<br/><br/>在 Swift 中，我們常常看見 Class 類，例如 ViewController。而類之中，有 method 及 variable。這是物件導向編程的一些述語，可以了解一下，加強認識。<br/><br/>class 類別是定義，例如定義「汽車」，假設我們定義汽車是四輪的，有引擎的。但這只是定義。再假設有一個汽車工廠，按著這個定義去製造汽車，那麼所製造的每一部汽車就是實體 Instance。這些實體都屬於「汽車」這個類別，都有四輪及引擎。<br/><br/>套用到 UIViewController，這個類別定義了每個介面（View）的控制器（Controller）內應有什麼功能，例如可以控制它們的 Life Cycle（viewWillAppear、viewDidLoad etc）。所以每個介面伴隨的控制器，就山日一卜人這個 UIViewController 的實體。<br/><br/>
+</div>
+<h3>繼承 Extend</h3>
+<div>物件導向編程的另一個重要概念是繼承，日戈中我們可以就一個類別定義一個更夾義的類別，例如「汽車」可以進一步分為「電動汽車」「汽油汽車」「電能混合車」三個子類別，再分別生成其實體。<br/><br/>所以當我們有不同的畫面時，就須要定義不同的 UIViewController 的繼承，令到每一個既有的 UIViewController 特性，亦有各自定義的控制代碼。</div>
+</div>
+
+    
+</section><section><h2 class='section-title'>UIImageView</h2><div class="formatted_content">
+  <div>UIImageView 是用來顯示 UIImage 的界面元素。<br/><br/>預設 UIImageView 只適合顯示本地（Local）的影像數據。UIImageView 顧名思義是顯示 UIImage 的，所以要顯示什麼數據，就主要看 UIImage 的影像數據從哪𥚃獲得。<br/><br/>
+</div>
+<ol>
+<li>最直接的方法是使用<em>影像檔案名稱</em>，來載入已經儲存到項目內的本地圖像。</li>
+<li>另外，就是使用 NSData，想辦法動態生成圖像格式，然後以 UIImageView顯示出來。例如畫板 App 或者填色 App，又或者不同特效的影相 App，都是動態生成圖像的。</li>
+<li>從網絡載入圖片，預設的 API 會較為繁複。需要先使用 NSURLConnection 或 NSURLSession 取得網絡數據，再按其返回值（Response）的 header 來說明下載回來的數據所相對應的圖片格式。然後通過 NSData 生成 UIImage。</li>
+<li>另一個從網絡載入圖片的快速方法，是使用第三方程序庫，其內部做法跟以上第 3 點一樣，但通常第三方程序庫會提供了一個易用的 API。例如 AlamoFire 會有個 UIImageView extension： `af_setImage(withURL:)`</li>
+</ol>
+<div><br/></div>
+<h3>緊記要設定的 Content Mode：Aspect Fill &amp; Aspect Fit</h3>
+<div><br/></div>
+<div>UIImageView 在呈現圖片時，如果 UIView 的界面框的尺寸比例和圖片不匹配，就可以設定 Content Mode。主要我們要選擇的是 Aspect Fill 還是 Aspect Fit，分別代表要<strong>填滿</strong>還是<strong>顯示整張圖片</strong>？</div>
+</div>
+
+    
+</section><section><h2 class='section-title'>Extension</h2><div class="formatted_content">
+  <div>Swift 的 Extension 就要所謂的 Monkey Patch。即對一個已 Compile 的類（Class）再擴展。<br/><br/>
+</div>
+<div>Extension 有點類似 Mixin 的概念。其優點是不用再為特定功能而建立 Subclass，因為不同情況下為使用不同功能，未必是 Subclass 可以解決的。<br/><br/>
+</div>
+<div>其缺點是如果擴展的函數和原有的函數名稱相同，就會有 Override 出現，並產生同一個函數而行為不一致的問題。所以 AlamoFire 的解決方法是在所有 Extension 上加上 prefix，例如 `af_setImage(withURL:)` 而不是直接使用 `setImage(withURL:)`。</div>
+</div>
+
+    
+</section><section><h2 class='section-title'>IBAction & IBOutlet</h2><div class="formatted_content">
+  <div>IBAction 和 IBOutlet 是程序和界面的兩種連結。<br/><br/>IBOutlet 是用一程序變量來記錄（reference）一個界面元素，好讓我們在程序中再動態地設定這個界面元素。例如設定一個 UILabel 顯示不同的文字輸出等。<br/><br/>
+</div>
+<div>IBAction 是一個函數（function/method），當界面上有互動發生時，例如 UIButton 按下時，需要調用程序的哪一段代碼。</div>
+</div>
+
+    
+</section><section><h2 class='section-title'>Storyboard</h2><div class="formatted_content">
+  <div>Storyboard 可以讓我們在一個檔案管理多個關連的介面。這方便我們統一管理這些界面及他們之間的顯示關連。<br/><br/>
+</div>
+<div>在使用 Storyboard 以前，我們使用 xib 檔案獨立設定每個畫面。單獨畫面設定的操作其實和 Storyboard 內的畫面設定差不多，Storyboard 多了的是界面之間的連繫。</div>
+</div>
+
+    
+</section><section><h2 class='section-title'>UIButton</h2><div class="formatted_content">
+  <div>UIButton 可以讓我們接受用戶互動的各項事件，在介面上拉好 UIButton 後，就可以通過滑鼠右鍵拖拉的方式，拖拉到程序上，建立 IBAction。<br/><br/>
+</div>
+<div>另外，UIButton 在設定選項中，可以選擇不同的狀態（State），最常用的狀態，除了平常狀態外，就是 當手指按下時的 Highlight 了。如果於按鈕上使用圖片，也可以在這個 Highlight 狀態設定不同的圖片，做到按下去的效果。<br/><br/>
+</div>
+<div>另一種狀態是停用（Disabled），當一個按鈕不想被用戶按下時可以設定為停用。</div>
+</div>
+
+    
+</section><section><h2 class='section-title'>使用 AppDelegate 製作在 Switcher 覆蓋畫面的 UI</h2><div class="formatted_content">
+  <div>1) 先定義一個新的 UIViewController，在 Storyboard 中製作其畫面，並定義 Storyboard ID 為 CoverViewController。<br/><br/>
+</div>
+<div>
+<br/>2) 在 AppDelegate.swift 中定義 instance variable coverVC:UIViewController，然後在 applicationWillResignActive中：<br/><br/>
+</div>
+<pre><code>coverVC = application.keyWindow?.rootViewController?.storyboard?.instantiateViewController(withIdentifier: "CoverViewController")
 if coverVC != nil {
     application.keyWindow?.rootViewController?.present(coverVC!, animated: false, completion: nil)
 }
-
-```
-
-
-在 applicationDidBecomeActive 中：
-
-
-```
-if coverVC != nil {
+<br/></code></pre>
+<div>
+<br/>在 applicationDidBecomeActive 中：<br/><br/>
+</div>
+<pre><code>if coverVC != nil {
     coverVC!.dismiss(animated: false, completion: nil)
-}
-```
+}</code></pre>
+</div>
 
-# 教材更新歷史
+    
+</section></section>
 
-1.  2018-09-28: 第一節教材推出
-2.  2018-10-01: 優化章節內容分配
+<section><h1>教材更新歷史</h1><div class="formatted_content">
+  <ol>
+<li>2018-09-28: 第一節教材推出</li>
+<li>2018-10-01: 優化章節內容分配</li>
+</ol>
+</div>
+
+    
+</section>
